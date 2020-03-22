@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+         func setDefaultRealm() {
+                   var config = Realm.Configuration()
+
+                   config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("coronaVirus.realm")
+                   Realm.Configuration.defaultConfiguration = config
+               }
+
+               setDefaultRealm()
+        
         return true
     }
 
