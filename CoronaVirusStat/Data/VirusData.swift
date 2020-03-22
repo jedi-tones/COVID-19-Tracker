@@ -13,27 +13,10 @@ class VirusData {
     
     let linkLatest = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest"
     let linkLatestOnlyCountry = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest?onlyCountries=true"
-    let linkTimeSeries = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/timeseries?onlyCountries=true"
+    let linkTimeSeriesOnlyCountry = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/timeseries?onlyCountries=true"
+    let linkTimeSeriesCityCode = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/timeseries?iso2="
     let linkBrief = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/brief"
     
-    
-    private var virusDataState = [CoronaVirusStateLatest]()
-    private var virusDataStateOnlyCountry = [CoronaVirusStateOnlyCountry]()
     private var virusDataStateTimeSeries = [CoronaVirusStateTimeSeries]()
-    
-    
-    func saveOnlyCountry(data: [CoronaVirusStateOnlyCountry] ){
-        virusDataStateOnlyCountry = data
-    }
-    
-    func saveTimeSeries(data: [CoronaVirusStateTimeSeries] ){
-        virusDataStateTimeSeries = data
-    }
-    
-    func saveOnlyCountry(data: [CoronaVirusStateLatest] ){
-        virusDataState = data
-    }
-    
-    
     
 }

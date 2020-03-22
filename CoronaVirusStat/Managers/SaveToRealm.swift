@@ -41,17 +41,30 @@ class SaveToRealm {
                 let newCountryName = country.replacingOccurrences(of: "\'", with: "")
                 let existCountry = realm.objects(VirusRealm.self).filter("countryregion = '\(newCountryName)'")
                 
-                if existCountry.isEmpty {
-                    
-                } else {
+                if !existCountry.isEmpty {
                     if let currentVirusRealm = existCountry.first {
-                        addlatestCityData(element: currentVirusRealm, newData: currentCountry)
+                        addLatestCityData(element: currentVirusRealm, newData: currentCountry)
                     }
                 }
             }
         }
     }
-    
+    //MARK: - saveTimeSeriesOnlyCountry
+    func saveTimeSeriesOnlyCountry(data: [CoronaVirusStateTimeSeries]){
+        
+        for currentCountry in data {
+            if let country = currentCountry.countryregion {
+                let newCountryName = country.replacingOccurrences(of: "\'", with: "")
+                let existCountry = realm.objects(VirusRealm.self).filter("countryregion = '\(newCountryName)'")
+                
+                if !existCountry.isEmpty {
+                    if let currentVirusRealm = existCountry.first {
+                        addTimeSeriesOnlyCountry(element: currentVirusRealm, newData: currentCountry)
+                    }
+                }
+            }
+        }
+    }
     
     //MARK: - private func
     
@@ -85,13 +98,26 @@ class SaveToRealm {
         }
     }
     
-        //MARK: - addlatestCityData
-    private func addlatestCityData(element: VirusRealm, newData: CoronaVirusStateLatest) {
+    //MARK: - addlatestCityData
+    private func addLatestCityData(element: VirusRealm, newData: CoronaVirusStateLatest) {
         
         DispatchQueue.main.async {
             do {
                 try self.realm.write{
                     self.virusRealmElementCity(element: element, newData: newData)
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func addTimeSeriesOnlyCountry(element: VirusRealm, newData: CoronaVirusStateTimeSeries) {
+        
+        DispatchQueue.main.async {
+            do {
+                try self.realm.write{
+                    self.virusRealmTimeSeriesCountry(element: element, newData: newData)
                 }
             } catch let error as NSError {
                 print(error.localizedDescription)
@@ -169,6 +195,31 @@ class SaveToRealm {
                 editCity.recovered = newData.recovered ?? 0
             }
         }
-        
+    }
+    
+      //MARK: - virusRealmTimeSeriesCountry
+    private func virusRealmTimeSeriesCountry(element: VirusRealm, newData: CoronaVirusStateTimeSeries) {
+        let dates = newData.timeseries.keys.sorted(by: > )
+        for date in dates {
+            let existDate = element.timeseries.filter("date = '\(date)'")
+            
+            let timeSeries = TimeseryRealm()
+            timeSeries.date = date
+            timeSeries.confirmed = newData.timeseries[date]?.confirmed ?? 0
+            timeSeries.deaths = newData.timeseries[date]?.deaths ?? 0
+            timeSeries.recovered = newData.timeseries[date]?.recovered ?? 0
+            
+            //if  city does not exist
+            if existDate.isEmpty {
+                element.timeseries.append(timeSeries)
+            } else {
+                if let currentDate = existDate.first {
+                    currentDate.date = date
+                    currentDate.confirmed = newData.timeseries[date]?.confirmed ?? 0
+                    currentDate.deaths = newData.timeseries[date]?.deaths ?? 0
+                    currentDate.recovered = newData.timeseries[date]?.recovered ?? 0
+                }
+            }
+        }
     }
 }

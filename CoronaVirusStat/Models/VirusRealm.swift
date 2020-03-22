@@ -11,14 +11,8 @@ import RealmSwift
 
 
 class LocationRealm: Object {
-    
     @objc dynamic  var lat = 0.0
     @objc dynamic  var lng = 0.0
-}
-
-class CountrycodeRealm: Object {
-    @objc dynamic var iso2 = ""
-    @objc dynamic var iso3 = ""
 }
 
 

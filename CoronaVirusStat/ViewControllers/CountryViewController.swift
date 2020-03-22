@@ -28,6 +28,7 @@ class CountryViewController: UIViewController {
                                 
                                 SaveToRealm.shared.saveLatestOnlyCountry(data: data)
                                 self.getCityData()
+                                self.getTimeSeriesData()
         })
     }
     
@@ -42,7 +43,16 @@ class CountryViewController: UIViewController {
         })
     }
     
-    
+    private func getTimeSeriesData() {
+        
+        jsonManager.getData(view: self,
+                            link: VirusData.shared.linkTimeSeriesOnlyCountry,
+                            typeData: [CoronaVirusStateTimeSeries].self,
+                            complition: { data in
+                        
+                                SaveToRealm.shared.saveTimeSeriesOnlyCountry(data: data)
+        })
+    }
 }
 
 
