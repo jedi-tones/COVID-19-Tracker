@@ -55,11 +55,11 @@ class SaveToRealm {
         for currentCountry in data {
             if let country = currentCountry.countryregion {
                 let newCountryName = country.replacingOccurrences(of: "\'", with: "")
-                let existCountry = realm.objects(VirusRealm.self).filter("countryregion = '\(newCountryName)'")
+                let existCountries = realm.objects(VirusRealm.self).filter("countryregion = '\(newCountryName)'")
                 
-                if !existCountry.isEmpty {
-                    if let currentVirusRealm = existCountry.first {
-                        addTimeSeriesOnlyCountry(element: currentVirusRealm, newData: currentCountry)
+                if !existCountries.isEmpty {
+                    if let exitCountry = existCountries.first {
+                        addTimeSeriesOnlyCountry(element: exitCountry, newData: currentCountry)
                     }
                 }
             }
@@ -69,11 +69,12 @@ class SaveToRealm {
     func saveTimeSeriesCity(data: [CoronaVirusCityTimesSeries]) {
         for city in data {
             if let currentCityName = city.provincestate {
-                let exiesCity = realm.objects(ProvincestateRealm.self).filter("province = '\(currentCityName)'")
+                let newCityName = currentCityName.replacingOccurrences(of: "\'", with: "")
+                let existCities = realm.objects(ProvincestateRealm.self).filter("province = '\(newCityName)'")
                 
-                if !exiesCity.isEmpty {
-                    if let currentExistCity = exiesCity.first {
-                        virusRealmTimeSeriesCity(element: currentExistCity, newData: city)
+                if !existCities.isEmpty {
+                    if let existCity = existCities.first {
+                        addTimeSeriesCity(element: existCity, newData: city)
                     }
                 }
             }
@@ -126,7 +127,7 @@ class SaveToRealm {
             }
         }
     }
-    
+     //MARK: - addTimeSeriesOnlyCountry
     private func addTimeSeriesOnlyCountry(element: VirusRealm, newData: CoronaVirusStateTimeSeries) {
         
         DispatchQueue.main.async {
@@ -139,6 +140,22 @@ class SaveToRealm {
             }
         }
     }
+    //MARK: - addTimeSeriesCity
+    private func addTimeSeriesCity(element: ProvincestateRealm, newData: CoronaVirusCityTimesSeries) {
+        
+        DispatchQueue.main.async {
+            do {
+                try self.realm.write{
+                    self.virusRealmTimeSeriesCity(element: element, newData: newData)
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    
+    
     
     //MARK: - virusRealmElement
     private func virusRealmElement(element: VirusRealm?, newData: CoronaVirusStateOnlyCountry) -> VirusRealm {
