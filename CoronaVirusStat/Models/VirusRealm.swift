@@ -28,6 +28,7 @@ class ProvincestateRealm: Object {
    @objc dynamic var confirmed = 0
    @objc dynamic var deaths = 0
    @objc dynamic var recovered = 0
+    let timesSeries = List<TimeseryRealm>()
 }
 
 
@@ -40,10 +41,11 @@ class VirusRealm: Object {
     @objc dynamic var lastupdate = "2020-03-21T18:42:00.009Z"
     @objc dynamic var countrycode = ""
     let location = List<LocationRealm>()
-    let timeseries = List<TimeseryRealm>()
+    let timeSeries = List<TimeseryRealm>()
     let province = List<ProvincestateRealm>()
     
     override class func primaryKey() -> String? {
         "countryregion"
     }
 }
+

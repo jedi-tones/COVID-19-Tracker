@@ -65,6 +65,21 @@ class SaveToRealm {
             }
         }
     }
+    //MARK: - saveTimeSeriesCity
+    func saveTimeSeriesCity(data: [CoronaVirusCityTimesSeries]) {
+        for city in data {
+            if let currentCityName = city.provincestate {
+                let exiesCity = realm.objects(ProvincestateRealm.self).filter("province = '\(currentCityName)'")
+                
+                if !exiesCity.isEmpty {
+                    if let currentExistCity = exiesCity.first {
+                        virusRealmTimeSeriesCity(element: currentExistCity, newData: city)
+                    }
+                }
+            }
+        }
+    }
+    
     
     //MARK: - private func
     
@@ -136,10 +151,12 @@ class SaveToRealm {
             editElement.countrycode = newData.countrycode?.iso2 ?? ""
             editElement.lastupdate = newData.lastupdate ?? "2020-03-21T20:42:00.004Z"
             
+            //edit exist country location
             if let location = editElement.location.first  {
                 location.lat = newData.location.lat ?? 0.0
                 location.lng = newData.location.lng ?? 0.0
             } else {
+                //create new country location
                 let location = LocationRealm()
                 location.lat = newData.location.lat ?? 0.0
                 location.lng = newData.location.lng ?? 0.0
@@ -197,11 +214,11 @@ class SaveToRealm {
         }
     }
     
-      //MARK: - virusRealmTimeSeriesCountry
+    //MARK: - virusRealmTimeSeriesCountry
     private func virusRealmTimeSeriesCountry(element: VirusRealm, newData: CoronaVirusStateTimeSeries) {
         let dates = newData.timeseries.keys.sorted(by: > )
         for date in dates {
-            let existDate = element.timeseries.filter("date = '\(date)'")
+            let existDate = element.timeSeries.filter("date = '\(date)'")
             
             let timeSeries = TimeseryRealm()
             timeSeries.date = date
@@ -211,13 +228,37 @@ class SaveToRealm {
             
             //if  city does not exist
             if existDate.isEmpty {
-                element.timeseries.append(timeSeries)
+                element.timeSeries.append(timeSeries)
             } else {
                 if let currentDate = existDate.first {
                     currentDate.date = date
                     currentDate.confirmed = newData.timeseries[date]?.confirmed ?? 0
                     currentDate.deaths = newData.timeseries[date]?.deaths ?? 0
                     currentDate.recovered = newData.timeseries[date]?.recovered ?? 0
+                }
+            }
+        }
+    }
+    //MARK: - virusRealmTimeSeriesCity
+    private func virusRealmTimeSeriesCity(element: ProvincestateRealm, newData: CoronaVirusCityTimesSeries) {
+        let dates = newData.timeseries.keys.sorted(by: >)
+        for date in dates {
+            let existDate = element.timesSeries.filter("date = '\(date)'")
+            
+            let timeSeries = TimeseryRealm()
+            timeSeries.date = date
+            timeSeries.confirmed = newData.timeseries[date]?.confirmed ?? 0
+            timeSeries.deaths = newData.timeseries[date]?.deaths ?? 0
+            timeSeries.recovered = newData.timeseries[date]?.recovered ?? 0
+            
+            if existDate.isEmpty {
+                element.timesSeries.append(timeSeries)
+            } else {
+                if let currentDate = existDate.first {
+                    currentDate.date = date
+                    currentDate.confirmed = newData.timeseries[date]?.confirmed ?? 0
+                    currentDate.deaths = newData.timeseries[date]?.confirmed ?? 0
+                    currentDate.recovered = newData.timeseries[date]?.confirmed ?? 0
                 }
             }
         }

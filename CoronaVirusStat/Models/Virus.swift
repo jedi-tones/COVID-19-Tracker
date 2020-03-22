@@ -47,3 +47,13 @@ struct CoronaVirusStateOnlyCountry: Decodable {
     let countrycode: Countrycode?
     let confirmed, deaths, recovered: Int?
 }
+
+
+struct CoronaVirusCityTimesSeries: Decodable {
+    let provincestate: String?
+    let countryregion: String?
+    let lastupdate: String?
+    let location: Location
+    let countrycode: Countrycode
+    let timeseries: [String: Timesery]
+}
