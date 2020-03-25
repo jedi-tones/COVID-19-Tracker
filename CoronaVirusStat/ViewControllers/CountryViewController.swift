@@ -26,15 +26,16 @@ class CountryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         countryRealmData = realm.objects(VirusRealm.self)
-
+        
         setUI()
-        getData()
+         getData()
         sortRealmData()
     }
     
     @IBAction func renewPressed() {
         getData()
     }
+    
     @IBAction func sortChanged() {
         sortRealmData()
     }
@@ -74,9 +75,9 @@ class CountryViewController: UIViewController {
                             complition: { data in
                                 
                                 SaveToRealm.shared.saveLatestOnlyCountry(data: data, complition: {
-                                    DispatchQueue.main.async {
+                                    
                                         self.sortRealmData()
-                                    }
+                                    
                                 })
                                 //                                self.getCityData()
                                 //                                self.getTimeSeriesData()
@@ -119,6 +120,22 @@ class CountryViewController: UIViewController {
     
 }
 
+
+extension CountryViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let indexPath = sender as? IndexPath else { return }
+        if segue.identifier == "ShowCity" {
+            let selectedCountry = countryRealmData?[indexPath.row].countryregion
+            let countryCode = countryRealmData?[indexPath.row].countrycode
+            let dstVC = segue.destination as? CityViewController
+            dstVC?.country = selectedCountry
+            dstVC?.countryCode = countryCode
+        }
+    }
+}
+
 //MARK: - UITableViewDelegate, UITableViewDataSource
 extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -126,14 +143,20 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as! CountryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath)
         if let countryData = countryRealmData?[indexPath.row] {
             cell.textLabel?.text = countryData.countryregion
-            cell.detailTextLabel?.text = "\(countryData.deaths)"
+            cell.detailTextLabel?.text = "\(countryData.confirmed)"
         }
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "ShowCity", sender: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+
     
 }

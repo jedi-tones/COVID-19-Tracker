@@ -10,10 +10,16 @@ import UIKit
 
 class CityViewController: UIViewController {
 
+    var country: String!
+    var countryCode: String!
+    
+    
+    @IBOutlet var navItem: UINavigationItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navItem.title = country
     }
     
 
