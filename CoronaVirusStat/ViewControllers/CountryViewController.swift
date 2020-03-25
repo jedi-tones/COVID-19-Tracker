@@ -25,21 +25,44 @@ class CountryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setUI()
         countryRealmData = realm.objects(VirusRealm.self)
-        
+
+        setUI()
         getData()
-        
+        sortRealmData()
     }
     
-    @IBAction func renewPressed(_ sender: Any) {
+    @IBAction func renewPressed() {
         getData()
+    }
+    @IBAction func sortChanged() {
+        sortRealmData()
+    }
+    
+    @IBAction func reverseSortChanged() {
+        sortRealmData()
     }
     
     private func setUI(){
         
         countryTableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: CountryTableViewCell.reuseID)
+        
+    }
+    
+    
+    private func sortRealmData() {
+        let isReverse = reverseSortSegmentedControl.selectedSegmentIndex == 0 ? false : true
+        
+        switch sortSegmentedControl.selectedSegmentIndex {
+        case 0:
+            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "confirmed", ascending: isReverse)
+            
+        case 1:
+            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "deaths", ascending: isReverse)
+        default:
+            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: !isReverse)
+        }
+        countryTableView.reloadData()
         
     }
     
@@ -52,12 +75,12 @@ class CountryViewController: UIViewController {
                                 
                                 SaveToRealm.shared.saveLatestOnlyCountry(data: data, complition: {
                                     DispatchQueue.main.async {
-                                        self.countryTableView.reloadData()
+                                        self.sortRealmData()
                                     }
                                 })
-//                                self.getCityData()
-//                                self.getTimeSeriesData()
-//                                self.getTimeSeriesForCity(countryCode: "US")
+                                //                                self.getCityData()
+                                //                                self.getTimeSeriesData()
+                                //                                self.getTimeSeriesForCity(countryCode: "US")
         })
     }
     
@@ -96,7 +119,7 @@ class CountryViewController: UIViewController {
     
 }
 
-
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         countryRealmData?.count ?? 0

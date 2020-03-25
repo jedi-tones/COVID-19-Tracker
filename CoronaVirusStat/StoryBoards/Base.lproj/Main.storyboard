@@ -32,10 +32,13 @@
                                             <rect key="frame" x="16" y="5.5" width="212" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <segments>
-                                                <segment title="Country"/>
                                                 <segment title="Infected"/>
                                                 <segment title="Death"/>
+                                                <segment title="Country"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="sortChanged" destination="yK6-Ns-m0C" eventType="valueChanged" id="Ag2-bx-NQ9"/>
+                                            </connections>
                                         </segmentedControl>
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="WhL-qV-joj">
@@ -46,6 +49,9 @@
                                                 <segment title="aA" width="30"/>
                                                 <segment title="Aa" width="30"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="reverseSortChanged" destination="yK6-Ns-m0C" eventType="valueChanged" id="moI-TR-tDa"/>
+                                            </connections>
                                         </segmentedControl>
                                     </barButtonItem>
                                 </items>
