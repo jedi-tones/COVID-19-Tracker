@@ -124,6 +124,7 @@
 				FB74575E2426ACE80098E670 /* CityViewController.swift */,
 				FB74574A242673B80098E670 /* MapViewController.swift */,
 				FBA255BC242BE9B200317E03 /* SettingsViewController.swift */,
+				FBA255BE242BEC4400317E03 /* Cell */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -132,8 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				FB74572F24266CA60098E670 /* Main.storyboard */,
-				FB745742242673630098E670 /* CountryTableViewCell.swift */,
-				FB745743242673630098E670 /* CountryTableViewCell.xib */,
 				FB74573724266CA70098E670 /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoards;
@@ -173,6 +172,15 @@
 				FB74575924269AEB0098E670 /* VirusData.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		FBA255BE242BEC4400317E03 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FB745742242673630098E670 /* CountryTableViewCell.swift */,
+				FB745743242673630098E670 /* CountryTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
