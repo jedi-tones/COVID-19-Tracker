@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ntd-dY-KY7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ntd-dY-KY7">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,46 +16,72 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2S5-Yj-tfB">
-                                <rect key="frame" x="0.0" y="91" width="320" height="428"/>
+                                <rect key="frame" x="0.0" y="91" width="320" height="384"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3f9-7v-T4C">
+                                <rect key="frame" x="0.0" y="475" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="7aa-3l-3tq">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="MXN-t8-3Cs">
+                                            <rect key="frame" x="16" y="5.5" width="212" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <segments>
+                                                <segment title="Country"/>
+                                                <segment title="Infected"/>
+                                                <segment title="Death"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="WhL-qV-joj">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" id="O5d-dv-2yl">
+                                            <rect key="frame" x="243" y="5.5" width="61" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                            <segments>
+                                                <segment title="aA" width="30"/>
+                                                <segment title="Aa" width="30"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IiG-4X-8Xd" firstAttribute="trailing" secondItem="3f9-7v-T4C" secondAttribute="trailing" id="Yrr-2G-gEd"/>
+                            <constraint firstItem="3f9-7v-T4C" firstAttribute="leading" secondItem="IiG-4X-8Xd" secondAttribute="leading" id="baE-rL-TCg"/>
+                            <constraint firstItem="IiG-4X-8Xd" firstAttribute="bottom" secondItem="3f9-7v-T4C" secondAttribute="bottom" id="n7N-lJ-EIz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="IiG-4X-8Xd"/>
                     </view>
                     <navigationItem key="navigationItem" title="COVID-19" id="V4q-vL-Tc9">
-                        <leftBarButtonItems>
-                            <barButtonItem style="plain" id="a2C-wf-H7d">
-                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="tWA-gZ-ykw">
-                                    <rect key="frame" x="16" y="5.5" width="141" height="33"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="Country"/>
-                                        <segment title="Infected"/>
-                                    </segments>
-                                </segmentedControl>
-                            </barButtonItem>
-                            <barButtonItem style="plain" id="GsX-UA-dfg">
-                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Uw0-KM-S84">
-                                    <rect key="frame" x="165" y="5.5" width="90" height="33"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="aA"/>
-                                        <segment title="Aa"/>
-                                    </segments>
-                                </segmentedControl>
-                            </barButtonItem>
-                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="E5z-TE-cS7"/>
                     </navigationItem>
                     <connections>
                         <segue destination="I0h-fb-aZv" kind="presentation" id="fcz-q9-2Uv"/>
+                        <segue destination="dgL-dJ-MHk" kind="show" id="6Mf-rf-ebu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rhr-Ui-8Hw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3706.875" y="8.4507042253521121"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="K6n-xt-sNZ">
+            <objects>
+                <viewController id="dgL-dJ-MHk" customClass="SettingsViewController" customModule="CoronaVirusStat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5iv-LZ-i5r">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="LAI-Gr-zZA"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fT7-B1-t4J"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9qB-OH-z54" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4614" y="-690"/>
         </scene>
         <!--City View Controller-->
         <scene sceneID="8hs-BI-qwi">
@@ -100,6 +126,9 @@
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g3i-b0-FoE">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="yK6-Ns-m0C" kind="relationship" relationship="rootViewController" id="pWQ-Dd-1lV"/>
                     </connections>
@@ -114,6 +143,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Ntd-dY-KY7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0O9-88-MPZ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -130,7 +160,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="map" catalog="system" width="64" height="56"/>
-        <image name="text.justify" catalog="system" width="64" height="50"/>
+        <image name="map" catalog="system" width="128" height="113"/>
+        <image name="text.justify" catalog="system" width="128" height="100"/>
     </resources>
 </document>
