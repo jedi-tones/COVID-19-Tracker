@@ -19,6 +19,10 @@
                                 <rect key="frame" x="0.0" y="91" width="320" height="384"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yK6-Ns-m0C" id="3yj-Jx-6cV"/>
+                                    <outlet property="delegate" destination="yK6-Ns-m0C" id="auM-Wh-8HR"/>
+                                </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3f9-7v-T4C">
                                 <rect key="frame" x="0.0" y="475" width="320" height="44"/>
@@ -56,9 +60,16 @@
                         <viewLayoutGuide key="safeArea" id="IiG-4X-8Xd"/>
                     </view>
                     <navigationItem key="navigationItem" title="COVID-19" id="V4q-vL-Tc9">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="E5z-TE-cS7"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="E5z-TE-cS7">
+                            <connections>
+                                <action selector="renewPressed:" destination="yK6-Ns-m0C" id="9ya-ga-zKN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="countryTableView" destination="2S5-Yj-tfB" id="o4z-x7-kpy"/>
+                        <outlet property="reverseSortSegmentedControl" destination="O5d-dv-2yl" id="FFb-K4-nFe"/>
+                        <outlet property="sortSegmentedControl" destination="MXN-t8-3Cs" id="oyc-Kt-ZhO"/>
                         <segue destination="I0h-fb-aZv" kind="presentation" id="fcz-q9-2Uv"/>
                         <segue destination="dgL-dJ-MHk" kind="show" id="6Mf-rf-ebu"/>
                     </connections>

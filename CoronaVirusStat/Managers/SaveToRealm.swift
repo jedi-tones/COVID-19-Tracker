@@ -16,7 +16,7 @@ class SaveToRealm {
     let realm = try! Realm()
     
     //MARK: - saveLatestOnlyCountry
-    func saveLatestOnlyCountry(data: [CoronaVirusStateOnlyCountry] ) {
+    func saveLatestOnlyCountry(data: [CoronaVirusStateOnlyCountry], complition: @escaping () -> Void ) {
         
         for currentCountry in data {
             if let country = currentCountry.countryregion {
@@ -32,6 +32,7 @@ class SaveToRealm {
                 }
             }
         }
+        complition()
     }
     //MARK: - saveLatestOnlyCountry
     func saveLatestCity(data: [CoronaVirusStateLatest]) {

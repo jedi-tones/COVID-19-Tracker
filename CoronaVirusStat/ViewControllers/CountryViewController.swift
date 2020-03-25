@@ -7,15 +7,39 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CountryViewController: UIViewController {
     
+    @IBOutlet var countryTableView: UITableView!
+    
+    
     let jsonManager = JsonManager()
+    let realm = try! Realm()
+    
+    var countryRealmData: Results<VirusRealm>?
+    
+    @IBOutlet var sortSegmentedControl: UISegmentedControl!
+    @IBOutlet var reverseSortSegmentedControl: UISegmentedControl!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUI()
+        countryRealmData = realm.objects(VirusRealm.self)
+        
         getData()
+        
+    }
+    
+    @IBAction func renewPressed(_ sender: Any) {
+        getData()
+    }
+    
+    private func setUI(){
+        
+        countryTableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: CountryTableViewCell.reuseID)
         
     }
     
@@ -26,10 +50,14 @@ class CountryViewController: UIViewController {
                             typeData: [CoronaVirusStateOnlyCountry].self,
                             complition: { data in
                                 
-                                SaveToRealm.shared.saveLatestOnlyCountry(data: data)
-                                self.getCityData()
-                                self.getTimeSeriesData()
-                                self.getTimeSeriesForCity(countryCode: "US")
+                                SaveToRealm.shared.saveLatestOnlyCountry(data: data, complition: {
+                                    DispatchQueue.main.async {
+                                        self.countryTableView.reloadData()
+                                    }
+                                })
+//                                self.getCityData()
+//                                self.getTimeSeriesData()
+//                                self.getTimeSeriesForCity(countryCode: "US")
         })
     }
     
@@ -69,3 +97,20 @@ class CountryViewController: UIViewController {
 }
 
 
+extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        countryRealmData?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as! CountryTableViewCell
+        if let countryData = countryRealmData?[indexPath.row] {
+            cell.textLabel?.text = countryData.countryregion
+            cell.detailTextLabel?.text = "\(countryData.deaths)"
+        }
+        
+        return cell
+    }
+    
+    
+}

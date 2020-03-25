@@ -10,6 +10,8 @@ import UIKit
 
 class CountryTableViewCell: UITableViewCell {
 
+    static let reuseID = "CountryCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
