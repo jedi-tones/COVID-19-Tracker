@@ -145,10 +145,10 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as! CountryTableViewCell
         if let countryData = countryRealmData?[indexPath.row] {
-            cell.textLabel?.text = countryData.countryregion
-            cell.detailTextLabel?.text = "\(countryData.confirmed)"
+            
+            cell.setCell(data: countryData)
         }
         
         return cell
@@ -159,6 +159,9 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.cellForRow(at: indexPath)?.contentView.bounds.height ?? 100
+    }
 
     
 }
