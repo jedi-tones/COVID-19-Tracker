@@ -12,15 +12,15 @@ import RealmSwift
 class CountryViewController: UIViewController {
     
     @IBOutlet var countryTableView: UITableView!
-    
+    @IBOutlet var sortSegmentedControl: UISegmentedControl!
+    @IBOutlet var reverseSortSegmentedControl: UISegmentedControl!
     
     let jsonManager = JsonManager()
     let realm = try! Realm()
     
     var countryRealmData: Results<VirusRealm>?
     
-    @IBOutlet var sortSegmentedControl: UISegmentedControl!
-    @IBOutlet var reverseSortSegmentedControl: UISegmentedControl!
+   
     
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class CountryViewController: UIViewController {
         
     }
     
-    
+    //MARK: - sortRealmData
     private func sortRealmData() {
         let isReverse = reverseSortSegmentedControl.selectedSegmentIndex == 0 ? false : true
         
@@ -67,6 +67,7 @@ class CountryViewController: UIViewController {
         
     }
     
+    //MARK: - getData
     private func getData(){
         
         jsonManager.getData(view: self,
@@ -75,12 +76,15 @@ class CountryViewController: UIViewController {
                             complition: { data in
                                 
                                 SaveToRealm.shared.saveLatestOnlyCountry(data: data, complition: {
-                                    
+                                    DispatchQueue.main.async {
                                         self.sortRealmData()
-                                    
+                                        self.getCityData()
+                                        self.getTimeSeriesData()
+                                        
+                                    }
                                 })
-                                //                                self.getCityData()
-                                //                                self.getTimeSeriesData()
+                                                                
+                                                                
                                 //                                self.getTimeSeriesForCity(countryCode: "US")
         })
     }
@@ -120,18 +124,16 @@ class CountryViewController: UIViewController {
     
 }
 
-
+//MARK: - navigation
 extension CountryViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let indexPath = sender as? IndexPath else { return }
         if segue.identifier == "ShowCity" {
-            let selectedCountry = countryRealmData?[indexPath.row].countryregion
-            let countryCode = countryRealmData?[indexPath.row].countrycode
+            let selectedCountry = countryRealmData?[indexPath.row]
             let dstVC = segue.destination as? CityViewController
-            dstVC?.country = selectedCountry
-            dstVC?.countryCode = countryCode
+            dstVC?.countrySelected = selectedCountry
         }
     }
 }

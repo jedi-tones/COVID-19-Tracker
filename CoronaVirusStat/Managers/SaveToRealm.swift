@@ -34,7 +34,7 @@ class SaveToRealm {
         }
         complition()
     }
-    //MARK: - saveLatestOnlyCountry
+    //MARK: - saveLatestCity
     func saveLatestCity(data: [CoronaVirusStateLatest]) {
         
         for currentCountry in data {
@@ -208,14 +208,15 @@ class SaveToRealm {
     //MARK: - virusRealmElementCity
     
     private func virusRealmElementCity(element: VirusRealm, newData: CoronaVirusStateLatest) {
-        let newCityName = newData.provincestate?.replacingOccurrences(of: "\'", with: "") ?? "Unknow city"
+        var newCityName = newData.provincestate?.replacingOccurrences(of: "\'", with: "") ?? "Unknow city"
+        if newCityName == "" { newCityName = "No details information" }
         let existCity = element.province.filter("province = '\(newCityName)'")
         
         //if  city does not exist
         if existCity.isEmpty {
             let province = ProvincestateRealm()
             
-            province.province = newData.provincestate ?? "Unknow city"
+            province.province = newCityName
             province.confirmed = newData.confirmed ?? 0
             province.deaths = newData.deaths ?? 0
             province.recovered = newData.recovered ?? 0

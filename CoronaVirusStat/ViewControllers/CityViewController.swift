@@ -10,27 +10,41 @@ import UIKit
 
 class CityViewController: UIViewController {
 
-    var country: String!
-    var countryCode: String!
-    
+    var countrySelected: VirusRealm!
     
     @IBOutlet var navItem: UINavigationItem!
+    @IBOutlet var cityTableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navItem.title = country
+        
+        setUI()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setUI(){
+        
+        cityTableView.register(UINib(nibName: "CityTableViewCell", bundle: nil), forCellReuseIdentifier: CityTableViewCell.reuseID)
+        
+        navItem.title = countrySelected.countryregion
+        print(countrySelected.province.count)
     }
-    */
 
+}
+
+extension CityViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        countrySelected.province.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.reuseID, for: indexPath) as! CityTableViewCell
+        
+        cell.textLabel?.text = countrySelected.province[indexPath.row].province
+        cell.detailTextLabel?.text = "\(countrySelected.province[indexPath.row].confirmed)"
+        return cell
+    }
+    
+    
 }

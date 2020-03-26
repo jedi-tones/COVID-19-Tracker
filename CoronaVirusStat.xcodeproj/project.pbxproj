@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0E210F7CD957E664F36024E8 /* Pods_CoronaVirusStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD946EE6538BA84F7B5ACB11 /* Pods_CoronaVirusStat.framework */; };
+		FB46C285242C7EC700FABEC7 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */; };
+		FB46C286242C7EC700FABEC7 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */; };
 		FB74572A24266CA60098E670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74572924266CA60098E670 /* AppDelegate.swift */; };
 		FB74572C24266CA60098E670 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74572B24266CA60098E670 /* SceneDelegate.swift */; };
 		FB74573124266CA60098E670 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB74572F24266CA60098E670 /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 		982F9CA987DABCD63CC354BC /* Pods-CoronaVirusStat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoronaVirusStat.release.xcconfig"; path = "Target Support Files/Pods-CoronaVirusStat/Pods-CoronaVirusStat.release.xcconfig"; sourceTree = "<group>"; };
 		AD946EE6538BA84F7B5ACB11 /* Pods_CoronaVirusStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoronaVirusStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF700D892C2BEDAA01ABE916 /* Pods-CoronaVirusStat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoronaVirusStat.debug.xcconfig"; path = "Target Support Files/Pods-CoronaVirusStat/Pods-CoronaVirusStat.debug.xcconfig"; sourceTree = "<group>"; };
+		FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
 		FB74572624266CA60098E670 /* CoronaVirusStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoronaVirusStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB74572924266CA60098E670 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB74572B24266CA60098E670 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 			children = (
 				FB745742242673630098E670 /* CountryTableViewCell.swift */,
 				FB745743242673630098E670 /* CountryTableViewCell.xib */,
+				FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */,
+				FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -243,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB46C286242C7EC700FABEC7 /* CityTableViewCell.xib in Resources */,
 				FB745745242673630098E670 /* CountryTableViewCell.xib in Resources */,
 				FB74573924266CA70098E670 /* LaunchScreen.storyboard in Resources */,
 				FB74573624266CA70098E670 /* Assets.xcassets in Resources */,
@@ -311,6 +318,7 @@
 				FBA255BD242BE9B200317E03 /* SettingsViewController.swift in Sources */,
 				FB74575A24269AEB0098E670 /* VirusData.swift in Sources */,
 				FB74574B242673B80098E670 /* MapViewController.swift in Sources */,
+				FB46C285242C7EC700FABEC7 /* CityTableViewCell.swift in Sources */,
 				FB74574D242673D40098E670 /* Virus.swift in Sources */,
 				FB74575F2426ACE80098E670 /* CityViewController.swift in Sources */,
 			);
