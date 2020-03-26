@@ -27,7 +27,7 @@ class CountryTableViewCell: UITableViewCell {
         recoveredLabel.text = "\(data.recovered)"
         lastUpdate.text = "\(data.lastupdate)"
         
-        accessoryType = .disclosureIndicator
+     //    accessoryType = .disclosureIndicator
     }
     
 }

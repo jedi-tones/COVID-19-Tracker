@@ -29,12 +29,23 @@ class CountryViewController: UIViewController {
         
         setUI()
          getData()
-        sortRealmData()
+        //sortRealmData()
     }
     
     @IBAction func renewPressed() {
-        getData()
+        print(convertDateFormater("3/23/20"))
     }
+    
+    
+    private func convertDateFormater(_ date: String) -> String
+      {
+          let dateFormatter = DateFormatter()
+          dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
+          let date = dateFormatter.date(from: date)
+          dateFormatter.dateFormat = "yyyy-MM-dd"
+          return  dateFormatter.string(from: date!)
+
+      }
     
     @IBAction func sortChanged() {
         sortRealmData()
@@ -159,9 +170,9 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        tableView.cellForRow(at: indexPath)?.contentView.bounds.height ?? 100
-    }
+   // func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+      //  tableView.cellForRow(at: indexPath)?.contentView.bounds.height ?? 100
+   // }
 
     
 }
