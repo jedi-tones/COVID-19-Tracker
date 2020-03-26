@@ -26,6 +26,8 @@ class CountryTableViewCell: UITableViewCell {
         deathLabel.text = "\(data.deaths)"
         recoveredLabel.text = "\(data.recovered)"
         lastUpdate.text = "\(data.lastupdate)"
+        
+        accessoryType = .disclosureIndicator
     }
     
 }
