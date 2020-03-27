@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import UIKit
 
 class ConvertDate {
     
+    //conver date form m/DD/yyyy to yyyy/m/DD
     static func convertToYyMmDd(oldDate: String) -> String {
         let getDateFormatter = DateFormatter()
         getDateFormatter.dateFormat = "M/dd/yy"

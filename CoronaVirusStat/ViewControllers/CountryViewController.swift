@@ -29,7 +29,7 @@ class CountryViewController: UIViewController {
         
         setUI()
         getData()
-        //sortRealmData()
+        sortRealmData()
     }
     
     @IBAction func renewPressed() {

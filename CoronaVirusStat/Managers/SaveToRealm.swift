@@ -235,7 +235,11 @@ class SaveToRealm {
     
     //MARK: - virusRealmTimeSeriesCountry
     private func virusRealmTimeSeriesCountry(element: VirusRealm, newData: CoronaVirusStateTimeSeries) {
-        let dates = newData.timeseries.keys.sorted(by: > )
+        //conver date form m/DD/yyyy to yyyy/m/DD
+        let convertDate = newData.timeseries.keys.map { (data) -> String in
+            ConvertDate.convertToYyMmDd(oldDate: data)
+        }
+        let dates = convertDate.sorted(by: > )
         for date in dates {
             let existDate = element.timeSeries.filter("date = '\(date)'")
             
