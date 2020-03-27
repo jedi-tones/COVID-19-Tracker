@@ -19,7 +19,7 @@ class CountryViewController: UIViewController {
     private let realm = try! Realm()
     private let searchController = UISearchController(searchResultsController: nil)
     private var countryRealmData: Results<VirusRealm>?
-    private var filterCountryRealmData: [VirusRealm] = []
+    private var filterCountryRealmData: Results<VirusRealm>?
     
     private var isEmptySearchBar: Bool {
         guard let text = searchController.searchBar.text else { return false }
@@ -159,7 +159,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if isSearching {
-            return filterCountryRealmData.count
+            return filterCountryRealmData?.count ?? 0
         } else {
             return countryRealmData?.count ?? 0
         }
@@ -170,9 +170,9 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as! CountryTableViewCell
         
         if isSearching {
-             let countryData = filterCountryRealmData[indexPath.row]
+            if let countryData = filterCountryRealmData?[indexPath.row] {
                 print("search")
-                cell.setCell(data: countryData)
+                cell.setCell(data: countryData) }
         } else {
             print("notSearch")
             if let countryData = countryRealmData?[indexPath.row] {
@@ -205,10 +205,6 @@ extension CountryViewController: UISearchResultsUpdating {
     }
     
     private func filterContentSearch(searchText: String) {
-        filterCountryRealmData = realm.objects(VirusRealm.self).filter({ (data) -> Bool in
-            print(searchText)
-            return data.countryregion.lowercased().contains(searchText.lowercased())
-        })
-        
+        filterCountryRealmData = realm.objects(VirusRealm.self).filter("countryregion CONTAINS[c] '\(searchText.lowercased())'")
     }
 }
