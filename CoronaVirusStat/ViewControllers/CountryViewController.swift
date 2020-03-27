@@ -15,13 +15,19 @@ class CountryViewController: UIViewController {
     @IBOutlet var sortSegmentedControl: UISegmentedControl!
     @IBOutlet var reverseSortSegmentedControl: UISegmentedControl!
     
-    let jsonManager = JsonManager()
-    let realm = try! Realm()
+    private let jsonManager = JsonManager()
+    private let realm = try! Realm()
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var countryRealmData: Results<VirusRealm>?
+    private var filterCountryRealmData: [VirusRealm] = []
     
-    var countryRealmData: Results<VirusRealm>?
-    
-   
-    
+    private var isEmptySearchBar: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    private var isSearching: Bool {
+         !isEmptySearchBar && searchController.isActive
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +39,7 @@ class CountryViewController: UIViewController {
     }
     
     @IBAction func renewPressed() {
-        print(ConvertDate.convertToYyMmDd(oldDate: "3/23/20"))
+        getData()
     }
     
     
@@ -46,9 +52,16 @@ class CountryViewController: UIViewController {
         sortRealmData()
     }
     
+    //MARK:- setUI
     private func setUI(){
         
         countryTableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: CountryTableViewCell.reuseID)
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search country"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         
     }
     
@@ -142,20 +155,35 @@ extension CountryViewController {
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
 extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        countryRealmData?.count ?? 0
+        
+        if isSearching {
+            return filterCountryRealmData.count
+        } else {
+            return countryRealmData?.count ?? 0
+        }
     }
+        
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as! CountryTableViewCell
-        if let countryData = countryRealmData?[indexPath.row] {
-            
-            cell.setCell(data: countryData)
-        }
         
+        if isSearching {
+             let countryData = filterCountryRealmData[indexPath.row]
+                print("search")
+                cell.setCell(data: countryData)
+        } else {
+            print("notSearch")
+            if let countryData = countryRealmData?[indexPath.row] {
+                
+                cell.setCell(data: countryData)
+            }
+        }
         return cell
     }
     
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ShowCity", sender: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -165,5 +193,22 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
       //  tableView.cellForRow(at: indexPath)?.contentView.bounds.height ?? 100
    // }
 
+}
+
+//MARK: - UISearchResultsUpdating
+extension CountryViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentSearch(searchText: searchController.searchBar.text ?? "")
+        countryTableView.reloadData()
+        print(#function)
+        
+    }
     
+    private func filterContentSearch(searchText: String) {
+        filterCountryRealmData = realm.objects(VirusRealm.self).filter({ (data) -> Bool in
+            print(searchText)
+            return data.countryregion.lowercased().contains(searchText.lowercased())
+        })
+        
+    }
 }
