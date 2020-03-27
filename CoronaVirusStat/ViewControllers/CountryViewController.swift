@@ -28,7 +28,7 @@ class CountryViewController: UIViewController {
         countryRealmData = realm.objects(VirusRealm.self)
         
         setUI()
-         getData()
+        getData()
         //sortRealmData()
     }
     
@@ -40,9 +40,9 @@ class CountryViewController: UIViewController {
     private func convertDateFormater(_ date: String) -> String
       {
           let dateFormatter = DateFormatter()
-          dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
+          dateFormatter.dateFormat = "MM/dd/yy"
           let date = dateFormatter.date(from: date)
-          dateFormatter.dateFormat = "yyyy-MM-dd"
+          dateFormatter.dateFormat = "yy/MM/dd"
           return  dateFormatter.string(from: date!)
 
       }
