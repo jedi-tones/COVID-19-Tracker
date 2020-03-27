@@ -33,19 +33,10 @@ class CountryViewController: UIViewController {
     }
     
     @IBAction func renewPressed() {
-        print(convertDateFormater("3/23/20"))
+        print(ConvertDate.convertToYyMmDd(oldDate: "3/23/20"))
     }
     
     
-    private func convertDateFormater(_ date: String) -> String
-      {
-          let dateFormatter = DateFormatter()
-          dateFormatter.dateFormat = "MM/dd/yy"
-          let date = dateFormatter.date(from: date)
-          dateFormatter.dateFormat = "yy/MM/dd"
-          return  dateFormatter.string(from: date!)
-
-      }
     
     @IBAction func sortChanged() {
         sortRealmData()

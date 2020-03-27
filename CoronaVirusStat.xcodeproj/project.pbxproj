@@ -10,6 +10,7 @@
 		0E210F7CD957E664F36024E8 /* Pods_CoronaVirusStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD946EE6538BA84F7B5ACB11 /* Pods_CoronaVirusStat.framework */; };
 		FB46C285242C7EC700FABEC7 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */; };
 		FB46C286242C7EC700FABEC7 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */; };
+		FB46C288242E75F200FABEC7 /* ConverterDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46C287242E75F200FABEC7 /* ConverterDate.swift */; };
 		FB74572A24266CA60098E670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74572924266CA60098E670 /* AppDelegate.swift */; };
 		FB74572C24266CA60098E670 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74572B24266CA60098E670 /* SceneDelegate.swift */; };
 		FB74573124266CA60098E670 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB74572F24266CA60098E670 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		BF700D892C2BEDAA01ABE916 /* Pods-CoronaVirusStat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoronaVirusStat.debug.xcconfig"; path = "Target Support Files/Pods-CoronaVirusStat/Pods-CoronaVirusStat.debug.xcconfig"; sourceTree = "<group>"; };
 		FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
+		FB46C287242E75F200FABEC7 /* ConverterDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterDate.swift; sourceTree = "<group>"; };
 		FB74572624266CA60098E670 /* CoronaVirusStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoronaVirusStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB74572924266CA60098E670 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB74572B24266CA60098E670 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				FB74574F2426750B0098E670 /* JsonManager.swift */,
 				FB7457522426786F0098E670 /* AlertController.swift */,
 				FB7457602426B3120098E670 /* SaveToRealm.swift */,
+				FB46C287242E75F200FABEC7 /* ConverterDate.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				FB74572C24266CA60098E670 /* SceneDelegate.swift in Sources */,
 				FB7457612426B3120098E670 /* SaveToRealm.swift in Sources */,
 				FB74575D2426ACDF0098E670 /* CountryViewController.swift in Sources */,
+				FB46C288242E75F200FABEC7 /* ConverterDate.swift in Sources */,
 				FB74575724268E030098E670 /* VirusRealm.swift in Sources */,
 				FB74573424266CA60098E670 /* CoronaVirusStat.xcdatamodeld in Sources */,
 				FB745744242673630098E670 /* CountryTableViewCell.swift in Sources */,
