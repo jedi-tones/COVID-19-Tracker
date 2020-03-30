@@ -16,6 +16,4 @@ class VirusDataLink {
     let linkTimeSeriesOnlyCountry = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/timeseries?onlyCountries=true"
     let linkTimeSeriesCityCode = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/timeseries?iso2="
     let linkBrief = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/brief"
-    
-    
 }

@@ -122,7 +122,12 @@ class CountryViewController: UIViewController {
                             typeData: [CoronaVirusStateTimeSeries].self,
                             complition: { data in
                                 
-                                SaveToRealm.shared.saveTimeSeriesOnlyCountry(data: data)
+                                SaveToRealm.shared.saveTimeSeriesOnlyCountry(data: data, complition: {
+                                    DispatchQueue.main.async {
+                                        self.countryTableView.reloadData()
+                                    }
+                                })
+                                
         })
     }
     

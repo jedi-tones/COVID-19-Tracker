@@ -29,6 +29,7 @@ class ProvincestateRealm: Object {
    @objc dynamic var deaths = 0
    @objc dynamic var recovered = 0
     let timesSeries = List<TimeseryRealm>()
+    let location = List<LocationRealm>()
 }
 
 

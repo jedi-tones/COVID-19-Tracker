@@ -51,7 +51,7 @@ class SaveToRealm {
         }
     }
     //MARK: - saveTimeSeriesOnlyCountry
-    func saveTimeSeriesOnlyCountry(data: [CoronaVirusStateTimeSeries]){
+    func saveTimeSeriesOnlyCountry(data: [CoronaVirusStateTimeSeries], complition: @escaping () -> Void){
         
         for currentCountry in data {
             if let country = currentCountry.countryregion {
@@ -65,6 +65,7 @@ class SaveToRealm {
                 }
             }
         }
+        complition()
     }
     //MARK: - saveTimeSeriesCity
     func saveTimeSeriesCity(data: [CoronaVirusCityTimesSeries]) {
@@ -215,12 +216,16 @@ class SaveToRealm {
         //if  city does not exist
         if existCity.isEmpty {
             let province = ProvincestateRealm()
+            let location = LocationRealm()
+            
+            location.lat = newData.location?.lat ?? 0
+            location.lng = newData.location?.lng ?? 0
             
             province.province = newCityName
             province.confirmed = newData.confirmed ?? 0
             province.deaths = newData.deaths ?? 0
             province.recovered = newData.recovered ?? 0
-            
+            province.location.append(location)
             element.province.append(province)
             
         } else {

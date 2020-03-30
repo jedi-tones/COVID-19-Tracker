@@ -29,7 +29,7 @@
                                 <items>
                                     <barButtonItem style="plain" id="7aa-3l-3tq">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="MXN-t8-3Cs">
-                                            <rect key="frame" x="16" y="6" width="212" height="33"/>
+                                            <rect key="frame" x="16" y="5.5" width="212" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <segments>
                                                 <segment title="Infected"/>
@@ -43,7 +43,7 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="WhL-qV-joj">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" id="O5d-dv-2yl">
-                                            <rect key="frame" x="243" y="6" width="61" height="33"/>
+                                            <rect key="frame" x="243" y="5.5" width="61" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <segments>
                                                 <segment title="aA" width="30"/>
@@ -157,6 +157,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fWs-CZ-bLO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hi8-fx-3Ge" id="ASg-jD-BVJ"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
