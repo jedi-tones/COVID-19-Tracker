@@ -17,6 +17,9 @@ class CountryTableViewCell: UITableViewCell {
     @IBOutlet var deathLabel: UILabel!
     @IBOutlet var recoveredLabel: UILabel!
     @IBOutlet var lastUpdate: UILabel!
+    @IBOutlet var difConfirmed: UILabel!
+    @IBOutlet var difDeath: UILabel!
+    @IBOutlet var difRecovered: UILabel!
     
     
      func setCell(data: VirusRealm) {
@@ -26,6 +29,10 @@ class CountryTableViewCell: UITableViewCell {
         deathLabel.text = "\(data.deaths)"
         recoveredLabel.text = "\(data.recovered)"
         lastUpdate.text = "\(data.lastupdate)"
+        
+        difConfirmed.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValuse: .confirmed))"
+        difDeath.text = "+\(Statistic.getAddNewStats(currentCountry: data, forValuse: .death))"
+        difRecovered.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValuse: .recovered))"
         
      //    accessoryType = .disclosureIndicator
     }

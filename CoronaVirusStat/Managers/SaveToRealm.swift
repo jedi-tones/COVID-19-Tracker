@@ -235,30 +235,28 @@ class SaveToRealm {
     
     //MARK: - virusRealmTimeSeriesCountry
     private func virusRealmTimeSeriesCountry(element: VirusRealm, newData: CoronaVirusStateTimeSeries) {
-        //conver date form m/DD/yyyy to yyyy/m/DD
-        let convertDate = newData.timeseries.keys.map { (data) -> String in
-            ConvertDate.convertToYyMmDd(oldDate: data)
-        }
-        let dates = convertDate.sorted(by: > )
+        
+        let dates = newData.timeseries.keys.sorted(by: > )
         for date in dates {
-            let existDate = element.timeSeries.filter("date = '\(date)'")
-            let unconvertedDate = ConvertDate.convertToMmDdYy(oldDate: date)
+            let convertedDate = ConvertDate.convertToYyMmDd(oldDate: date)
+            let existDate = element.timeSeries.filter("date = '\(convertedDate)'")
+            
             
             let timeSeries = TimeseryRealm()
-            timeSeries.date = date
-            timeSeries.confirmed = newData.timeseries[unconvertedDate]?.confirmed ?? 0
-            timeSeries.deaths = newData.timeseries[unconvertedDate]?.deaths ?? 0
-            timeSeries.recovered = newData.timeseries[unconvertedDate]?.recovered ?? 0
+            timeSeries.date = convertedDate
+            timeSeries.confirmed = newData.timeseries[date]?.confirmed ?? 0
+            timeSeries.deaths = newData.timeseries[date]?.deaths ?? 0
+            timeSeries.recovered = newData.timeseries[date]?.recovered ?? 0
             
             //if  city does not exist
             if existDate.isEmpty {
                 element.timeSeries.append(timeSeries)
             } else {
                 if let currentDate = existDate.first {
-                    currentDate.date = date
-                    currentDate.confirmed = newData.timeseries[unconvertedDate]?.confirmed ?? 0
-                    currentDate.deaths = newData.timeseries[unconvertedDate]?.deaths ?? 0
-                    currentDate.recovered = newData.timeseries[unconvertedDate]?.recovered ?? 0
+                    currentDate.date = convertedDate
+                    currentDate.confirmed = newData.timeseries[date]?.confirmed ?? 0
+                    currentDate.deaths = newData.timeseries[date]?.deaths ?? 0
+                    currentDate.recovered = newData.timeseries[date]?.recovered ?? 0
                 }
             }
         }
