@@ -30,9 +30,9 @@ class CountryTableViewCell: UITableViewCell {
         recoveredLabel.text = "\(data.recovered)"
         lastUpdate.text = "\(data.lastupdate)"
         
-        difConfirmed.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValuse: .confirmed))"
-        difDeath.text = "+\(Statistic.getAddNewStats(currentCountry: data, forValuse: .death))"
-        difRecovered.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValuse: .recovered))"
+        difConfirmed.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValuse: .confirmed).value) from \(Statistic.getAddNewStats(currentCountry: data, forValuse: .confirmed).date)"
+        difDeath.text = "+\(Statistic.getAddNewStats(currentCountry: data, forValuse: .death).value) from \(Statistic.getAddNewStats(currentCountry: data, forValuse: .confirmed).date)"
+        difRecovered.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValuse: .recovered).value) from \(Statistic.getAddNewStats(currentCountry: data, forValuse: .confirmed).date)"
         
      //    accessoryType = .disclosureIndicator
     }

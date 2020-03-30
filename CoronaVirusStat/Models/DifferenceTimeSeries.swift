@@ -12,4 +12,5 @@ enum DifferenceTimeSeries: String {
     case confirmed
     case death
     case recovered
+    case previousDate
 }

@@ -11,23 +11,24 @@ import Foundation
 
 class Statistic {
     
-    static func getAddNewStats(currentCountry: VirusRealm, forValuse: DifferenceTimeSeries) -> Int {
+    static func getAddNewStats(currentCountry: VirusRealm, forValuse: DifferenceTimeSeries) -> (date:String, value:Int) {
         let timeSeriesForCountry = currentCountry.timeSeries.sorted(byKeyPath: "date", ascending: true)
-        guard let lastValue = timeSeriesForCountry.last else { return 0 }
+        guard let lastValue = timeSeriesForCountry.last else { return ("20/03/28" , 0) }
         if timeSeriesForCountry.count > 1 {
-            let differenceConfirmed = lastValue.confirmed - timeSeriesForCountry[timeSeriesForCountry.count - 2].confirmed
-            let differenceDeath = lastValue.deaths - timeSeriesForCountry[timeSeriesForCountry.count - 2].deaths
-            let differenceRecovered = lastValue.recovered - timeSeriesForCountry[timeSeriesForCountry.count - 2].recovered
+            let differenceConfirmed = currentCountry.confirmed - timeSeriesForCountry[timeSeriesForCountry.count - 2].confirmed
+            let differenceDeath = currentCountry.deaths - timeSeriesForCountry[timeSeriesForCountry.count - 2].deaths
+            let differenceRecovered = currentCountry.recovered - timeSeriesForCountry[timeSeriesForCountry.count - 2].recovered
+            let previosDate = lastValue.date
             
             switch forValuse {
             case .confirmed:
-                return differenceConfirmed
+                return (previosDate, differenceConfirmed)
             case .death:
-                return differenceDeath
+                return (previosDate, differenceDeath)
             default:
-                return differenceRecovered
+                return (previosDate, differenceRecovered)
             }
-        } else { return 0 }
+        } else { return ("20/03/28", 0) }
         
     }
 }
