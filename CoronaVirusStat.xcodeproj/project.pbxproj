@@ -26,7 +26,7 @@
 		FB7457502426750B0098E670 /* JsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74574F2426750B0098E670 /* JsonManager.swift */; };
 		FB7457532426786F0098E670 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7457522426786F0098E670 /* AlertController.swift */; };
 		FB74575724268E030098E670 /* VirusRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74575624268E030098E670 /* VirusRealm.swift */; };
-		FB74575A24269AEB0098E670 /* VirusData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74575924269AEB0098E670 /* VirusData.swift */; };
+		FB74575A24269AEB0098E670 /* VirusDataLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74575924269AEB0098E670 /* VirusDataLink.swift */; };
 		FB74575D2426ACDF0098E670 /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74575C2426ACDF0098E670 /* CountryViewController.swift */; };
 		FB74575F2426ACE80098E670 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74575E2426ACE80098E670 /* CityViewController.swift */; };
 		FB7457612426B3120098E670 /* SaveToRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7457602426B3120098E670 /* SaveToRealm.swift */; };
@@ -57,7 +57,7 @@
 		FB74574F2426750B0098E670 /* JsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonManager.swift; sourceTree = "<group>"; };
 		FB7457522426786F0098E670 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		FB74575624268E030098E670 /* VirusRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusRealm.swift; sourceTree = "<group>"; };
-		FB74575924269AEB0098E670 /* VirusData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusData.swift; sourceTree = "<group>"; };
+		FB74575924269AEB0098E670 /* VirusDataLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusDataLink.swift; sourceTree = "<group>"; };
 		FB74575C2426ACDF0098E670 /* CountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
 		FB74575E2426ACE80098E670 /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		FB7457602426B3120098E670 /* SaveToRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveToRealm.swift; sourceTree = "<group>"; };
@@ -116,7 +116,6 @@
 			children = (
 				FB74575824269AC80098E670 /* Support files */,
 				FB745751242675130098E670 /* Managers */,
-				FB74575B24269AF50098E670 /* Data */,
 				FB74574E242674E60098E670 /* Models */,
 				FB745740242670910098E670 /* ViewControllers */,
 				FB745741242670A40098E670 /* StoryBoards */,
@@ -153,6 +152,7 @@
 			children = (
 				FB74574C242673D40098E670 /* Virus.swift */,
 				FB74575624268E030098E670 /* VirusRealm.swift */,
+				FB74575924269AEB0098E670 /* VirusDataLink.swift */,
 				FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */,
 			);
 			path = Models;
@@ -177,14 +177,6 @@
 				FB74572B24266CA60098E670 /* SceneDelegate.swift */,
 			);
 			path = "Support files";
-			sourceTree = "<group>";
-		};
-		FB74575B24269AF50098E670 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				FB74575924269AEB0098E670 /* VirusData.swift */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		FBA255BE242BEC4400317E03 /* Cell */ = {
@@ -328,7 +320,7 @@
 				FB7457532426786F0098E670 /* AlertController.swift in Sources */,
 				FB7457502426750B0098E670 /* JsonManager.swift in Sources */,
 				FBA255BD242BE9B200317E03 /* SettingsViewController.swift in Sources */,
-				FB74575A24269AEB0098E670 /* VirusData.swift in Sources */,
+				FB74575A24269AEB0098E670 /* VirusDataLink.swift in Sources */,
 				FB74574B242673B80098E670 /* MapViewController.swift in Sources */,
 				FB46C285242C7EC700FABEC7 /* CityTableViewCell.swift in Sources */,
 				FB74574D242673D40098E670 /* Virus.swift in Sources */,

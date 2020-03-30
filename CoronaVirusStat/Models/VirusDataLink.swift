@@ -1,5 +1,5 @@
 //
-//  VirusData.swift
+//  VirusDataLink.swift
 //  CoronaVirusStat
 //
 //  Created by Денис Щиголев on 21.03.2020.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-class VirusData {
-    static let shared = VirusData()
+class VirusDataLink {
+    static let shared = VirusDataLink()
     
     let linkLatest = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest"
     let linkLatestOnlyCountry = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest?onlyCountries=true"
@@ -17,6 +17,5 @@ class VirusData {
     let linkTimeSeriesCityCode = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/timeseries?iso2="
     let linkBrief = "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/brief"
     
-    private var virusDataStateTimeSeries = [CoronaVirusStateTimeSeries]()
     
 }

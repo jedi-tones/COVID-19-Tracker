@@ -86,7 +86,7 @@ class CountryViewController: UIViewController {
     private func getData(){
         
         jsonManager.getData(view: self,
-                            link: VirusData.shared.linkLatestOnlyCountry,
+                            link: VirusDataLink.shared.linkLatestOnlyCountry,
                             typeData: [CoronaVirusStateOnlyCountry].self,
                             complition: { data in
                                 
@@ -107,7 +107,7 @@ class CountryViewController: UIViewController {
     private func getCityData(){
         
         jsonManager.getData(view: self,
-                            link: VirusData.shared.linkLatest,
+                            link: VirusDataLink.shared.linkLatest,
                             typeData: [CoronaVirusStateLatest].self,
                             complition: {data in
                                 
@@ -118,7 +118,7 @@ class CountryViewController: UIViewController {
     private func getTimeSeriesData() {
         
         jsonManager.getData(view: self,
-                            link: VirusData.shared.linkTimeSeriesOnlyCountry,
+                            link: VirusDataLink.shared.linkTimeSeriesOnlyCountry,
                             typeData: [CoronaVirusStateTimeSeries].self,
                             complition: { data in
                                 
@@ -128,7 +128,7 @@ class CountryViewController: UIViewController {
     
     private func getTimeSeriesForCity(countryCode: String){
         
-        let linkCurrentCountry = VirusData.shared.linkTimeSeriesCityCode + countryCode
+        let linkCurrentCountry = VirusDataLink.shared.linkTimeSeriesCityCode + countryCode
         jsonManager.getData(view: self,
                             link: linkCurrentCountry,
                             typeData: [CoronaVirusCityTimesSeries].self,
@@ -146,9 +146,14 @@ extension CountryViewController {
         
         guard let indexPath = sender as? IndexPath else { return }
         if segue.identifier == "ShowCity" {
-            let selectedCountry = countryRealmData?[indexPath.row]
             let dstVC = segue.destination as? CityViewController
-            dstVC?.countrySelected = selectedCountry
+            if isSearching {
+                let selectedCountry = filterCountryRealmData?[indexPath.row]
+                dstVC?.countrySelected = selectedCountry
+            } else {
+                let selectedCountry = countryRealmData?[indexPath.row]
+                dstVC?.countrySelected = selectedCountry
+            }
         }
     }
 }
