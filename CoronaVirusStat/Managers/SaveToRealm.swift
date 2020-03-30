@@ -242,12 +242,13 @@ class SaveToRealm {
         let dates = convertDate.sorted(by: > )
         for date in dates {
             let existDate = element.timeSeries.filter("date = '\(date)'")
+            let unconvertedDate = ConvertDate.convertToMmDdYy(oldDate: date)
             
             let timeSeries = TimeseryRealm()
             timeSeries.date = date
-            timeSeries.confirmed = newData.timeseries[date]?.confirmed ?? 0
-            timeSeries.deaths = newData.timeseries[date]?.deaths ?? 0
-            timeSeries.recovered = newData.timeseries[date]?.recovered ?? 0
+            timeSeries.confirmed = newData.timeseries[unconvertedDate]?.confirmed ?? 0
+            timeSeries.deaths = newData.timeseries[unconvertedDate]?.deaths ?? 0
+            timeSeries.recovered = newData.timeseries[unconvertedDate]?.recovered ?? 0
             
             //if  city does not exist
             if existDate.isEmpty {
@@ -255,9 +256,9 @@ class SaveToRealm {
             } else {
                 if let currentDate = existDate.first {
                     currentDate.date = date
-                    currentDate.confirmed = newData.timeseries[date]?.confirmed ?? 0
-                    currentDate.deaths = newData.timeseries[date]?.deaths ?? 0
-                    currentDate.recovered = newData.timeseries[date]?.recovered ?? 0
+                    currentDate.confirmed = newData.timeseries[unconvertedDate]?.confirmed ?? 0
+                    currentDate.deaths = newData.timeseries[unconvertedDate]?.deaths ?? 0
+                    currentDate.recovered = newData.timeseries[unconvertedDate]?.recovered ?? 0
                 }
             }
         }

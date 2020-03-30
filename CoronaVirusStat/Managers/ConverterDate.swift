@@ -20,4 +20,14 @@ class ConvertDate {
         guard let date = newDate else { return "20/03/25" }
         return setDateFormater.string(from: date)
     }
+    
+    static func convertToMmDdYy(oldDate: String) -> String {
+        let getDateFormatter = DateFormatter()
+        getDateFormatter.dateFormat = "yy/M/dd"
+        let setDateFormater = DateFormatter()
+        setDateFormater.dateFormat = "M/dd/yy"
+        let newDate = getDateFormatter.date(from: oldDate)
+        guard let date = newDate else { return "3/29/20" }
+        return setDateFormater.string(from: date)
+    }
 }
