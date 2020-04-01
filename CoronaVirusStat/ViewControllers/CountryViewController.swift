@@ -116,9 +116,9 @@ class CountryViewController: UIViewController {
         
         jsonManager.getData(view: self,
                             link: VirusDataLink.shared.linkBrief,
-                            typeData: Breaf.self,
+                            typeData: Brief.self,
                             complition: { data in
-                                SaveToRealm.shared.addBreaf(newData: data, complition: {
+                                SaveToRealm.shared.addBrief(newData: data, complition: {
                                     DispatchQueue.main.async {
                                         self.countryTableView.reloadData()
                                  //       self.countryTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
@@ -150,7 +150,7 @@ class CountryViewController: UIViewController {
                                         self.countryTableView.reloadData()
                                         
                                         //after download timeSeries, calculate timesSeries for Breaf
-                                        SaveToRealm.shared.getTimeSeriesBreaf(complition: {
+                                        SaveToRealm.shared.getTimeSeriesBrief(complition: {
                                             self.countryTableView.reloadData()
                                         })
                                     }

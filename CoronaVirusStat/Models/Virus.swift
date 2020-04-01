@@ -32,7 +32,7 @@ struct CoronaVirusStateLatest: Decodable {
     let countrycode: Countrycode?
 }
 
-struct Breaf: Decodable {
+struct Brief: Decodable {
     let confirmed: Int?
     let deaths: Int?
     let recovered: Int?

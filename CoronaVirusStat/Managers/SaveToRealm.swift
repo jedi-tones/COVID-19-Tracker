@@ -83,17 +83,17 @@ class SaveToRealm {
         }
     }
     
-    //MARK: - addBreaf
-    func addBreaf(newData: Breaf, complition: @escaping () -> Void){
+    //MARK: - addBrief
+    func addBrief(newData: Brief, complition: @escaping () -> Void){
         
         DispatchQueue.main.async {
-            let breaf = self.realm.objects(BreafRealm.self)
+            let brief = self.realm.objects(BreafRealm.self)
             do {
                 try self.realm.write{
-                    if breaf.isEmpty {
-                        self.realm.add(self.virusRealmBreaf(newData: newData))
+                    if brief.isEmpty {
+                        self.realm.add(self.virusRealmBrief(newData: newData))
                     } else {
-                        let _ = self.virusRealmBreaf(newData: newData)
+                        let _ = self.virusRealmBrief(newData: newData)
                     }
                 }
             } catch let error as NSError {
@@ -103,11 +103,11 @@ class SaveToRealm {
         complition()
     }
     
-    
-    func getTimeSeriesBreaf(complition: @escaping () -> Void) {
+    //MARK: - getTimeSeriesBrief
+    func getTimeSeriesBrief(complition: @escaping () -> Void) {
         do {
             try self.realm.write{
-                virusRealmTimeSeriesBreaf()
+                virusRealmTimeSeriesBrief()
             }
         } catch let error as NSError {
             print(error.localizedDescription)
@@ -190,8 +190,8 @@ class SaveToRealm {
     }
     
         
-    //MARK: - virusRealmBreaf
-    private func virusRealmBreaf(newData: Breaf) -> BreafRealm {
+    //MARK: - virusRealmBrief
+    private func virusRealmBrief(newData: Brief) -> BreafRealm {
         let existBreaf = realm.objects(BreafRealm.self)
         if existBreaf.isEmpty{
             let newBreaf = BreafRealm()
@@ -342,7 +342,7 @@ class SaveToRealm {
     }
     
     
-    private func virusRealmTimeSeriesBreaf() {
+    private func virusRealmTimeSeriesBrief() {
         
         let data = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: false)
         let breaf = realm.objects(BreafRealm.self)
