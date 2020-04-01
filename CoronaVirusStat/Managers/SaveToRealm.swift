@@ -34,7 +34,7 @@ class SaveToRealm {
         }
         complition()
     }
-    //MARK: - saveLatestOnlyCountry
+    //MARK: - saveLatestCity
     func saveLatestCity(data: [CoronaVirusStateLatest]) {
         
         for currentCountry in data {
@@ -51,7 +51,7 @@ class SaveToRealm {
         }
     }
     //MARK: - saveTimeSeriesOnlyCountry
-    func saveTimeSeriesOnlyCountry(data: [CoronaVirusStateTimeSeries]){
+    func saveTimeSeriesOnlyCountry(data: [CoronaVirusStateTimeSeries], complition: @escaping () -> Void){
         
         for currentCountry in data {
             if let country = currentCountry.countryregion {
@@ -65,6 +65,7 @@ class SaveToRealm {
                 }
             }
         }
+        complition()
     }
     //MARK: - saveTimeSeriesCity
     func saveTimeSeriesCity(data: [CoronaVirusCityTimesSeries]) {
@@ -82,7 +83,40 @@ class SaveToRealm {
         }
     }
     
+    //MARK: - addBrief
+    func addBrief(newData: Brief, complition: @escaping () -> Void){
+        
+        DispatchQueue.main.async {
+            let brief = self.realm.objects(BreafRealm.self)
+            do {
+                try self.realm.write{
+                    if brief.isEmpty {
+                        self.realm.add(self.virusRealmBrief(newData: newData))
+                    } else {
+                        let _ = self.virusRealmBrief(newData: newData)
+                    }
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+        complition()
+    }
     
+    //MARK: - getTimeSeriesBrief
+    func getTimeSeriesBrief(complition: @escaping () -> Void) {
+        do {
+            try self.realm.write{
+                virusRealmTimeSeriesBrief()
+            }
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        complition()
+    }
+    
+
+
     //MARK: - private func
     
     
@@ -100,7 +134,7 @@ class SaveToRealm {
             }
         }
     }
-    
+
     //MARK: - changeLatestValueOnlyCountry
     private func changeLatestValueOnlyCountry(newData: CoronaVirusStateOnlyCountry, element: VirusRealm){
         
@@ -155,7 +189,24 @@ class SaveToRealm {
         }
     }
     
-    
+        
+    //MARK: - virusRealmBrief
+    private func virusRealmBrief(newData: Brief) -> BreafRealm {
+        let existBreaf = realm.objects(BreafRealm.self)
+        if existBreaf.isEmpty{
+            let newBreaf = BreafRealm()
+            newBreaf.confirmed = newData.confirmed ?? 0
+            newBreaf.death = newData.deaths ?? 0
+            newBreaf.recovered = newData.recovered ?? 0
+            return newBreaf
+        } else {
+            let breaf = existBreaf.first!
+            breaf.confirmed = newData.confirmed ?? 0
+            breaf.death = newData.deaths ?? 0
+            breaf.recovered = newData.recovered ?? 0
+            return breaf
+        }
+    }
     
     
     //MARK: - virusRealmElement
@@ -208,18 +259,23 @@ class SaveToRealm {
     //MARK: - virusRealmElementCity
     
     private func virusRealmElementCity(element: VirusRealm, newData: CoronaVirusStateLatest) {
-        let newCityName = newData.provincestate?.replacingOccurrences(of: "\'", with: "") ?? "Unknow city"
+        var newCityName = newData.provincestate?.replacingOccurrences(of: "\'", with: "") ?? "Unknow city"
+        if newCityName == "" { newCityName = "No details information" }
         let existCity = element.province.filter("province = '\(newCityName)'")
         
         //if  city does not exist
         if existCity.isEmpty {
             let province = ProvincestateRealm()
+            let location = LocationRealm()
             
-            province.province = newData.provincestate ?? "Unknow city"
+            location.lat = newData.location?.lat ?? 0
+            location.lng = newData.location?.lng ?? 0
+            
+            province.province = newCityName
             province.confirmed = newData.confirmed ?? 0
             province.deaths = newData.deaths ?? 0
             province.recovered = newData.recovered ?? 0
-            
+            province.location.append(location)
             element.province.append(province)
             
         } else {
@@ -234,12 +290,15 @@ class SaveToRealm {
     
     //MARK: - virusRealmTimeSeriesCountry
     private func virusRealmTimeSeriesCountry(element: VirusRealm, newData: CoronaVirusStateTimeSeries) {
+        
         let dates = newData.timeseries.keys.sorted(by: > )
         for date in dates {
-            let existDate = element.timeSeries.filter("date = '\(date)'")
+            let convertedDate = ConvertDate.convertToYyMmDd(oldDate: date)
+            let existDate = element.timeSeries.filter("date = '\(convertedDate)'")
+            
             
             let timeSeries = TimeseryRealm()
-            timeSeries.date = date
+            timeSeries.date = convertedDate
             timeSeries.confirmed = newData.timeseries[date]?.confirmed ?? 0
             timeSeries.deaths = newData.timeseries[date]?.deaths ?? 0
             timeSeries.recovered = newData.timeseries[date]?.recovered ?? 0
@@ -249,7 +308,7 @@ class SaveToRealm {
                 element.timeSeries.append(timeSeries)
             } else {
                 if let currentDate = existDate.first {
-                    currentDate.date = date
+                    currentDate.date = convertedDate
                     currentDate.confirmed = newData.timeseries[date]?.confirmed ?? 0
                     currentDate.deaths = newData.timeseries[date]?.deaths ?? 0
                     currentDate.recovered = newData.timeseries[date]?.recovered ?? 0
@@ -281,4 +340,37 @@ class SaveToRealm {
             }
         }
     }
+    
+    
+    private func virusRealmTimeSeriesBrief() {
+        
+        let data = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: false)
+        let breaf = realm.objects(BreafRealm.self)
+        
+        guard let timeSeriesCount = data.first?.timeSeries.count else { return }
+        
+        for numberDate in 0..<timeSeriesCount {
+            print(#function)
+            let breafTimeSeries = TimeseryRealm()
+            guard let lastDate = data.first?.timeSeries.sorted(byKeyPath: "date", ascending: true)[numberDate].date else { return }
+            
+            breafTimeSeries.confirmed = 0
+            breafTimeSeries.deaths = 0
+            breafTimeSeries.recovered = 0
+            breafTimeSeries.date = lastDate
+            
+            for country in data {
+                let timeSeriesForCountry = country.timeSeries.filter("date = '\(lastDate)'")
+                
+                breafTimeSeries.confirmed += timeSeriesForCountry.first?.confirmed ?? 0
+                breafTimeSeries.deaths += timeSeriesForCountry.first?.deaths ?? 0
+                breafTimeSeries.recovered += timeSeriesForCountry.first?.recovered ?? 0
+                
+            }
+            
+            breaf.first?.timesSeries.append(breafTimeSeries)
+        }
+    }
 }
+
+

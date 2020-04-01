@@ -32,6 +32,12 @@ struct CoronaVirusStateLatest: Decodable {
     let countrycode: Countrycode?
 }
 
+struct Brief: Decodable {
+    let confirmed: Int?
+    let deaths: Int?
+    let recovered: Int?
+}
+
 struct CoronaVirusStateTimeSeries: Decodable {
     let countryregion: String?
     let lastupdate: String?

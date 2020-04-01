@@ -21,7 +21,10 @@ class JsonManager {
         guard let url = URL(string: link) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error { AlertController.shared.showErrorAlert(view: view, titleAlert: "Connection Error", messageAlert: error.localizedDescription) }
+            if let error = error {
+                DispatchQueue.main.async {
+                    AlertController.shared.showErrorAlert(view: view, titleAlert: "Connection Error", messageAlert: error.localizedDescription) }
+                }
             
             guard let data = data else { return }
             
@@ -33,9 +36,10 @@ class JsonManager {
                 }
                 
             } catch let errorDecode as NSError {
-                AlertController.shared.showErrorAlert(view: view, titleAlert: "Convert data error", messageAlert: errorDecode.localizedDescription)
+                DispatchQueue.main.async {
+                    AlertController.shared.showErrorAlert(view: view, titleAlert: "Convert data error", messageAlert: errorDecode.localizedDescription)
+                }
             }
-            
             } .resume()
     }
 }
