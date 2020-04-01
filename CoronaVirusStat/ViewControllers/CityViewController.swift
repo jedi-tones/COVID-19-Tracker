@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CityViewController: UIViewController {
 
     var countrySelected: VirusRealm!
-    
+    var provinceSorted: Results<ProvincestateRealm>?
     @IBOutlet var navItem: UINavigationItem!
     @IBOutlet var cityTableView: UITableView!
     
@@ -28,7 +29,8 @@ class CityViewController: UIViewController {
         cityTableView.register(UINib(nibName: "CityTableViewCell", bundle: nil), forCellReuseIdentifier: CityTableViewCell.reuseID)
         
         navItem.title = countrySelected.countryregion
-        print(countrySelected.province.count)
+        
+        provinceSorted = countrySelected.province.sorted(byKeyPath: "confirmed", ascending: false)
     }
 
 }
@@ -41,8 +43,8 @@ extension CityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.reuseID, for: indexPath) as! CityTableViewCell
         
-        cell.textLabel?.text = countrySelected.province[indexPath.row].province
-        cell.detailTextLabel?.text = "\(countrySelected.province[indexPath.row].confirmed)"
+        cell.textLabel?.text = provinceSorted?[indexPath.row].province
+        cell.detailTextLabel?.text = "\(provinceSorted?[indexPath.row].confirmed ?? 0)"
         return cell
     }
     

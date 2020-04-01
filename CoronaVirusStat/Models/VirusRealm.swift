@@ -32,7 +32,12 @@ class ProvincestateRealm: Object {
     let location = List<LocationRealm>()
 }
 
-
+class BreafRealm: Object {
+    @objc dynamic var confirmed = 0
+    @objc dynamic var death = 0
+    @objc dynamic var recovered = 0
+    let timesSeries = List<TimeseryRealm>()
+}
 
 class VirusRealm: Object {
     @objc dynamic var countryregion = "Unknow country"

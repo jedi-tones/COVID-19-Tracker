@@ -83,7 +83,40 @@ class SaveToRealm {
         }
     }
     
+    //MARK: - addBreaf
+    func addBreaf(newData: Breaf, complition: @escaping () -> Void){
+        
+        DispatchQueue.main.async {
+            let breaf = self.realm.objects(BreafRealm.self)
+            do {
+                try self.realm.write{
+                    if breaf.isEmpty {
+                        self.realm.add(self.virusRealmBreaf(newData: newData))
+                    } else {
+                        let _ = self.virusRealmBreaf(newData: newData)
+                    }
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+        complition()
+    }
     
+    
+    func getTimeSeriesBreaf(complition: @escaping () -> Void) {
+        do {
+            try self.realm.write{
+                virusRealmTimeSeriesBreaf()
+            }
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        complition()
+    }
+    
+
+
     //MARK: - private func
     
     
@@ -101,7 +134,7 @@ class SaveToRealm {
             }
         }
     }
-    
+
     //MARK: - changeLatestValueOnlyCountry
     private func changeLatestValueOnlyCountry(newData: CoronaVirusStateOnlyCountry, element: VirusRealm){
         
@@ -156,7 +189,24 @@ class SaveToRealm {
         }
     }
     
-    
+        
+    //MARK: - virusRealmBreaf
+    private func virusRealmBreaf(newData: Breaf) -> BreafRealm {
+        let existBreaf = realm.objects(BreafRealm.self)
+        if existBreaf.isEmpty{
+            let newBreaf = BreafRealm()
+            newBreaf.confirmed = newData.confirmed ?? 0
+            newBreaf.death = newData.deaths ?? 0
+            newBreaf.recovered = newData.recovered ?? 0
+            return newBreaf
+        } else {
+            let breaf = existBreaf.first!
+            breaf.confirmed = newData.confirmed ?? 0
+            breaf.death = newData.deaths ?? 0
+            breaf.recovered = newData.recovered ?? 0
+            return breaf
+        }
+    }
     
     
     //MARK: - virusRealmElement
@@ -291,6 +341,36 @@ class SaveToRealm {
         }
     }
     
- 
     
+    private func virusRealmTimeSeriesBreaf() {
+        
+        let data = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: false)
+        let breaf = realm.objects(BreafRealm.self)
+        
+        guard let timeSeriesCount = data.first?.timeSeries.count else { return }
+        
+        for numberDate in 0..<timeSeriesCount {
+            print(#function)
+            let breafTimeSeries = TimeseryRealm()
+            guard let lastDate = data.first?.timeSeries.sorted(byKeyPath: "date", ascending: true)[numberDate].date else { return }
+            
+            breafTimeSeries.confirmed = 0
+            breafTimeSeries.deaths = 0
+            breafTimeSeries.recovered = 0
+            breafTimeSeries.date = lastDate
+            
+            for country in data {
+                let timeSeriesForCountry = country.timeSeries.filter("date = '\(lastDate)'")
+                
+                breafTimeSeries.confirmed += timeSeriesForCountry.first?.confirmed ?? 0
+                breafTimeSeries.deaths += timeSeriesForCountry.first?.deaths ?? 0
+                breafTimeSeries.recovered += timeSeriesForCountry.first?.recovered ?? 0
+                
+            }
+            
+            breaf.first?.timesSeries.append(breafTimeSeries)
+        }
+    }
 }
+
+

@@ -33,16 +33,17 @@ class CountryViewController: UIViewController {
         super.viewDidLoad()
         countryRealmData = realm.objects(VirusRealm.self)
         
+        registerCell()
         setUI()
+        getBreaf()
         getData()
+        
         sortRealmData()
     }
     
     @IBAction func renewPressed() {
         getData()
     }
-    
-    
     
     @IBAction func sortChanged() {
         sortRealmData()
@@ -54,9 +55,7 @@ class CountryViewController: UIViewController {
     
     //MARK:- setUI
     private func setUI(){
-        
-        countryTableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: CountryTableViewCell.reuseID)
-        
+    
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search country"
@@ -65,6 +64,10 @@ class CountryViewController: UIViewController {
         
     }
     
+    private func registerCell(){
+        countryTableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: CountryTableViewCell.reuseID)
+        countryTableView.register(UINib(nibName: "FirstCountryTableViewCell", bundle: nil), forCellReuseIdentifier: FirstCountryTableViewCell.reuseID)
+    }
     //MARK: - sortRealmData
     private func sortRealmData() {
         let isReverse = reverseSortSegmentedControl.selectedSegmentIndex == 0 ? false : true
@@ -85,13 +88,19 @@ class CountryViewController: UIViewController {
     //MARK: - getData
     private func getData(){
         
+      
+        
+        
+        
         jsonManager.getData(view: self,
                             link: VirusDataLink.shared.linkLatestOnlyCountry,
                             typeData: [CoronaVirusStateOnlyCountry].self,
                             complition: { data in
                                 
+                                //download and save all Country info
                                 SaveToRealm.shared.saveLatestOnlyCountry(data: data, complition: {
                                     DispatchQueue.main.async {
+                                        
                                         self.sortRealmData()
                                         self.getCityData()
                                         self.getTimeSeriesData()
@@ -99,8 +108,22 @@ class CountryViewController: UIViewController {
                                     }
                                 })
                                                                 
-                                                                
                                 //                                self.getTimeSeriesForCity(countryCode: "US")
+        })
+    }
+    
+    private func getBreaf(){
+        
+        jsonManager.getData(view: self,
+                            link: VirusDataLink.shared.linkBrief,
+                            typeData: Breaf.self,
+                            complition: { data in
+                                SaveToRealm.shared.addBreaf(newData: data, complition: {
+                                    DispatchQueue.main.async {
+                                        self.countryTableView.reloadData()
+                                 //       self.countryTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                                    }
+                                })
         })
     }
     
@@ -125,6 +148,11 @@ class CountryViewController: UIViewController {
                                 SaveToRealm.shared.saveTimeSeriesOnlyCountry(data: data, complition: {
                                     DispatchQueue.main.async {
                                         self.countryTableView.reloadData()
+                                        
+                                        //after download timeSeries, calculate timesSeries for Breaf
+                                        SaveToRealm.shared.getTimeSeriesBreaf(complition: {
+                                            self.countryTableView.reloadData()
+                                        })
                                     }
                                 })
                                 
@@ -174,23 +202,28 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
             return countryRealmData?.count ?? 0
         }
     }
-        
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as! CountryTableViewCell
-        
-        if isSearching {
-            if let countryData = filterCountryRealmData?[indexPath.row] {
-                print("search")
-                cell.setCell(data: countryData) }
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: FirstCountryTableViewCell.reuseID, for: indexPath) as! FirstCountryTableViewCell
+            
+            
+            return cell
         } else {
-            print("notSearch")
-            if let countryData = countryRealmData?[indexPath.row] {
-                
-                cell.setCell(data: countryData)
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as! CountryTableViewCell
+            
+            if isSearching {
+                if let countryData = filterCountryRealmData?[indexPath.row] {
+                    cell.setCell(data: countryData) }
+            } else {
+                if let countryData = countryRealmData?[indexPath.row] {
+                    cell.setCell(data: countryData)
+                }
             }
+            return cell
         }
-        return cell
     }
     
 
@@ -199,9 +232,9 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-   // func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      //  tableView.cellForRow(at: indexPath)?.contentView.bounds.height ?? 100
-   // }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
 
 }
 

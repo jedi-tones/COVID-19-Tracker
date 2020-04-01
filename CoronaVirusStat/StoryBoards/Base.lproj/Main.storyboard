@@ -29,12 +29,12 @@
                                 <items>
                                     <barButtonItem style="plain" id="7aa-3l-3tq">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="MXN-t8-3Cs">
-                                            <rect key="frame" x="16" y="5.5" width="212" height="33"/>
+                                            <rect key="frame" x="16" y="5.5" width="225" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <segments>
-                                                <segment title="Infected"/>
-                                                <segment title="Death"/>
-                                                <segment title="Country"/>
+                                                <segment title="Confirmed" width="77"/>
+                                                <segment title="Death" width="65"/>
+                                                <segment title="Country" width="66"/>
                                             </segments>
                                             <connections>
                                                 <action selector="sortChanged" destination="yK6-Ns-m0C" eventType="valueChanged" id="Ag2-bx-NQ9"/>

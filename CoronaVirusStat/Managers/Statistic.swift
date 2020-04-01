@@ -7,11 +7,13 @@
 //
 
 import Foundation
-
+import RealmSwift
 
 class Statistic {
     
-    static func getAddNewStats(currentCountry: VirusRealm, forValuse: DifferenceTimeSeries) -> (date:String, value:Int) {
+    
+    //for country
+    static func getAddNewStats(currentCountry: VirusRealm, forValue: DifferenceTimeSeries) -> (date:String, value:Int) {
         let timeSeriesForCountry = currentCountry.timeSeries.sorted(byKeyPath: "date", ascending: true)
         guard let lastValue = timeSeriesForCountry.last else { return ("20/03/28" , 0) }
         if timeSeriesForCountry.count > 1 {
@@ -20,7 +22,7 @@ class Statistic {
             let differenceRecovered = currentCountry.recovered - timeSeriesForCountry[timeSeriesForCountry.count - 2].recovered
             let previosDate = lastValue.date
             
-            switch forValuse {
+            switch forValue {
             case .confirmed:
                 return (previosDate, differenceConfirmed)
             case .death:
@@ -31,5 +33,7 @@ class Statistic {
         } else { return ("20/03/28", 0) }
         
     }
+    
+    
 }
- 
+

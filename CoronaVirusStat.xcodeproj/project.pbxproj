@@ -13,6 +13,8 @@
 		FB46C288242E75F200FABEC7 /* ConverterDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46C287242E75F200FABEC7 /* ConverterDate.swift */; };
 		FB49800324321F980080B4D5 /* Statistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49800224321F980080B4D5 /* Statistic.swift */; };
 		FB49800524323AF30080B4D5 /* DifferenceTimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */; };
+		FB49800A2433AFC90080B4D5 /* FirstCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4980082433AFC90080B4D5 /* FirstCountryTableViewCell.swift */; };
+		FB49800B2433AFC90080B4D5 /* FirstCountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB4980092433AFC90080B4D5 /* FirstCountryTableViewCell.xib */; };
 		FB74572A24266CA60098E670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74572924266CA60098E670 /* AppDelegate.swift */; };
 		FB74572C24266CA60098E670 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74572B24266CA60098E670 /* SceneDelegate.swift */; };
 		FB74573124266CA60098E670 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB74572F24266CA60098E670 /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 		FB46C287242E75F200FABEC7 /* ConverterDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterDate.swift; sourceTree = "<group>"; };
 		FB49800224321F980080B4D5 /* Statistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistic.swift; sourceTree = "<group>"; };
 		FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceTimeSeries.swift; sourceTree = "<group>"; };
+		FB4980082433AFC90080B4D5 /* FirstCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCountryTableViewCell.swift; sourceTree = "<group>"; };
+		FB4980092433AFC90080B4D5 /* FirstCountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstCountryTableViewCell.xib; sourceTree = "<group>"; };
 		FB74572624266CA60098E670 /* CoronaVirusStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoronaVirusStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB74572924266CA60098E670 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB74572B24266CA60098E670 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				FB745743242673630098E670 /* CountryTableViewCell.xib */,
 				FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */,
 				FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */,
+				FB4980082433AFC90080B4D5 /* FirstCountryTableViewCell.swift */,
+				FB4980092433AFC90080B4D5 /* FirstCountryTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -255,6 +261,7 @@
 				FB74573924266CA70098E670 /* LaunchScreen.storyboard in Resources */,
 				FB74573624266CA70098E670 /* Assets.xcassets in Resources */,
 				FB74573124266CA60098E670 /* Main.storyboard in Resources */,
+				FB49800B2433AFC90080B4D5 /* FirstCountryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +326,7 @@
 				FB745744242673630098E670 /* CountryTableViewCell.swift in Sources */,
 				FB7457532426786F0098E670 /* AlertController.swift in Sources */,
 				FB7457502426750B0098E670 /* JsonManager.swift in Sources */,
+				FB49800A2433AFC90080B4D5 /* FirstCountryTableViewCell.swift in Sources */,
 				FBA255BD242BE9B200317E03 /* SettingsViewController.swift in Sources */,
 				FB74575A24269AEB0098E670 /* VirusDataLink.swift in Sources */,
 				FB74574B242673B80098E670 /* MapViewController.swift in Sources */,
