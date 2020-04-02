@@ -53,19 +53,31 @@ class SaveToRealm {
     //MARK: - saveTimeSeriesOnlyCountry
     func saveTimeSeriesOnlyCountry(data: [CoronaVirusStateTimeSeries], complition: @escaping () -> Void){
         
-        for currentCountry in data {
-            if let country = currentCountry.countryregion {
-                let newCountryName = country.replacingOccurrences(of: "\'", with: "")
-                let existCountries = realm.objects(VirusRealm.self).filter("countryregion = '\(newCountryName)'")
-                
-                if !existCountries.isEmpty {
-                    if let exitCountry = existCountries.first {
-                        addTimeSeriesOnlyCountry(element: exitCountry, newData: currentCountry)
+        let queue = DispatchQueue.global(qos: .default)
+        
+        queue.async {
+            
+            let queueRealm = try! Realm()
+            for currentCountry in data {
+                if let country = currentCountry.countryregion {
+                    let newCountryName = country.replacingOccurrences(of: "\'", with: "")
+                    let existCountries = queueRealm.objects(VirusRealm.self).filter("countryregion = '\(newCountryName)'")
+                    
+                    if !existCountries.isEmpty {
+                        if let exitCountry = existCountries.first {
+                            do {
+                                try queueRealm.write{
+                                    self.virusRealmTimeSeriesCountry(element: exitCountry, newData: currentCountry)
+                                }
+                            } catch let error as NSError {
+                                print(error.localizedDescription)
+                            }
+                        }
                     }
                 }
             }
+            complition()
         }
-        complition()
     }
     //MARK: - saveTimeSeriesCity
     func saveTimeSeriesCity(data: [CoronaVirusCityTimesSeries]) {
@@ -103,19 +115,6 @@ class SaveToRealm {
         complition()
     }
     
-    //MARK: - getTimeSeriesBrief
-    func getTimeSeriesBrief(complition: @escaping () -> Void) {
-        do {
-            try self.realm.write{
-                virusRealmTimeSeriesBrief()
-            }
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-        complition()
-    }
-    
-
 
     //MARK: - private func
     
@@ -162,19 +161,7 @@ class SaveToRealm {
             }
         }
     }
-     //MARK: - addTimeSeriesOnlyCountry
-    private func addTimeSeriesOnlyCountry(element: VirusRealm, newData: CoronaVirusStateTimeSeries) {
-        
-        DispatchQueue.main.async {
-            do {
-                try self.realm.write{
-                    self.virusRealmTimeSeriesCountry(element: element, newData: newData)
-                }
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-        }
-    }
+
     //MARK: - addTimeSeriesCity
     private func addTimeSeriesCity(element: ProvincestateRealm, newData: CoronaVirusCityTimesSeries) {
         
@@ -342,35 +329,7 @@ class SaveToRealm {
     }
     
     
-    private func virusRealmTimeSeriesBrief() {
-        
-        let data = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: false)
-        let breaf = realm.objects(BreafRealm.self)
-        
-        guard let timeSeriesCount = data.first?.timeSeries.count else { return }
-        
-        for numberDate in 0..<timeSeriesCount {
-            print(#function)
-            let breafTimeSeries = TimeseryRealm()
-            guard let lastDate = data.first?.timeSeries.sorted(byKeyPath: "date", ascending: true)[numberDate].date else { return }
-            
-            breafTimeSeries.confirmed = 0
-            breafTimeSeries.deaths = 0
-            breafTimeSeries.recovered = 0
-            breafTimeSeries.date = lastDate
-            
-            for country in data {
-                let timeSeriesForCountry = country.timeSeries.filter("date = '\(lastDate)'")
-                
-                breafTimeSeries.confirmed += timeSeriesForCountry.first?.confirmed ?? 0
-                breafTimeSeries.deaths += timeSeriesForCountry.first?.deaths ?? 0
-                breafTimeSeries.recovered += timeSeriesForCountry.first?.recovered ?? 0
-                
-            }
-            
-            breaf.first?.timesSeries.append(breafTimeSeries)
-        }
-    }
+ 
 }
 
 

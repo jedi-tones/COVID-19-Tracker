@@ -103,6 +103,11 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9oI-s7-9zQ">
+                        <rect key="frame" x="0.0" y="140" width="377" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.90296803652968027" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="V2q-qo-c4t" firstAttribute="top" secondItem="rFX-JU-R13" secondAttribute="bottom" constant="2" id="Avy-SO-bg5"/>

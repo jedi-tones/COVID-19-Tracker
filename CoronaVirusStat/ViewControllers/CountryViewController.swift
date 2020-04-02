@@ -28,6 +28,7 @@ class CountryViewController: UIViewController {
     private var isSearching: Bool {
          !isEmptySearchBar && searchController.isActive
     }
+    private var isUpdatingTimeSeries = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,10 +89,6 @@ class CountryViewController: UIViewController {
     //MARK: - getData
     private func getData(){
         
-      
-        
-        
-        
         jsonManager.getData(view: self,
                             link: VirusDataLink.shared.linkLatestOnlyCountry,
                             typeData: [CoronaVirusStateOnlyCountry].self,
@@ -100,12 +97,12 @@ class CountryViewController: UIViewController {
                                 //download and save all Country info
                                 SaveToRealm.shared.saveLatestOnlyCountry(data: data, complition: {
                                     DispatchQueue.main.async {
-                                        
                                         self.sortRealmData()
-                                        self.getCityData()
-                                        self.getTimeSeriesData()
-                                        
                                     }
+                                    
+                                    self.getCityData()
+                                    self.isUpdatingTimeSeries = true
+                                    self.getTimeSeriesData()
                                 })
                                                                 
                                 //                                self.getTimeSeriesForCity(countryCode: "US")
@@ -146,14 +143,15 @@ class CountryViewController: UIViewController {
                             complition: { data in
                                 
                                 SaveToRealm.shared.saveTimeSeriesOnlyCountry(data: data, complition: {
+                                    
+                                    self.isUpdatingTimeSeries = false
                                     DispatchQueue.main.async {
                                         self.countryTableView.reloadData()
-                                        
-                                        //after download timeSeries, calculate timesSeries for Breaf
-                                        SaveToRealm.shared.getTimeSeriesBrief(complition: {
-                                            self.countryTableView.reloadData()
-                                        })
                                     }
+                                  
+                                        //after download timeSeries, calculate timesSeries for Breaf
+                                    CalculateTimeSeriesBrief.getTimeSeriesBrief(complition: {})
+                                    
                                 })
                                 
         })
@@ -221,6 +219,10 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
                 if let countryData = countryRealmData?[indexPath.row] {
                     cell.setCell(data: countryData)
                 }
+            }
+            
+            if isUpdatingTimeSeries {
+                cell.setLoadTimeSeries()
             }
             return cell
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CountryTableViewCell: UITableViewCell {
     
@@ -35,6 +36,12 @@ class CountryTableViewCell: UITableViewCell {
         difRecovered.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValue: .recovered).value)"
         
      //    accessoryType = .disclosureIndicator
+    }
+    
+    func setLoadTimeSeries(){
+        difConfirmed.text = "calculation"
+        difDeath.text = "calculation"
+        difRecovered.text = "calculation"
     }
     
 }
