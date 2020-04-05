@@ -16,11 +16,13 @@ class CountryViewController: UIViewController {
     @IBOutlet var reverseSortSegmentedControl: UISegmentedControl!
     
     private let jsonManager = JsonManager()
+    
     private let realm = try! Realm()
-    private let searchController = UISearchController(searchResultsController: nil)
     private var countryRealmData: Results<VirusRealm>?
     private var filterCountryRealmData: Results<VirusRealm>?
+    private var brief: Results<BriefRealm>?
     
+    private let searchController = UISearchController(searchResultsController: nil)
     private var isEmptySearchBar: Bool {
         guard let text = searchController.searchBar.text else { return false }
         return text.isEmpty
@@ -33,6 +35,8 @@ class CountryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         countryRealmData = realm.objects(VirusRealm.self)
+        brief = realm.objects(BriefRealm.self)
+        
         
         registerCell()
         setUI()
@@ -116,6 +120,7 @@ class CountryViewController: UIViewController {
                             typeData: Brief.self,
                             complition: { data in
                                 SaveToRealm.shared.addBrief(newData: data, complition: {
+                                    
                                     DispatchQueue.main.async {
                                         self.countryTableView.reloadData()
                                  //       self.countryTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
@@ -206,6 +211,8 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FirstCountryTableViewCell.reuseID, for: indexPath) as! FirstCountryTableViewCell
             
+//            guard let newBrief = brief?.first else { return cell }
+//            cell.setCell(data: newBrief)
             
             return cell
         } else {

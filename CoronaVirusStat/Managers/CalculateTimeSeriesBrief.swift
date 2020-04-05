@@ -20,13 +20,13 @@ class CalculateTimeSeriesBrief {
             
             let realm = try! Realm()
             let data = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: false)
-            let breaf = realm.objects(BreafRealm.self)
+            let breaf = realm.objects(BriefRealm.self)
             
             guard let timeSeriesCount = data.first?.timeSeries.count else { return }
             
+            let breafTimeSeriesCount = breaf.first?.timesSeries.count ?? 0
             
-            
-            for numberDate in 0..<timeSeriesCount {
+            for numberDate in breafTimeSeriesCount..<timeSeriesCount {
                 
                 
                 let breafTimeSeries = TimeseryRealm()

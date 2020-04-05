@@ -32,7 +32,7 @@ class ProvincestateRealm: Object {
     let location = List<LocationRealm>()
 }
 
-class BreafRealm: Object {
+class BriefRealm: Object {
     @objc dynamic var confirmed = 0
     @objc dynamic var death = 0
     @objc dynamic var recovered = 0

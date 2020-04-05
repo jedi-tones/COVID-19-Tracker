@@ -129,6 +129,15 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="confirmedLabel" destination="Z0A-ES-64u" id="1bp-7W-IVK"/>
+                <outlet property="deathLabel" destination="Zho-qk-aLT" id="RYa-jT-2w9"/>
+                <outlet property="difConfirmed" destination="Axr-ud-93F" id="Raf-Hd-Cej"/>
+                <outlet property="difDeath" destination="6uS-Sg-wrx" id="sQY-lz-Qx7"/>
+                <outlet property="difRecovered" destination="gXa-Xl-MGc" id="miO-b4-Xe0"/>
+                <outlet property="percentMortalityLabel" destination="XRy-Ky-UQr" id="fTb-bo-3Kh"/>
+                <outlet property="recoveredLabel" destination="ImH-k8-jfY" id="1dx-TU-hsQ"/>
+            </connections>
             <point key="canvasLocation" x="21.5625" y="6.8661971830985919"/>
         </tableViewCell>
     </objects>

@@ -10,6 +10,13 @@ import UIKit
 
 class FirstCountryTableViewCell: UITableViewCell {
 
+    @IBOutlet var confirmedLabel: UILabel!
+    @IBOutlet var deathLabel: UILabel!
+    @IBOutlet var recoveredLabel: UILabel!
+    @IBOutlet var percentMortalityLabel: UILabel!
+    @IBOutlet var difConfirmed: UILabel!
+    @IBOutlet var difDeath: UILabel!
+    @IBOutlet var difRecovered: UILabel!
     
     static let reuseID = "firstCountryCell"
     
@@ -18,8 +25,22 @@ class FirstCountryTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    func setCell(){
+   func setCell(data: BriefRealm) {
         
+        confirmedLabel.text = "\(data.confirmed)"
+        deathLabel.text = "\(data.death)"
+        recoveredLabel.text = "\(data.recovered)"
+       
+        difConfirmed.text = ""
+        difDeath.text = ""
+        difRecovered.text = ""
+        
+    }
+    
+    func setLoadTimeSeries(){
+        difConfirmed.text = "calculation"
+        difDeath.text = "calculation"
+        difRecovered.text = "calculation"
     }
     
 }

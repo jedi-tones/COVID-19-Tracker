@@ -29,7 +29,7 @@
                                 <items>
                                     <barButtonItem style="plain" id="7aa-3l-3tq">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="MXN-t8-3Cs">
-                                            <rect key="frame" x="16" y="5.5" width="225" height="33"/>
+                                            <rect key="frame" x="16" y="6" width="225" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <segments>
                                                 <segment title="Confirmed" width="77"/>
@@ -43,7 +43,7 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="WhL-qV-joj">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" id="O5d-dv-2yl">
-                                            <rect key="frame" x="243" y="5.5" width="61" height="33"/>
+                                            <rect key="frame" x="243" y="6" width="61" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <segments>
                                                 <segment title="aA" width="30"/>
@@ -178,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1E-cV-TBW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3766.875" y="865.14084507042253"/>
+            <point key="canvasLocation" x="3634" y="898"/>
         </scene>
         <!--Statistic-->
         <scene sceneID="EfW-qV-FRm">

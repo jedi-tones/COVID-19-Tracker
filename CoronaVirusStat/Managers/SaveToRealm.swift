@@ -99,7 +99,7 @@ class SaveToRealm {
     func addBrief(newData: Brief, complition: @escaping () -> Void){
         
         DispatchQueue.main.async {
-            let brief = self.realm.objects(BreafRealm.self)
+            let brief = self.realm.objects(BriefRealm.self)
             do {
                 try self.realm.write{
                     if brief.isEmpty {
@@ -178,20 +178,20 @@ class SaveToRealm {
     
         
     //MARK: - virusRealmBrief
-    private func virusRealmBrief(newData: Brief) -> BreafRealm {
-        let existBreaf = realm.objects(BreafRealm.self)
-        if existBreaf.isEmpty{
-            let newBreaf = BreafRealm()
-            newBreaf.confirmed = newData.confirmed ?? 0
-            newBreaf.death = newData.deaths ?? 0
-            newBreaf.recovered = newData.recovered ?? 0
-            return newBreaf
+    private func virusRealmBrief(newData: Brief) -> BriefRealm {
+        let existBrief = realm.objects(BriefRealm.self)
+        if existBrief.isEmpty{
+            let newBrief = BriefRealm()
+            newBrief.confirmed = newData.confirmed ?? 0
+            newBrief.death = newData.deaths ?? 0
+            newBrief.recovered = newData.recovered ?? 0
+            return newBrief
         } else {
-            let breaf = existBreaf.first!
-            breaf.confirmed = newData.confirmed ?? 0
-            breaf.death = newData.deaths ?? 0
-            breaf.recovered = newData.recovered ?? 0
-            return breaf
+            let brief = existBrief.first!
+            brief.confirmed = newData.confirmed ?? 0
+            brief.death = newData.deaths ?? 0
+            brief.recovered = newData.recovered ?? 0
+            return brief
         }
     }
     
