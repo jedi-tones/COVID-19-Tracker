@@ -60,7 +60,7 @@ class MapViewController: UIViewController {
                 annotaions.append(newAnnotation)
             }
         }
-        mapView.addAnnotations(annotaions)
+       // mapView.addAnnotations(annotaions)
         mapView.showAnnotations(annotaions, animated: true)
     }
 }

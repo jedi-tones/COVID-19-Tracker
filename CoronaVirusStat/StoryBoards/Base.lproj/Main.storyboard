@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="2S5-Yj-tfB">
-                                <rect key="frame" x="0.0" y="91" width="320" height="384"/>
+                                <rect key="frame" x="0.0" y="91" width="320" height="428"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
@@ -24,48 +24,13 @@
                                     <outlet property="delegate" destination="yK6-Ns-m0C" id="auM-Wh-8HR"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3f9-7v-T4C">
-                                <rect key="frame" x="0.0" y="475" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" id="7aa-3l-3tq">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="MXN-t8-3Cs">
-                                            <rect key="frame" x="16" y="6" width="225" height="33"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <segments>
-                                                <segment title="Confirmed" width="77"/>
-                                                <segment title="Death" width="65"/>
-                                                <segment title="Country" width="66"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="sortChanged" destination="yK6-Ns-m0C" eventType="valueChanged" id="Ag2-bx-NQ9"/>
-                                            </connections>
-                                        </segmentedControl>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="WhL-qV-joj">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" id="O5d-dv-2yl">
-                                            <rect key="frame" x="243" y="6" width="61" height="33"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <segments>
-                                                <segment title="aA" width="30"/>
-                                                <segment title="Aa" width="30"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="reverseSortChanged" destination="yK6-Ns-m0C" eventType="valueChanged" id="moI-TR-tDa"/>
-                                            </connections>
-                                        </segmentedControl>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="IiG-4X-8Xd" firstAttribute="trailing" secondItem="2S5-Yj-tfB" secondAttribute="trailing" id="JnO-gU-MzH"/>
                             <constraint firstItem="2S5-Yj-tfB" firstAttribute="leading" secondItem="IiG-4X-8Xd" secondAttribute="leading" id="Wgr-1X-Pgk"/>
-                            <constraint firstAttribute="trailing" secondItem="3f9-7v-T4C" secondAttribute="trailing" id="Yrr-2G-gEd"/>
-                            <constraint firstItem="3f9-7v-T4C" firstAttribute="leading" secondItem="jt2-RG-uhT" secondAttribute="leading" id="baE-rL-TCg"/>
                             <constraint firstItem="2S5-Yj-tfB" firstAttribute="top" secondItem="IiG-4X-8Xd" secondAttribute="top" id="c4e-AX-bFJ"/>
-                            <constraint firstItem="IiG-4X-8Xd" firstAttribute="bottom" secondItem="3f9-7v-T4C" secondAttribute="bottom" id="n7N-lJ-EIz"/>
-                            <constraint firstItem="IiG-4X-8Xd" firstAttribute="bottom" secondItem="2S5-Yj-tfB" secondAttribute="bottom" constant="44" id="rLz-Wo-pMz"/>
+                            <constraint firstItem="IiG-4X-8Xd" firstAttribute="bottom" secondItem="2S5-Yj-tfB" secondAttribute="bottom" id="lDs-Dm-qZR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IiG-4X-8Xd"/>
                     </view>
@@ -78,8 +43,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="countryTableView" destination="2S5-Yj-tfB" id="o4z-x7-kpy"/>
-                        <outlet property="reverseSortSegmentedControl" destination="O5d-dv-2yl" id="FFb-K4-nFe"/>
-                        <outlet property="sortSegmentedControl" destination="MXN-t8-3Cs" id="oyc-Kt-ZhO"/>
                         <segue destination="I0h-fb-aZv" kind="presentation" identifier="ShowCity" id="fcz-q9-2Uv"/>
                         <segue destination="dgL-dJ-MHk" kind="show" id="6Mf-rf-ebu"/>
                     </connections>
@@ -178,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1E-cV-TBW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3634" y="898"/>
+            <point key="canvasLocation" x="3407" y="864"/>
         </scene>
         <!--Statistic-->
         <scene sceneID="EfW-qV-FRm">

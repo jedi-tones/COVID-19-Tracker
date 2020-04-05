@@ -32,6 +32,7 @@
 		FB74575D2426ACDF0098E670 /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74575C2426ACDF0098E670 /* CountryViewController.swift */; };
 		FB74575F2426ACE80098E670 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74575E2426ACE80098E670 /* CityViewController.swift */; };
 		FB7457612426B3120098E670 /* SaveToRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7457602426B3120098E670 /* SaveToRealm.swift */; };
+		FB754AF3243A6081002C7BD4 /* TypeOfFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB754AF2243A6081002C7BD4 /* TypeOfFilter.swift */; };
 		FB9B860624366A4E0076922E /* CalculateTimeSeriesBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */; };
 		FBA255BD242BE9B200317E03 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA255BC242BE9B200317E03 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		FB74575C2426ACDF0098E670 /* CountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
 		FB74575E2426ACE80098E670 /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		FB7457602426B3120098E670 /* SaveToRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveToRealm.swift; sourceTree = "<group>"; };
+		FB754AF2243A6081002C7BD4 /* TypeOfFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfFilter.swift; sourceTree = "<group>"; };
 		FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTimeSeriesBrief.swift; sourceTree = "<group>"; };
 		FBA255BC242BE9B200317E03 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +162,7 @@
 				FB74575624268E030098E670 /* VirusRealm.swift */,
 				FB74575924269AEB0098E670 /* VirusDataLink.swift */,
 				FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */,
+				FB754AF2243A6081002C7BD4 /* TypeOfFilter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB49800324321F980080B4D5 /* Statistic.swift in Sources */,
+				FB754AF3243A6081002C7BD4 /* TypeOfFilter.swift in Sources */,
 				FB9B860624366A4E0076922E /* CalculateTimeSeriesBrief.swift in Sources */,
 				FB74572A24266CA60098E670 /* AppDelegate.swift in Sources */,
 				FB74572C24266CA60098E670 /* SceneDelegate.swift in Sources */,

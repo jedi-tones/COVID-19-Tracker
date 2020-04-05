@@ -9,11 +9,13 @@
 import UIKit
 import RealmSwift
 
+protocol SortDelegate {
+    func sorting(typeOfFilter: TypeOfFilter, ascending: Bool)
+}
+
 class CountryViewController: UIViewController {
     
     @IBOutlet var countryTableView: UITableView!
-    @IBOutlet var sortSegmentedControl: UISegmentedControl!
-    @IBOutlet var reverseSortSegmentedControl: UISegmentedControl!
     
     private let jsonManager = JsonManager()
     
@@ -31,9 +33,13 @@ class CountryViewController: UIViewController {
          !isEmptySearchBar && searchController.isActive
     }
     private var isUpdatingTimeSeries = true
+    private var typeFilter: TypeOfFilter = .Confirmed
+    private var isAscending = false
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         countryRealmData = realm.objects(VirusRealm.self)
         brief = realm.objects(BriefRealm.self)
         
@@ -43,53 +49,51 @@ class CountryViewController: UIViewController {
         getBreaf()
         getData()
         
-        sortRealmData()
+        sortRealmData(filter: typeFilter, ascending: isAscending)
     }
     
     @IBAction func renewPressed() {
         getData()
     }
     
-    @IBAction func sortChanged() {
-        sortRealmData()
-    }
-    
-    @IBAction func reverseSortChanged() {
-        sortRealmData()
-    }
     
     //MARK:- setUI
     private func setUI(){
     
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search country"
+        searchController.searchBar.placeholder = "Type country.."
+        
         navigationItem.searchController = searchController
+    
         definesPresentationContext = true
         
+     //   countryTableView.tableHeaderView = searchController.searchBar
     }
     
     private func registerCell(){
         countryTableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: CountryTableViewCell.reuseID)
         countryTableView.register(UINib(nibName: "FirstCountryTableViewCell", bundle: nil), forCellReuseIdentifier: FirstCountryTableViewCell.reuseID)
     }
+    
     //MARK: - sortRealmData
-    private func sortRealmData() {
-        let isReverse = reverseSortSegmentedControl.selectedSegmentIndex == 0 ? false : true
+    func sortRealmData(filter: TypeOfFilter, ascending: Bool) {
+      //  let isReverse = reverseSortSegmentedControl.selectedSegmentIndex == 0 ? false : true
         
-        switch sortSegmentedControl.selectedSegmentIndex {
-        case 0:
-            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "confirmed", ascending: isReverse)
-            
-        case 1:
-            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "deaths", ascending: isReverse)
+        switch filter {
+        case .Confirmed:
+            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "confirmed", ascending: ascending)
+        case .Death:
+            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "deaths", ascending: ascending)
         default:
-            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: !isReverse)
+            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: !ascending)
         }
-        countryTableView.reloadData()
         
+        
+        countryTableView.reloadData()
     }
     
+  
     //MARK: - getData
     private func getData(){
         
@@ -101,7 +105,7 @@ class CountryViewController: UIViewController {
                                 //download and save all Country info
                                 SaveToRealm.shared.saveLatestOnlyCountry(data: data, complition: {
                                     DispatchQueue.main.async {
-                                        self.sortRealmData()
+                                        self.sortRealmData(filter: self.typeFilter, ascending: self.isAscending)
                                     }
                                     
                                     self.getCityData()
@@ -113,6 +117,7 @@ class CountryViewController: UIViewController {
         })
     }
     
+     //MARK:  getBreaf
     private func getBreaf(){
         
         jsonManager.getData(view: self,
@@ -123,12 +128,14 @@ class CountryViewController: UIViewController {
                                     
                                     DispatchQueue.main.async {
                                         self.countryTableView.reloadData()
-                                 //       self.countryTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-                                    }
+                                               }
+                                 
+                                    
                                 })
         })
     }
     
+    //MARK:  getCityData
     private func getCityData(){
         
         jsonManager.getData(view: self,
@@ -140,6 +147,7 @@ class CountryViewController: UIViewController {
         })
     }
     
+    //MARK:  getTimeSeriesData
     private func getTimeSeriesData() {
         
         jsonManager.getData(view: self,
@@ -162,6 +170,7 @@ class CountryViewController: UIViewController {
         })
     }
     
+     //MARK:  getTimeSeriesForCity
     private func getTimeSeriesForCity(countryCode: String){
         
         let linkCurrentCountry = VirusDataLink.shared.linkTimeSeriesCityCode + countryCode
@@ -206,35 +215,49 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
+    //MARK:  Cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: FirstCountryTableViewCell.reuseID, for: indexPath) as! FirstCountryTableViewCell
-            
-//            guard let newBrief = brief?.first else { return cell }
-//            cell.setCell(data: newBrief)
-            
-            return cell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as! CountryTableViewCell
+        
+        
+        if isSearching {
+            if let countryData = filterCountryRealmData?[indexPath.row] {
+                cell.setCell(data: countryData) }
         } else {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as! CountryTableViewCell
-            
-            if isSearching {
-                if let countryData = filterCountryRealmData?[indexPath.row] {
-                    cell.setCell(data: countryData) }
-            } else {
-                if let countryData = countryRealmData?[indexPath.row] {
-                    cell.setCell(data: countryData)
-                }
+            if let countryData = countryRealmData?[indexPath.row] {
+                cell.setCell(data: countryData)
             }
-            
-            if isUpdatingTimeSeries {
-                cell.setLoadTimeSeries()
-            }
-            return cell
         }
+        
+        if isUpdatingTimeSeries {
+            cell.setLoadTimeSeries()
+        }
+        return cell
+    }
+
+    //MARK: Header
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: FirstCountryTableViewCell.reuseID) as! FirstCountryTableViewCell
+        
+        switch typeFilter {
+        case .Confirmed:
+            headerCell.sortSegmentedControl.selectedSegmentIndex = 0
+        case .Death:
+            headerCell.sortSegmentedControl.selectedSegmentIndex = 1
+        default:
+            headerCell.sortSegmentedControl.selectedSegmentIndex = 2
+        }
+        
+        headerCell.reversSortSwitch.isOn = isAscending
+        headerCell.delegate = self
+        
+        return headerCell
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        70
+    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ShowCity", sender: indexPath)
@@ -259,4 +282,17 @@ extension CountryViewController: UISearchResultsUpdating {
     private func filterContentSearch(searchText: String) {
         filterCountryRealmData = realm.objects(VirusRealm.self).filter("countryregion CONTAINS[c] '\(searchText.lowercased())'")
     }
+}
+
+
+//MARK: - SortDelegate sorting
+extension CountryViewController: SortDelegate {
+    func sorting(typeOfFilter: TypeOfFilter, ascending: Bool) {
+        typeFilter = typeOfFilter
+        isAscending = ascending
+        
+        sortRealmData(filter: typeOfFilter, ascending: ascending)
+    }
+    
+  
 }

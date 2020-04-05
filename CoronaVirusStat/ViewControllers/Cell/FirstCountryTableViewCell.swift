@@ -10,37 +10,39 @@ import UIKit
 
 class FirstCountryTableViewCell: UITableViewCell {
 
-    @IBOutlet var confirmedLabel: UILabel!
-    @IBOutlet var deathLabel: UILabel!
-    @IBOutlet var recoveredLabel: UILabel!
-    @IBOutlet var percentMortalityLabel: UILabel!
-    @IBOutlet var difConfirmed: UILabel!
-    @IBOutlet var difDeath: UILabel!
-    @IBOutlet var difRecovered: UILabel!
+    @IBOutlet var sortSegmentedControl: UISegmentedControl!
+    @IBOutlet var reversSortSwitch: UISwitch!
     
     static let reuseID = "firstCountryCell"
+    private var typeOfFilter: TypeOfFilter = .Confirmed
+    private var isAscending = false
+    
+    var delegate:SortDelegate?
+    
+    
+    @IBAction func changeSortAction() {
+        
+        switch sortSegmentedControl.selectedSegmentIndex {
+        case 0:
+            typeOfFilter = .Confirmed
+        case 1:
+            typeOfFilter = .Death
+        default:
+            typeOfFilter = .Country
+        }
+        
+        delegate?.sorting(typeOfFilter: typeOfFilter, ascending: isAscending)
+    }
+    
+    
+    @IBAction func changeAscending() {
+        isAscending = reversSortSwitch.isOn
+        delegate?.sorting(typeOfFilter: typeOfFilter, ascending: isAscending)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-   func setCell(data: BriefRealm) {
-        
-        confirmedLabel.text = "\(data.confirmed)"
-        deathLabel.text = "\(data.death)"
-        recoveredLabel.text = "\(data.recovered)"
-       
-        difConfirmed.text = ""
-        difDeath.text = ""
-        difRecovered.text = ""
-        
-    }
-    
-    func setLoadTimeSeries(){
-        difConfirmed.text = "calculation"
-        difDeath.text = "calculation"
-        difRecovered.text = "calculation"
-    }
-    
 }
