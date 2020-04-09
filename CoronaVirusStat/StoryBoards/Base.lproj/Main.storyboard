@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--COVID-19-->
+        <!--Detailed-->
         <scene sceneID="xdH-KY-RxP">
             <objects>
                 <viewController id="yK6-Ns-m0C" customClass="CountryViewController" customModule="CoronaVirusStat" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,7 +34,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IiG-4X-8Xd"/>
                     </view>
-                    <navigationItem key="navigationItem" title="COVID-19" id="V4q-vL-Tc9">
+                    <navigationItem key="navigationItem" title="Detailed" id="V4q-vL-Tc9">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="E5z-TE-cS7">
                             <connections>
                                 <action selector="renewPressed" destination="yK6-Ns-m0C" id="BRu-Kq-Dxt"/>
@@ -44,28 +44,11 @@
                     <connections>
                         <outlet property="countryTableView" destination="2S5-Yj-tfB" id="o4z-x7-kpy"/>
                         <segue destination="I0h-fb-aZv" kind="presentation" identifier="ShowCity" id="fcz-q9-2Uv"/>
-                        <segue destination="dgL-dJ-MHk" kind="show" id="6Mf-rf-ebu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rhr-Ui-8Hw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3706.875" y="8.4507042253521121"/>
-        </scene>
-        <!--Settings View Controller-->
-        <scene sceneID="K6n-xt-sNZ">
-            <objects>
-                <viewController id="dgL-dJ-MHk" customClass="SettingsViewController" customModule="CoronaVirusStat" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5iv-LZ-i5r">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="LAI-Gr-zZA"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="fT7-B1-t4J"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9qB-OH-z54" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4614" y="-690"/>
+            <point key="canvasLocation" x="4794" y="8"/>
         </scene>
         <!--City View Controller-->
         <scene sceneID="8hs-BI-qwi">
@@ -108,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sJ7-tq-Lbz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4593.75" y="8.4507042253521121"/>
+            <point key="canvasLocation" x="6588.75" y="8.4507042253521121"/>
         </scene>
         <!--Map-->
         <scene sceneID="Enl-rN-fN5">
@@ -141,36 +124,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1E-cV-TBW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3407" y="864"/>
+            <point key="canvasLocation" x="5700" y="795.42253521126759"/>
         </scene>
-        <!--Statistic-->
-        <scene sceneID="EfW-qV-FRm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3BA-q1-dhy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Statistic" image="text.justify" catalog="system" selectedImage="text.justify" id="G20-Nj-kcV"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="0EP-Hm-2fO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g3i-b0-FoE">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="yK6-Ns-m0C" kind="relationship" relationship="rootViewController" id="pWQ-Dd-1lV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b0F-Fu-Ci8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2800" y="8.7053571428571423"/>
-        </scene>
-        <!--Tab Bar Controller-->
+        <!--COVID-19-->
         <scene sceneID="nLe-Gn-XFc">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Ntd-dY-KY7" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="COVID-19" id="pTU-ix-T4q"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0O9-88-MPZ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -178,17 +139,88 @@
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="3BA-q1-dhy" kind="relationship" relationship="viewControllers" id="fAv-79-mKh"/>
+                        <segue destination="qEl-i9-yZ6" kind="relationship" relationship="viewControllers" id="Y78-bD-2gq"/>
+                        <segue destination="SBZ-NF-zyL" kind="relationship" relationship="viewControllers" id="bzh-gu-yKU"/>
                         <segue destination="hi8-fx-3Ge" kind="relationship" relationship="viewControllers" id="vuO-bk-fuQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pt5-h1-jZ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1889.8550724637682" y="8.7053571428571423"/>
+            <point key="canvasLocation" x="3099" y="8"/>
+        </scene>
+        <!--Detailed-->
+        <scene sceneID="Vd7-Fz-phW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SBZ-NF-zyL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Detailed" id="r8c-xI-QV8"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Nh1-Hn-hHh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yK6-Ns-m0C" kind="relationship" relationship="rootViewController" id="v74-AN-nyf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xht-A3-wAN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3966" y="8"/>
+        </scene>
+        <!--Brief-->
+        <scene sceneID="FvI-Jr-8xx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qEl-i9-yZ6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Brief" id="soJ-a2-yMl"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="yY9-Dq-5KK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="d3A-3r-3AG" kind="relationship" relationship="rootViewController" id="SpF-JN-UVe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dfi-Gf-BAc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3097.5" y="969.71830985915494"/>
+        </scene>
+        <!--COVID-19-->
+        <scene sceneID="Eug-G3-oaW">
+            <objects>
+                <tableViewController id="d3A-3r-3AG" customClass="BriefTableViewController" customModule="CoronaVirusStat" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="rSm-bv-jmH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <sections>
+                            <tableViewSection id="Emm-0W-u5i">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BriefCell" id="ZlS-Nb-VgB" customClass="BriefTableViewCell" customModule="CoronaVirusStat" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="18" width="288" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZlS-Nb-VgB" id="pR9-wW-Yoh">
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="d3A-3r-3AG" id="3Ip-CY-OO1"/>
+                            <outlet property="delegate" destination="d3A-3r-3AG" id="Ml2-nv-13Q"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="COVID-19" id="ONg-M1-oIh"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XXD-40-rYZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4056" y="970"/>
         </scene>
     </scenes>
     <resources>
         <image name="map" catalog="system" width="128" height="113"/>
-        <image name="text.justify" catalog="system" width="128" height="100"/>
     </resources>
 </document>

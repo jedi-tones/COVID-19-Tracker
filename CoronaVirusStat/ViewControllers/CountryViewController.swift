@@ -30,12 +30,12 @@ class CountryViewController: UIViewController {
         return text.isEmpty
     }
     private var isSearching: Bool {
-         !isEmptySearchBar && searchController.isActive
+        !isEmptySearchBar && searchController.isActive
     }
     private var isUpdatingTimeSeries = true
     private var typeFilter: TypeOfFilter = .Confirmed
     private var isAscending = false
-  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,16 +59,16 @@ class CountryViewController: UIViewController {
     
     //MARK:- setUI
     private func setUI(){
-    
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Type country.."
         
         navigationItem.searchController = searchController
-    
+        
         definesPresentationContext = true
         
-     //   countryTableView.tableHeaderView = searchController.searchBar
+        //   countryTableView.tableHeaderView = searchController.searchBar
     }
     
     private func registerCell(){
@@ -78,7 +78,7 @@ class CountryViewController: UIViewController {
     
     //MARK: - sortRealmData
     func sortRealmData(filter: TypeOfFilter, ascending: Bool) {
-      //  let isReverse = reverseSortSegmentedControl.selectedSegmentIndex == 0 ? false : true
+        //  let isReverse = reverseSortSegmentedControl.selectedSegmentIndex == 0 ? false : true
         
         switch filter {
         case .Confirmed:
@@ -93,7 +93,7 @@ class CountryViewController: UIViewController {
         countryTableView.reloadData()
     }
     
-  
+    
     //MARK: - getData
     private func getData(){
         
@@ -112,12 +112,12 @@ class CountryViewController: UIViewController {
                                     self.isUpdatingTimeSeries = true
                                     self.getTimeSeriesData()
                                 })
-                                                                
+                                
                                 //                                self.getTimeSeriesForCity(countryCode: "US")
         })
     }
     
-     //MARK:  getBreaf
+    //MARK:  getBreaf
     private func getBreaf(){
         
         jsonManager.getData(view: self,
@@ -128,9 +128,7 @@ class CountryViewController: UIViewController {
                                     
                                     DispatchQueue.main.async {
                                         self.countryTableView.reloadData()
-                                               }
-                                 
-                                    
+                                    }
                                 })
         })
     }
@@ -161,8 +159,8 @@ class CountryViewController: UIViewController {
                                     DispatchQueue.main.async {
                                         self.countryTableView.reloadData()
                                     }
-                                  
-                                        //after download timeSeries, calculate timesSeries for Breaf
+                                    
+                                    //after download timeSeries, calculate timesSeries for Breaf
                                     CalculateTimeSeriesBrief.getTimeSeriesBrief(complition: {})
                                     
                                 })
@@ -170,7 +168,7 @@ class CountryViewController: UIViewController {
         })
     }
     
-     //MARK:  getTimeSeriesForCity
+    //MARK:  getTimeSeriesForCity
     private func getTimeSeriesForCity(countryCode: String){
         
         let linkCurrentCountry = VirusDataLink.shared.linkTimeSeriesCityCode + countryCode
@@ -235,7 +233,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-
+    
     //MARK: Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: FirstCountryTableViewCell.reuseID) as! FirstCountryTableViewCell
@@ -258,7 +256,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         70
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ShowCity", sender: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -267,7 +265,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
-
+    
 }
 
 //MARK: - UISearchResultsUpdating
@@ -294,5 +292,5 @@ extension CountryViewController: SortDelegate {
         sortRealmData(filter: typeOfFilter, ascending: ascending)
     }
     
-  
+    
 }
