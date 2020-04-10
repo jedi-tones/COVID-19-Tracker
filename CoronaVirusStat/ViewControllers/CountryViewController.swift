@@ -46,7 +46,7 @@ class CountryViewController: UIViewController {
         
         registerCell()
         setUI()
-        getBreaf()
+
         getData()
         
         sortRealmData(filter: typeFilter, ascending: isAscending)
@@ -117,22 +117,6 @@ class CountryViewController: UIViewController {
         })
     }
     
-    //MARK:  getBreaf
-    private func getBreaf(){
-        
-        jsonManager.getData(view: self,
-                            link: VirusDataLink.shared.linkBrief,
-                            typeData: Brief.self,
-                            complition: { data in
-                                SaveToRealm.shared.addBrief(newData: data, complition: {
-                                    
-                                    DispatchQueue.main.async {
-                                        self.countryTableView.reloadData()
-                                    }
-                                })
-        })
-    }
-    
     //MARK:  getCityData
     private func getCityData(){
         
@@ -169,16 +153,16 @@ class CountryViewController: UIViewController {
     }
     
     //MARK:  getTimeSeriesForCity
-    private func getTimeSeriesForCity(countryCode: String){
-        
-        let linkCurrentCountry = VirusDataLink.shared.linkTimeSeriesCityCode + countryCode
-        jsonManager.getData(view: self,
-                            link: linkCurrentCountry,
-                            typeData: [CoronaVirusCityTimesSeries].self,
-                            complition: { data in
-                                SaveToRealm.shared.saveTimeSeriesCity(data: data)
-        })
-    }
+//    private func getTimeSeriesForCity(countryCode: String){
+//        
+//        let linkCurrentCountry = VirusDataLink.shared.linkTimeSeriesCityCode + countryCode
+//        jsonManager.getData(view: self,
+//                            link: linkCurrentCountry,
+//                            typeData: [CoronaVirusCityTimesSeries].self,
+//                            complition: { data in
+//                                SaveToRealm.shared.saveTimeSeriesCity(data: data)
+//        })
+//    }
     
 }
 
@@ -217,7 +201,6 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as! CountryTableViewCell
-        
         
         if isSearching {
             if let countryData = filterCountryRealmData?[indexPath.row] {

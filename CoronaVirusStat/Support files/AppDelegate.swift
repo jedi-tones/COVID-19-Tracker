@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                setDefaultRealm()
         
+        
+        
         return true
     }
 

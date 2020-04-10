@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import RealmSwift
 
 class BriefTableViewController: UITableViewController {
 
+    let jsonManager = JsonManager()
+    let realm = try! Realm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         registerCell()
+        getBreaf()
     }
+    
 
     private func registerCell(){
          tableView.register(UINib(nibName: "BriefTableViewCell", bundle: nil), forCellReuseIdentifier: BriefTableViewCell.reuseID)
@@ -31,7 +37,24 @@ class BriefTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BriefTableViewCell.reuseID, for: indexPath) as! BriefTableViewCell
         cell.setUI()
+        cell.setCell()
         return cell
+    }
+    
+    //MARK:  getBreaf
+    private func getBreaf(){
+        
+        jsonManager.getData(view: self,
+                            link: VirusDataLink.shared.linkBrief,
+                            typeData: Brief.self,
+                            complition: { data in
+                                SaveToRealm.shared.addBrief(newData: data, complition: {
+                                    
+                                    DispatchQueue.main.async {
+                                        self.tableView.reloadData()
+                                    }
+                                })
+        })
     }
     
     

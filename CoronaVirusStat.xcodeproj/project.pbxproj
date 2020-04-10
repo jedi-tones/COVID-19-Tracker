@@ -143,11 +143,11 @@
 		FB745740242670910098E670 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FB802A4D243FA1FF001C4C57 /* BriefTableViewController.swift */,
 				FB74575C2426ACDF0098E670 /* CountryViewController.swift */,
 				FB74575E2426ACE80098E670 /* CityViewController.swift */,
 				FB74574A242673B80098E670 /* MapViewController.swift */,
 				FBA255BC242BE9B200317E03 /* SettingsViewController.swift */,
-				FB802A4D243FA1FF001C4C57 /* BriefTableViewController.swift */,
 				FBA255BE242BEC4400317E03 /* Cell */,
 			);
 			path = ViewControllers;
