@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ntd-dY-KY7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ntd-dY-KY7">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,9 +16,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="2S5-Yj-tfB">
-                                <rect key="frame" x="0.0" y="91" width="320" height="428"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="475"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CountryCell" id="Fhe-bb-Aqy" customClass="CountryTableViewCell" customModule="CoronaVirusStat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fhe-bb-Aqy" id="C7f-v4-oH4">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="yK6-Ns-m0C" id="3yj-Jx-6cV"/>
                                     <outlet property="delegate" destination="yK6-Ns-m0C" id="auM-Wh-8HR"/>
@@ -152,7 +162,7 @@
         <scene sceneID="Vd7-Fz-phW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SBZ-NF-zyL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Detailed" id="r8c-xI-QV8"/>
+                    <tabBarItem key="tabBarItem" title="Detailed" image="text.justify" catalog="system" selectedImage="text.justify" id="r8c-xI-QV8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Nh1-Hn-hHh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
@@ -171,7 +181,7 @@
         <scene sceneID="FvI-Jr-8xx">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qEl-i9-yZ6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Brief" id="soJ-a2-yMl"/>
+                    <tabBarItem key="tabBarItem" title="Brief" image="shield" catalog="system" selectedImage="shield" id="soJ-a2-yMl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="yY9-Dq-5KK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
@@ -190,18 +200,18 @@
         <scene sceneID="Eug-G3-oaW">
             <objects>
                 <tableViewController id="d3A-3r-3AG" customClass="BriefTableViewController" customModule="CoronaVirusStat" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="rSm-bv-jmH">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" contentViewInsetsToSafeArea="NO" id="rSm-bv-jmH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection id="Emm-0W-u5i">
+                            <tableViewSection id="gyf-Kb-bek">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BriefCell" id="ZlS-Nb-VgB" customClass="BriefTableViewCell" customModule="CoronaVirusStat" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="18" width="288" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="41" id="0lA-wf-4eQ" customClass="BriefTableViewCell" customModule="CoronaVirusStat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="18" width="320" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZlS-Nb-VgB" id="pR9-wW-Yoh">
-                                            <rect key="frame" x="0.0" y="0.0" width="288" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0lA-wf-4eQ" id="h6e-Tt-Aoz">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -217,10 +227,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXD-40-rYZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4056" y="970"/>
+            <point key="canvasLocation" x="4055.625" y="969.71830985915494"/>
         </scene>
     </scenes>
     <resources>
-        <image name="map" catalog="system" width="64" height="56"/>
+        <image name="map" catalog="system" width="128" height="113"/>
+        <image name="shield" catalog="system" width="128" height="121"/>
+        <image name="text.justify" catalog="system" width="128" height="100"/>
     </resources>
 </document>
