@@ -16,8 +16,8 @@ class ConvertDate {
         getDateFormatter.dateFormat = "M/dd/yy"
         let setDateFormater = DateFormatter()
         setDateFormater.dateFormat = "yy/M/dd"
-        let newDate = getDateFormatter.date(from: oldDate)
-        guard let date = newDate else { return "20/03/25" }
+        let oldDateDate = getDateFormatter.date(from: oldDate)
+        guard let date = oldDateDate else { return "20/03/25" }
         return setDateFormater.string(from: date)
     }
     
@@ -26,8 +26,8 @@ class ConvertDate {
         getDateFormatter.dateFormat = "yy/M/dd"
         let setDateFormater = DateFormatter()
         setDateFormater.dateFormat = "M/dd/yy"
-        let newDate = getDateFormatter.date(from: oldDate)
-        guard let date = newDate else { return "3/29/20" }
+        let oldDateDate = getDateFormatter.date(from: oldDate)
+        guard let date = oldDateDate else { return "3/29/20" }
         return setDateFormater.string(from: date)
     }
 }

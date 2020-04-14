@@ -19,6 +19,44 @@
 import Foundation
 import Realm
 
+/// :nodoc:
+/// Internal class. Do not use directly. Used for reflection and initialization
+public class LinkingObjectsBase: NSObject, NSFastEnumeration {
+    internal let objectClassName: String
+    internal let propertyName: String
+
+    fileprivate var cachedRLMResults: RLMResults<AnyObject>?
+    @objc fileprivate var object: RLMWeakObjectHandle?
+    @objc fileprivate var property: RLMProperty?
+
+    internal var rlmResults: RLMResults<AnyObject> {
+        if cachedRLMResults == nil {
+            if let object = self.object, let property = self.property {
+                cachedRLMResults = RLMDynamicGet(object.object, property)! as? RLMResults
+                self.object = nil
+                self.property = nil
+            } else {
+                cachedRLMResults = RLMResults.emptyDetached()
+            }
+        }
+        return cachedRLMResults!
+    }
+
+    init(fromClassName objectClassName: String, property propertyName: String) {
+        self.objectClassName = objectClassName
+        self.propertyName = propertyName
+    }
+
+    // MARK: Fast Enumeration
+    public func countByEnumerating(with state: UnsafeMutablePointer<NSFastEnumerationState>,
+                                   objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>,
+                                   count len: Int) -> Int {
+        return Int(rlmResults.countByEnumerating(with: state,
+                                                 objects: buffer,
+                                                 count: UInt(len)))
+    }
+}
+
 /**
  `LinkingObjects` is an auto-updating container type. It represents zero or more objects that are linked to its owning
  model object through a property relationship.
@@ -33,7 +71,7 @@ import Realm
  `LinkingObjects` can only be used as a property on `Object` models. Properties of this type must be declared as `let`
  and cannot be `dynamic`.
  */
-public struct LinkingObjects<Element: Object> {
+public final class LinkingObjects<Element: Object>: LinkingObjectsBase {
     /// The type of the objects represented by the linking objects.
     public typealias ElementType = Element
 
@@ -61,16 +99,17 @@ public struct LinkingObjects<Element: Object> {
      - parameter type:         The type of the object owning the property the linking objects should refer to.
      - parameter propertyName: The property name of the property the linking objects should refer to.
      */
-    public init(fromType _: Element.Type, property propertyName: String) {
-        self.propertyName = propertyName
+    public init(fromType type: Element.Type, property propertyName: String) {
+        let className = (Element.self as Object.Type).className()
+        super.init(fromClassName: className, property: propertyName)
     }
 
     /// A human-readable description of the objects represented by the linking objects.
-    public var description: String {
+    public override var description: String {
         if realm == nil {
             var this = self
             return withUnsafePointer(to: &this) {
-                return "LinkingObjects<\(Element.className())> <\($0)> (\n\n)"
+                return "LinkingObjects<\(objectClassName)> <\($0)> (\n\n)"
             }
         }
         return RLMDescriptionWithMaxDepth("LinkingObjects", rlmResults, RLMDescriptionMaxDepth)
@@ -131,7 +170,7 @@ public struct LinkingObjects<Element: Object> {
 
      - parameter key: The name of the property whose values are desired.
      */
-    public func value(forKey key: String) -> Any? {
+    public override func value(forKey key: String) -> Any? {
         return value(forKeyPath: key)
     }
 
@@ -141,7 +180,7 @@ public struct LinkingObjects<Element: Object> {
 
      - parameter keyPath: The key path to the property whose values are desired.
      */
-    public func value(forKeyPath keyPath: String) -> Any? {
+    public override func value(forKeyPath keyPath: String) -> Any? {
         return rlmResults.value(forKeyPath: keyPath)
     }
 
@@ -153,7 +192,7 @@ public struct LinkingObjects<Element: Object> {
      - parameter value: The value to set the property to.
      - parameter key:   The name of the property whose value should be set on each object.
      */
-    public func setValue(_ value: Any?, forKey key: String) {
+    public override func setValue(_ value: Any?, forKey key: String) {
         return rlmResults.setValue(value, forKeyPath: key)
     }
 
@@ -323,13 +362,6 @@ public struct LinkingObjects<Element: Object> {
             block(RealmCollectionChange.fromObjc(value: self, change: change, error: error))
         }
     }
-
-    internal var rlmResults: RLMResults<AnyObject> {
-        return handle?.results ?? RLMResults<AnyObject>.emptyDetached()
-    }
-
-    internal var propertyName: String
-    internal var handle: RLMLinkingObjectsHandle?
 }
 
 extension LinkingObjects: RealmCollection {
@@ -338,12 +370,6 @@ extension LinkingObjects: RealmCollection {
     /// Returns an iterator that yields successive elements in the linking objects.
     public func makeIterator() -> RLMIterator<Element> {
         return RLMIterator(collection: rlmResults)
-    }
-
-    /// :nodoc:
-    // swiftlint:disable:next identifier_name
-    public func _asNSFastEnumerator() -> Any {
-        return rlmResults
     }
 
     // MARK: Collection Support
@@ -379,15 +405,40 @@ extension LinkingObjects: RealmCollection {
 
 extension LinkingObjects: AssistedObjectiveCBridgeable {
     internal static func bridging(from objectiveCValue: Any, with metadata: Any?) -> LinkingObjects {
-        guard let object = objectiveCValue as? RLMObjectBase else { preconditionFailure() }
-        guard let propertyName = metadata as? String else { preconditionFailure() }
+        guard let metadata = metadata as? LinkingObjectsBridgingMetadata else { preconditionFailure() }
 
-        var ret = LinkingObjects(fromType: Element.self, property: propertyName)
-        ret.handle = RLMLinkingObjectsHandle(object: object, property: RLMObjectBaseObjectSchema(object)![propertyName]!)
-        return ret
+        let swiftValue = LinkingObjects(fromType: Element.self, property: metadata.propertyName)
+        switch (objectiveCValue, metadata) {
+        case (let object as RLMObjectBase, .uncached(let property)):
+            swiftValue.object = RLMWeakObjectHandle(object: object)
+            swiftValue.property = property
+        case (let results as RLMResults<AnyObject>, .cached):
+            swiftValue.cachedRLMResults = results
+        default:
+            preconditionFailure()
+        }
+        return swiftValue
     }
 
     internal var bridged: (objectiveCValue: Any, metadata: Any?) {
-        return (objectiveCValue: handle!.parent, metadata: handle!.property.name)
+        if let results = cachedRLMResults {
+            return (objectiveCValue: results,
+                    metadata: LinkingObjectsBridgingMetadata.cached(propertyName: propertyName))
+        } else {
+            return (objectiveCValue: (object!.copy() as! RLMWeakObjectHandle).object,
+                    metadata: LinkingObjectsBridgingMetadata.uncached(property: property!))
+        }
+    }
+}
+
+internal enum LinkingObjectsBridgingMetadata {
+    case uncached(property: RLMProperty)
+    case cached(propertyName: String)
+
+    fileprivate var propertyName: String {
+        switch self {
+        case .uncached(let property):   return property.name
+        case .cached(let propertyName): return propertyName
+        }
     }
 }

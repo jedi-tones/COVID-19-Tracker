@@ -113,3 +113,13 @@ extension SortDescriptor: ExpressibleByStringLiteral {
         self.init(keyPath: value)
     }
 }
+
+// MARK: Unavailable
+
+extension SortDescriptor {
+    @available(*, unavailable, renamed: "init(keyPath:ascending:)")
+    public init(property: String, ascending: Bool = true) { fatalError() }
+
+    @available(*, unavailable, renamed: "keyPath")
+    public var property: String { fatalError() }
+}

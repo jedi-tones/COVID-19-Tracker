@@ -45,9 +45,11 @@ class RLMClassInfo;
 @interface RLMFastEnumerator : NSObject
 - (instancetype)initWithList:(realm::List&)list
                   collection:(id)collection
+                       realm:(RLMRealm *)realm
                    classInfo:(RLMClassInfo&)info;
 - (instancetype)initWithResults:(realm::Results&)results
                      collection:(id)collection
+                          realm:(RLMRealm *)realm
                       classInfo:(RLMClassInfo&)info;
 
 // Detach this enumerator from the source collection. Must be called before the
@@ -79,6 +81,7 @@ RLMNotificationToken *RLMAddNotificationBlock(id objcCollection,
                                               bool suppressInitialChange=false);
 
 template<typename Collection>
-NSArray *RLMCollectionValueForKey(Collection& collection, NSString *key, RLMClassInfo& info);
+NSArray *RLMCollectionValueForKey(Collection& collection, NSString *key,
+                                  RLMRealm *realm, RLMClassInfo& info);
 
 std::vector<std::pair<std::string, bool>> RLMSortDescriptorsToKeypathArray(NSArray<RLMSortDescriptor *> *properties);

@@ -992,7 +992,7 @@ void Group::to_json(S& out, size_t link_depth, std::map<std::string, std::string
     std::map<std::string, std::string> renames2;
     renames = renames ? renames : &renames2;
 
-    out << "{" << std::endl;
+    out << "{";
 
     for (size_t i = 0; i < m_tables.size(); ++i) {
         StringData name = m_table_names.get(i);
@@ -1007,10 +1007,9 @@ void Group::to_json(S& out, size_t link_depth, std::map<std::string, std::string
         out << "\"" << name << "\"";
         out << ":";
         table->to_json(out, link_depth, renames);
-        out << std::endl;
     }
 
-    out << "}" << std::endl;
+    out << "}";
 }
 
 inline void Group::init_array_parents() noexcept

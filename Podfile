@@ -7,5 +7,7 @@ target 'CoronaVirusStat' do
 
   # Pods for CoronaVirusStat
 pod 'RealmSwift'
+pod 'Charts'
+pod 'ChartsRealm'
 
 end

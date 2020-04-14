@@ -61,6 +61,7 @@
 }
 
 - (RLMManagedArray *)initWithList:(realm::List)list
+                            realm:(__unsafe_unretained RLMRealm *const)realm
                        parentInfo:(RLMClassInfo *)parentInfo
                          property:(__unsafe_unretained RLMProperty *const)property {
     if (property.type == RLMPropertyTypeObject)
@@ -68,8 +69,8 @@
     else
         self = [self initWithObjectType:property.type optional:property.optional];
     if (self) {
-        _realm = parentInfo->realm;
-        REALM_ASSERT(list.get_realm() == _realm->_realm);
+        _realm = realm;
+        REALM_ASSERT(list.get_realm() == realm->_realm);
         _backingList = std::move(list);
         _ownerInfo = parentInfo;
         if (property.type == RLMPropertyTypeObject)
@@ -87,6 +88,7 @@
     auto col = parentObject->_info->tableColumn(property);
     auto& row = parentObject->_row;
     return [self initWithList:realm::List(realm->_realm, *row.get_table(), col, row.get_index())
+                        realm:realm
                    parentInfo:parentObject->_info
                      property:property];
 }
@@ -250,7 +252,7 @@ static void changeArray(__unsafe_unretained RLMManagedArray *const ar, NSKeyValu
 
 - (id)objectAtIndex:(NSUInteger)index {
     return translateErrors([&] {
-        RLMAccessorContext context(*_objectInfo);
+        RLMAccessorContext context(_realm, *_objectInfo);
         return _backingList.get(context, index);
     });
 }
@@ -262,7 +264,7 @@ static void RLMInsertObject(RLMManagedArray *ar, id object, NSUInteger index) {
     }
 
     changeArray(ar, NSKeyValueChangeInsertion, index, ^{
-        RLMAccessorContext context(*ar->_objectInfo);
+        RLMAccessorContext context(ar->_realm, *ar->_objectInfo);
         ar->_backingList.insert(context, index, object);
     });
 }
@@ -278,7 +280,7 @@ static void RLMInsertObject(RLMManagedArray *ar, id object, NSUInteger index) {
 - (void)insertObjects:(id<NSFastEnumeration>)objects atIndexes:(NSIndexSet *)indexes {
     changeArray(self, NSKeyValueChangeInsertion, indexes, ^{
         NSUInteger index = [indexes firstIndex];
-        RLMAccessorContext context(*_objectInfo);
+        RLMAccessorContext context(_realm, *_objectInfo);
         for (id obj in objects) {
             RLMArrayValidateMatchingObjectType(self, obj);
             _backingList.insert(context, index, obj);
@@ -304,7 +306,7 @@ static void RLMInsertObject(RLMManagedArray *ar, id object, NSUInteger index) {
 
 - (void)addObjectsFromArray:(NSArray *)array {
     changeArray(self, NSKeyValueChangeInsertion, NSMakeRange(self.count, array.count), ^{
-        RLMAccessorContext context(*_objectInfo);
+        RLMAccessorContext context(_realm, *_objectInfo);
         for (id obj in array) {
             RLMArrayValidateMatchingObjectType(self, obj);
             _backingList.add(context, obj);
@@ -321,7 +323,7 @@ static void RLMInsertObject(RLMManagedArray *ar, id object, NSUInteger index) {
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)object {
     RLMArrayValidateMatchingObjectType(self, object);
     changeArray(self, NSKeyValueChangeReplacement, index, ^{
-        RLMAccessorContext context(*_objectInfo);
+        RLMAccessorContext context(_realm, *_objectInfo);
         _backingList.set(context, index, object);
     });
 }
@@ -347,7 +349,7 @@ static void RLMInsertObject(RLMManagedArray *ar, id object, NSUInteger index) {
 - (NSUInteger)indexOfObject:(id)object {
     RLMArrayValidateMatchingObjectType(self, object);
     return translateErrors([&] {
-        RLMAccessorContext context(*_objectInfo);
+        RLMAccessorContext context(_realm, *_objectInfo);
         return RLMConvertNotFound(_backingList.find(context, object));
     });
 }
@@ -376,14 +378,14 @@ static void RLMInsertObject(RLMManagedArray *ar, id object, NSUInteger index) {
         }
 
         _backingList.verify_attached();
-        return RLMCollectionValueForKey(_backingList, key, *_objectInfo);
+        return RLMCollectionValueForKey(_backingList, key, _realm, *_objectInfo);
     });
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key {
     if ([key isEqualToString:@"self"]) {
         RLMArrayValidateMatchingObjectType(self, value);
-        RLMAccessorContext context(*_objectInfo);
+        RLMAccessorContext context(_realm, *_objectInfo);
         translateErrors([&] {
             for (size_t i = 0, count = _backingList.size(); i < count; ++i) {
                 _backingList.set(context, i, value);
@@ -493,7 +495,7 @@ static void RLMInsertObject(RLMManagedArray *ar, id object, NSUInteger index) {
 - (RLMFastEnumerator *)fastEnumerator {
     return translateErrors([&] {
         return [[RLMFastEnumerator alloc] initWithList:_backingList collection:self
-                                             classInfo:*_objectInfo];
+                                                 realm:_realm classInfo:*_objectInfo];
     });
 }
 
@@ -535,6 +537,7 @@ static void RLMInsertObject(RLMManagedArray *ar, id object, NSUInteger index) {
     }
     RLMClassInfo *parentInfo = &realm->_info[metadata.parentClassName];
     return [[RLMManagedArray alloc] initWithList:std::move(list)
+                                            realm:realm
                                        parentInfo:parentInfo
                                          property:parentInfo->rlmObjectSchema[metadata.key]];
 }

@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class RLMArray, RLMObjectBase, RLMResults, RLMProperty;
+@class RLMArray;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,16 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RLMListBase : NSObject <NSFastEnumeration>
 @property (nonatomic, strong) RLMArray *_rlmArray;
 
-- (instancetype)init;
 - (instancetype)initWithArray:(RLMArray *)array;
-@end
-
-@interface RLMLinkingObjectsHandle : NSObject
-- (instancetype)initWithObject:(RLMObjectBase *)object property:(RLMProperty *)property;
-
-@property (nonatomic, readonly) RLMResults *results;
-@property (nonatomic, readonly) RLMObjectBase *parent;
-@property (nonatomic, readonly) RLMProperty *property;
 @end
 
 NS_ASSUME_NONNULL_END

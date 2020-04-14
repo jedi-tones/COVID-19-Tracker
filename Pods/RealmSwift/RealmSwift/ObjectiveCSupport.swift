@@ -28,7 +28,7 @@ import Realm
 
  :nodoc:
  **/
-public struct ObjectiveCSupport {
+public final class ObjectiveCSupport {
 
     /// Convert a `Results` to a `RLMResults`.
     public static func convert<T>(object: Results<T>) -> RLMResults<AnyObject> {
