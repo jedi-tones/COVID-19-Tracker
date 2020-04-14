@@ -36,7 +36,8 @@ class BriefTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BriefTableViewCell.reuseID, for: indexPath) as! BriefTableViewCell
-        cell.setUI()
+        cell.setChartUI()
+        cell.setChartData()
         cell.setCell()
         return cell
     }

@@ -38,6 +38,7 @@
 		FB802A4E243FA1FF001C4C57 /* BriefTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB802A4D243FA1FF001C4C57 /* BriefTableViewController.swift */; };
 		FB9B860624366A4E0076922E /* CalculateTimeSeriesBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */; };
 		FBA255BD242BE9B200317E03 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA255BC242BE9B200317E03 /* SettingsViewController.swift */; };
+		FBFAD18B244610A100F054E8 /* ChartUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFAD18A244610A100F054E8 /* ChartUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		FB802A4D243FA1FF001C4C57 /* BriefTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefTableViewController.swift; sourceTree = "<group>"; };
 		FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTimeSeriesBrief.swift; sourceTree = "<group>"; };
 		FBA255BC242BE9B200317E03 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FBFAD18A244610A100F054E8 /* ChartUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				FB46C287242E75F200FABEC7 /* ConverterDate.swift */,
 				FB49800224321F980080B4D5 /* Statistic.swift */,
 				FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */,
+				FBFAD18A244610A100F054E8 /* ChartUI.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBFAD18B244610A100F054E8 /* ChartUI.swift in Sources */,
 				FB49800324321F980080B4D5 /* Statistic.swift in Sources */,
 				FB754AF3243A6081002C7BD4 /* TypeOfFilter.swift in Sources */,
 				FB9B860624366A4E0076922E /* CalculateTimeSeriesBrief.swift in Sources */,
