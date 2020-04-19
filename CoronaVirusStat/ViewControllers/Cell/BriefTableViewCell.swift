@@ -10,13 +10,16 @@ import UIKit
 import RealmSwift
 import Charts
 
-class BriefTableViewCell: UITableViewCell {
+class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
     
     @IBOutlet var confirmed: UILabel!
     @IBOutlet var death: UILabel!
     @IBOutlet var recovered: UILabel!
     @IBOutlet var lineChartView: LineChartView!
-    private var axisFormatDelegate: IAxisValueFormatter?
+    
+    @IBOutlet var markerView: UIView!
+    @IBOutlet var dataMarker: UILabel!
+    @IBOutlet var dateMarker: UILabel!
     
     
     let realm = try! Realm()
@@ -24,18 +27,34 @@ class BriefTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        axisFormatDelegate = self
+        
+        
     }
     
     func setChartUI(){
+        lineChartView.delegate = self
         ChartUI.shared.setLineChartUI(chartView: lineChartView)
     }
     
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+                     
+        print("\(highlight.xPx) \(highlight.yPx)")
+        dataMarker.text = "\(Int(highlight.y))"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy/M/dd"
+        dateMarker.text = "\(dateFormatter.string(from: Date(timeIntervalSince1970: highlight.x)))"
+        
+        markerView.center = CGPoint(x: highlight.xPx - 30, y: highlight.yPx - 10)
+                 }
+    
     func setChartData(){
-        lineChartView.rightAxis.enabled = false
+        
         
         guard let results = realm.objects(BriefRealm.self).first?.timesSeries else { return }
         var data: [ChartDataEntry] = []
+        
+       
         
         for date in results {
             
@@ -49,14 +68,15 @@ class BriefTableViewCell: UITableViewCell {
             data.append(chartDataEntry)
         }
         let lineChartDataSet = LineChartDataSet(entries: data, label: "Confirmed chart")
+        
         ChartUI.shared.setLineChartDataSet(lineChartDataSet: lineChartDataSet)
         
         let chartData = LineChartData()
         chartData.addDataSet(lineChartDataSet)
         
-        lineChartView.data = chartData
         
-        lineChartView.xAxis.valueFormatter = axisFormatDelegate
+        lineChartView.data = chartData
+    
     }
     
     
@@ -68,12 +88,5 @@ class BriefTableViewCell: UITableViewCell {
     }
 }
 
-extension BriefTableViewCell: IAxisValueFormatter {
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy/M/dd"
-        return dateFormatter.string(from: Date(timeIntervalSince1970: value))
-    }
     
-    
-}
+
