@@ -13,8 +13,7 @@ class JsonManager {
     
     static let shared = JsonManager()
     
-    func getData <T: Decodable> (view: UIViewController,
-                                 link: String,
+    func getData <T: Decodable> (link: String,
                                  typeData: T.Type,
                                  complition: @escaping (T) -> Void ) {
         
@@ -23,7 +22,7 @@ class JsonManager {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 DispatchQueue.main.async {
-                    AlertController.shared.showErrorAlert(view: view, titleAlert: "Connection Error", messageAlert: error.localizedDescription) }
+                    AlertController.shared.showErrorAlert(titleAlert: "Connection Error", messageAlert: error.localizedDescription) }
                 }
             
             guard let data = data else { return }
@@ -37,7 +36,7 @@ class JsonManager {
                 
             } catch let errorDecode as NSError {
                 DispatchQueue.main.async {
-                    AlertController.shared.showErrorAlert(view: view, titleAlert: "Convert data error", messageAlert: errorDecode.localizedDescription)
+                    AlertController.shared.showErrorAlert(titleAlert: "Convert data error", messageAlert: errorDecode.localizedDescription)
                 }
             }
             } .resume()

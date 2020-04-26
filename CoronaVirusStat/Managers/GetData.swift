@@ -11,19 +11,21 @@ import Foundation
 
 class GetData {
     
+     static let shared = GetData()
      private let jsonManager = JsonManager()
     
+    
         //MARK: - getData
-        private func getData(){
+         func getData(){
             
-            jsonManager.getData(view: self,
-                                link: VirusDataLink.shared.linkLatestOnlyCountry,
+            jsonManager.getData(link: VirusDataLink.shared.linkLatestOnlyCountry,
                                 typeData: [CoronaVirusStateOnlyCountry].self,
                                 complition: { data in
                                     
                                     //download and save all Country info
                                     SaveToRealm.shared.saveLatestOnlyCountry(data: data, complition: {
                                         DispatchQueue.main.async {
+                                            CountryViewController.
                                             self.sortRealmData(filter: self.typeFilter, ascending: self.isAscending)
                                         }
                                         
@@ -37,7 +39,7 @@ class GetData {
         }
         
         //MARK:  getCityData
-        private func getCityData(){
+         func getCityData(){
             
             jsonManager.getData(view: self,
                                 link: VirusDataLink.shared.linkLatest,
@@ -49,7 +51,7 @@ class GetData {
         }
         
         //MARK:  getTimeSeriesData
-        private func getTimeSeriesData() {
+         func getTimeSeriesData() {
             
             jsonManager.getData(view: self,
                                 link: VirusDataLink.shared.linkTimeSeriesOnlyCountry,

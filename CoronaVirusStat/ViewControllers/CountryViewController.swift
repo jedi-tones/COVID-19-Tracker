@@ -46,14 +46,13 @@ class CountryViewController: UIViewController {
         
         registerCell()
         setUI()
-
-        getData()
+        
         
         sortRealmData(filter: typeFilter, ascending: isAscending)
     }
     
     @IBAction func renewPressed() {
-        getData()
+        GetData.shared.getData()
     }
     
     
@@ -93,7 +92,7 @@ class CountryViewController: UIViewController {
         countryTableView.reloadData()
     }
     
-    
+}
 
 
 //MARK: - navigation
@@ -180,6 +179,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
 
 //MARK: - UISearchResultsUpdating
 extension CountryViewController: UISearchResultsUpdating {
