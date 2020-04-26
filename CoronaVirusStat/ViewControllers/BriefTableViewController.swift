@@ -10,22 +10,22 @@ import UIKit
 import RealmSwift
 
 class BriefTableViewController: UITableViewController {
-
+    
     let jsonManager = JsonManager()
     let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         registerCell()
         getBreaf()
     }
     
-
+    
     private func registerCell(){
-         tableView.register(UINib(nibName: "BriefTableViewCell", bundle: nil), forCellReuseIdentifier: BriefTableViewCell.reuseID)
+        tableView.register(UINib(nibName: "BriefTableViewCell", bundle: nil), forCellReuseIdentifier: BriefTableViewCell.reuseID)
     }
-
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
@@ -45,8 +45,7 @@ class BriefTableViewController: UITableViewController {
     //MARK:  getBreaf
     private func getBreaf(){
         
-        jsonManager.getData(view: self,
-                            link: VirusDataLink.shared.linkBrief,
+        jsonManager.getData(link: VirusDataLink.shared.linkBrief,
                             typeData: Brief.self,
                             complition: { data in
                                 SaveToRealm.shared.addBrief(newData: data, complition: {
@@ -59,5 +58,5 @@ class BriefTableViewController: UITableViewController {
     }
     
     
-
+    
 }

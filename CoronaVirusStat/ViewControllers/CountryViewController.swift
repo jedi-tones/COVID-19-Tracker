@@ -13,6 +13,11 @@ protocol SortDelegate {
     func sorting(typeOfFilter: TypeOfFilter, ascending: Bool)
 }
 
+protocol UpdateCountry {
+    func updateTable()
+    func updateStatus(status: Bool)
+}
+
 class CountryViewController: UIViewController {
     
     @IBOutlet var countryTableView: UITableView!
@@ -32,10 +37,10 @@ class CountryViewController: UIViewController {
     private var isSearching: Bool {
         !isEmptySearchBar && searchController.isActive
     }
-    private var isUpdatingTimeSeries = true
+    
     private var typeFilter: TypeOfFilter = .Confirmed
     private var isAscending = false
-    
+    private var isUpdatingTimeSeries = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +48,13 @@ class CountryViewController: UIViewController {
         countryRealmData = realm.objects(VirusRealm.self)
         brief = realm.objects(BriefRealm.self)
         
-        
         registerCell()
         setUI()
         
-        
         sortRealmData(filter: typeFilter, ascending: isAscending)
+        
+        GetData.shared.delegateCountry = self
+        GetData.shared.getData()
     }
     
     @IBAction func renewPressed() {
@@ -75,8 +81,12 @@ class CountryViewController: UIViewController {
         countryTableView.register(UINib(nibName: "FirstCountryTableViewCell", bundle: nil), forCellReuseIdentifier: FirstCountryTableViewCell.reuseID)
     }
     
+    static func renewTable(){
+        
+    }
+    
     //MARK: - sortRealmData
-    func sortRealmData(filter: TypeOfFilter, ascending: Bool) {
+     func sortRealmData(filter: TypeOfFilter, ascending: Bool) {
         //  let isReverse = reverseSortSegmentedControl.selectedSegmentIndex == 0 ? false : true
         
         switch filter {
@@ -203,6 +213,17 @@ extension CountryViewController: SortDelegate {
         isAscending = ascending
         
         sortRealmData(filter: typeOfFilter, ascending: ascending)
+    }
+}
+
+
+extension CountryViewController: UpdateCountry {
+    func updateStatus(status: Bool) {
+        isUpdatingTimeSeries = status
+    }
+    
+    func updateTable() {
+        countryTableView.reloadData()
     }
     
     
