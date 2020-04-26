@@ -38,6 +38,7 @@
 		FB802A4E243FA1FF001C4C57 /* BriefTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB802A4D243FA1FF001C4C57 /* BriefTableViewController.swift */; };
 		FB9B860624366A4E0076922E /* CalculateTimeSeriesBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */; };
 		FBA255BD242BE9B200317E03 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA255BC242BE9B200317E03 /* SettingsViewController.swift */; };
+		FBED93F22455E5630076EC8F /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBED93F12455E5630076EC8F /* GetData.swift */; };
 		FBFAD18B244610A100F054E8 /* ChartUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFAD18A244610A100F054E8 /* ChartUI.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		FB802A4D243FA1FF001C4C57 /* BriefTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefTableViewController.swift; sourceTree = "<group>"; };
 		FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTimeSeriesBrief.swift; sourceTree = "<group>"; };
 		FBA255BC242BE9B200317E03 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FBED93F12455E5630076EC8F /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
 		FBFAD18A244610A100F054E8 /* ChartUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +184,7 @@
 				FB74574F2426750B0098E670 /* JsonManager.swift */,
 				FB7457522426786F0098E670 /* AlertController.swift */,
 				FB7457602426B3120098E670 /* SaveToRealm.swift */,
+				FBED93F12455E5630076EC8F /* GetData.swift */,
 				FB46C287242E75F200FABEC7 /* ConverterDate.swift */,
 				FB49800224321F980080B4D5 /* Statistic.swift */,
 				FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */,
@@ -340,6 +343,7 @@
 				FB74572A24266CA60098E670 /* AppDelegate.swift in Sources */,
 				FB74572C24266CA60098E670 /* SceneDelegate.swift in Sources */,
 				FB7457612426B3120098E670 /* SaveToRealm.swift in Sources */,
+				FBED93F22455E5630076EC8F /* GetData.swift in Sources */,
 				FB802A47243F9DBC001C4C57 /* BriefTableViewCell.swift in Sources */,
 				FB74575D2426ACDF0098E670 /* CountryViewController.swift in Sources */,
 				FB46C288242E75F200FABEC7 /* ConverterDate.swift in Sources */,

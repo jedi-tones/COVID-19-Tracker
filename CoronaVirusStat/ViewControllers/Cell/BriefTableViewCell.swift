@@ -28,7 +28,6 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
     }
     
     func setChartUI(){
@@ -37,8 +36,9 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-                     
-        print("\(highlight.xPx) \(highlight.yPx)")
+        
+        markerView.isHidden = false
+
         dataMarker.text = "\(Int(highlight.y))"
         
         let dateFormatter = DateFormatter()
@@ -46,15 +46,14 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
         dateMarker.text = "\(dateFormatter.string(from: Date(timeIntervalSince1970: highlight.x)))"
         
         markerView.center = CGPoint(x: highlight.xPx - 30, y: highlight.yPx - 10)
-                 }
+    }
     
-    func setChartData(){
-        
+    func setLineChartData(){
         
         guard let results = realm.objects(BriefRealm.self).first?.timesSeries else { return }
-        var data: [ChartDataEntry] = []
-        
-       
+        var dataConfirmed: [ChartDataEntry] = []
+        var dataDeath: [ChartDataEntry] = []
+        var dataRecovered: [ChartDataEntry] = []
         
         for date in results {
             
@@ -64,19 +63,31 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
             
             let timeInterval: TimeInterval = currentDate.timeIntervalSince1970
             
-            let chartDataEntry = ChartDataEntry(x: Double(timeInterval), y: Double(date.confirmed))
-            data.append(chartDataEntry)
+            let chartDataConfrmed = ChartDataEntry(x: Double(timeInterval), y: Double(date.confirmed))
+            let chartDataDeath = ChartDataEntry(x: Double(timeInterval), y: Double(date.deaths))
+            let chartDataRecovered = ChartDataEntry(x: Double(timeInterval), y: Double(date.recovered))
+            
+            dataConfirmed.append(chartDataConfrmed)
+            dataDeath.append(chartDataDeath)
+            dataRecovered.append(chartDataRecovered)
+            
         }
-        let lineChartDataSet = LineChartDataSet(entries: data, label: "Confirmed chart")
         
-        ChartUI.shared.setLineChartDataSet(lineChartDataSet: lineChartDataSet)
+        let lineChartDataSetConfirmed = LineChartDataSet(entries: dataConfirmed, label: DifferenceTimeSeries.confirmed.rawValue)
+        let lineChartDataSetDeath = LineChartDataSet(entries: dataDeath, label: DifferenceTimeSeries.death.rawValue)
+        let lineChartDataSetRecovered = LineChartDataSet(entries: dataRecovered, label: DifferenceTimeSeries.recovered.rawValue)
+        
+        ChartUI.shared.setLineChartDataSet(lineChartDataSet: lineChartDataSetConfirmed)
+        ChartUI.shared.setLineChartDataSet(lineChartDataSet: lineChartDataSetDeath)
+        ChartUI.shared.setLineChartDataSet(lineChartDataSet: lineChartDataSetRecovered)
         
         let chartData = LineChartData()
-        chartData.addDataSet(lineChartDataSet)
-        
+        chartData.addDataSet(lineChartDataSetConfirmed)
+        chartData.addDataSet(lineChartDataSetDeath)
+        chartData.addDataSet(lineChartDataSetRecovered)
         
         lineChartView.data = chartData
-    
+        
     }
     
     
@@ -88,5 +99,5 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
     }
 }
 
-    
+
 

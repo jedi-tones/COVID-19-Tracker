@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-class AlertController {
+class AlertController: UIViewController {
     
     static let shared = AlertController()
     
-    func showErrorAlert(view: UIViewController, titleAlert: String, messageAlert: String) {
+    func showErrorAlert(titleAlert: String, messageAlert: String) {
         let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
 
         let closeAction = UIAlertAction(title: "OK", style: .default) { _ in
@@ -21,7 +21,7 @@ class AlertController {
         }
         
         alert.addAction(closeAction)
-        view.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
 }
