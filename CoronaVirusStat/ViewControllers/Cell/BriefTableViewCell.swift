@@ -19,12 +19,13 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet var confirmed: UILabel!
     @IBOutlet var death: UILabel!
     @IBOutlet var recovered: UILabel!
+    
     @IBOutlet var lineChartView: LineChartView!
+    @IBOutlet var pieChartView: PieChartView!
     
     @IBOutlet var markerView: UIView!
     @IBOutlet var dataMarker: UILabel!
     @IBOutlet var dateMarker: UILabel!
-    
     
     let realm = try! Realm()
     static let reuseID = "BriefCell"
@@ -36,8 +37,11 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
     
     func setChartUI(){
         lineChartView.delegate = self
+        pieChartView.delegate = self
+        
         ChartUI.shared.setLineChartUI(chartView: lineChartView)
     }
+    
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
@@ -52,6 +56,40 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
         markerView.center = CGPoint(x: highlight.xPx - 30, y: highlight.yPx - 10)
     }
     
+    func setPieChartData() {
+        guard let results  = realm.objects(BriefRealm.self).first else { return }
+        var pieChartEntries: [PieChartDataEntry] = []
+        
+        let currentSick = results.confirmed - results.death - results.recovered
+        
+        let pieChartSickEntry = PieChartDataEntry(value: Double(currentSick), label: "Sick")
+        let pieChartDeathEntry = PieChartDataEntry(value: Double(results.death), label: "Death")
+        let pieChartRecoveredEntry = PieChartDataEntry(value: Double(results.recovered), label: "Recovered")
+        
+        pieChartEntries.append(pieChartSickEntry)
+        pieChartEntries.append(pieChartDeathEntry)
+        pieChartEntries.append(pieChartRecoveredEntry)
+        
+        let dataSet = PieChartDataSet(entries: pieChartEntries, label: "Pie chart COVID - 19")
+        
+        dataSet.colors = ChartColorTemplates.pastel()
+        
+        let data = PieChartData(dataSet: dataSet)
+        
+        let pFormatter = NumberFormatter()
+        
+        pFormatter.numberStyle = .decimal
+        pFormatter.maximumFractionDigits = 1
+        pFormatter.multiplier = 1
+        
+        data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
+        
+        data.setValueFont(.systemFont(ofSize: 11, weight: .light))
+        data.setValueTextColor(.white)
+        
+        pieChartView.data = data
+        pieChartView.highlightValues(nil)
+    }
     
     func setLineChartData(){
         

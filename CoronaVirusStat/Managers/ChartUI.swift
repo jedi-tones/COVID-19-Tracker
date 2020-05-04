@@ -32,6 +32,7 @@ class ChartUI {
         chartView.marker = mark
         chartView.rightAxis.enabled = false
         
+        chartView.leftAxis.enabled = false
         chartView.leftAxis.labelFont = UIFont(name: "Helvetica neue", size: 8)!
         chartView.leftAxis.labelCount = 10
         chartView.leftAxis.drawAxisLineEnabled = true
@@ -60,10 +61,29 @@ class ChartUI {
     
     func setPieChartUI(chartView: PieChartView) {
         
+        chartView.holeColor = .white
+        chartView.transparentCircleColor = NSUIColor.white.withAlphaComponent(0.43)
+        chartView.holeRadiusPercent = 0.58
+        chartView.rotationEnabled = false
+        chartView.highlightPerTapEnabled = true
         
+        
+        let l = chartView.legend
+        l.horizontalAlignment = .right
+        l.verticalAlignment = .top
+        l.orientation = .vertical
+        l.xEntrySpace = 7
+        l.yEntrySpace = 0
+        l.yOffset = 0
+        //        chartView.legend = l
+        
+        // entry label styling
+        chartView.entryLabelColor = .white
+        chartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
     }
     
     func SetPieChartDataSet(pieChartDataSet: PieChartDataSet) {
+        
         
         
     }
@@ -72,17 +92,17 @@ class ChartUI {
         
         switch lineChartDataSet.label {
         case DifferenceTimeSeries.confirmed.rawValue:
-            lineChartDataSet.colors = [#colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)]
-            lineChartDataSet.circleColors = [#colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)]
-            lineChartDataSet.fillColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
+            lineChartDataSet.colors = [#colorLiteral(red: 0.1459183693, green: 0.1922611594, blue: 0.3337301016, alpha: 1)]
+            lineChartDataSet.circleColors = [#colorLiteral(red: 0.1459183693, green: 0.1922611594, blue: 0.3337301016, alpha: 1)]
+            lineChartDataSet.fillColor = #colorLiteral(red: 0.1459183693, green: 0.1922611594, blue: 0.3337301016, alpha: 1)
         case DifferenceTimeSeries.death.rawValue:
-            lineChartDataSet.colors = [#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)]
-            lineChartDataSet.circleColors = [#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)]
-            lineChartDataSet.fillColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+            lineChartDataSet.colors = [#colorLiteral(red: 0.8346312642, green: 0.5086384416, blue: 0.450792253, alpha: 1)]
+            lineChartDataSet.circleColors = [#colorLiteral(red: 0.8346312642, green: 0.5086384416, blue: 0.450792253, alpha: 1)]
+            lineChartDataSet.fillColor = #colorLiteral(red: 0.8346312642, green: 0.5086384416, blue: 0.450792253, alpha: 1)
         default:
-            lineChartDataSet.colors = [#colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)]
-            lineChartDataSet.circleColors = [#colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)]
-            lineChartDataSet.fillColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+            lineChartDataSet.colors = [#colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)]
+            lineChartDataSet.circleColors = [#colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)]
+            lineChartDataSet.fillColor = #colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)
         }
        
         lineChartDataSet.drawCircleHoleEnabled = false

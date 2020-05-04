@@ -20,7 +20,7 @@ class BriefTableViewController: UITableViewController {
         registerCell()
         getBreaf()
         
-        GetData.shared.briefDelegate = self
+        GetData.shared.delegateBrief = self
     }
     
     
@@ -40,6 +40,7 @@ class BriefTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: BriefTableViewCell.reuseID, for: indexPath) as! BriefTableViewCell
         cell.setChartUI()
         cell.setLineChartData()
+        cell.setPieChartData()
         cell.setCell()
         return cell
     }
@@ -55,5 +56,6 @@ class BriefTableViewController: UITableViewController {
 extension BriefTableViewController: UpdateBreaf {
     func updateBreafChart() {
         tableView.reloadData()
+        print(#function)
     }
 }

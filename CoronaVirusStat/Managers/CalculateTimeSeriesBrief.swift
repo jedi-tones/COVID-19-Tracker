@@ -12,11 +12,12 @@ import RealmSwift
 class CalculateTimeSeriesBrief {
     
     
-   static func getTimeSeriesBrief(complition: @escaping () -> Void) {
+    static func getTimeSeriesBrief(complition: @escaping () -> Void) {
         
-     let queue = DispatchQueue.global(qos: .default)
+        let queue = DispatchQueue.global(qos: .default)
+        let taskGroup = DispatchGroup()
         
-        queue.async {
+        queue.async(group: taskGroup) {
             
             let realm = try! Realm()
             let data = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: false)
@@ -56,6 +57,10 @@ class CalculateTimeSeriesBrief {
                 }
             }
         }
-        complition()
+        
+        //when taskgroup complite do escaping complition
+        taskGroup.notify(queue: .main) {
+            complition()
+        }
     }
 }
