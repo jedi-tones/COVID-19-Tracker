@@ -15,8 +15,6 @@ class ChartUI {
     
     private var axisFormatDelegate: IAxisValueFormatter?
     
-
-    
     func setLineChartUI(chartView: LineChartView){
         axisFormatDelegate = self
         
@@ -53,6 +51,16 @@ class ChartUI {
         chartView.xAxis.labelCount = 25
         //chartView.xAxis.axisMaxLabels = 100
         
+        let l = chartView.legend
+        
+        l.horizontalAlignment = .left
+        l.verticalAlignment = .bottom
+        l.orientation = .vertical
+        l.xEntrySpace = 7
+        l.yEntrySpace = 0
+        l.drawInside = true
+        //l.yOffset = 0
+        
         chartView.highlightPerTapEnabled = true
         chartView.rightAxis.enabled = false
         
@@ -61,21 +69,26 @@ class ChartUI {
     
     func setPieChartUI(chartView: PieChartView) {
         
-        chartView.holeColor = .white
-        chartView.transparentCircleColor = NSUIColor.white.withAlphaComponent(0.43)
-        chartView.holeRadiusPercent = 0.58
-        chartView.rotationEnabled = false
+     //   chartView.holeColor = .white
+       // chartView.transparentCircleColor = NSUIColor.white.withAlphaComponent(0.43)
+      //  chartView.holeRadiusPercent = 0.58
+       
+        chartView.spin(duration: 2,
+                       fromAngle: chartView.rotationAngle,
+                       toAngle: chartView.rotationAngle + 360,
+                       easingOption: .easeInCubic)
+        
         chartView.highlightPerTapEnabled = true
         
+        chartView.legend.enabled = false
         
         let l = chartView.legend
-        l.horizontalAlignment = .right
-        l.verticalAlignment = .top
+        l.horizontalAlignment = .left
+        l.verticalAlignment = .bottom
         l.orientation = .vertical
         l.xEntrySpace = 7
         l.yEntrySpace = 0
         l.yOffset = 0
-        //        chartView.legend = l
         
         // entry label styling
         chartView.entryLabelColor = .white
@@ -107,7 +120,7 @@ class ChartUI {
        
         lineChartDataSet.drawCircleHoleEnabled = false
         lineChartDataSet.drawCirclesEnabled = false
-        lineChartDataSet.mode   = .linear
+        lineChartDataSet.mode = .linear
         lineChartDataSet.drawFilledEnabled = true
         
         lineChartDataSet.drawValuesEnabled = false

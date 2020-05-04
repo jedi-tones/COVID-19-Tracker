@@ -40,20 +40,23 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
         pieChartView.delegate = self
         
         ChartUI.shared.setLineChartUI(chartView: lineChartView)
+        ChartUI.shared.setPieChartUI(chartView: pieChartView)
     }
     
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        
-        markerView.isHidden = false
-
-        dataMarker.text = "\(Int(highlight.y))"
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy/M/dd"
-        dateMarker.text = "\(dateFormatter.string(from: Date(timeIntervalSince1970: highlight.x)))"
-        
-        markerView.center = CGPoint(x: highlight.xPx - 30, y: highlight.yPx - 10)
+       
+        if chartView == lineChartView {
+            markerView.isHidden = false
+            
+            dataMarker.text = "\(Int(highlight.y))"
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yy/M/dd"
+            dateMarker.text = "\(dateFormatter.string(from: Date(timeIntervalSince1970: highlight.x)))"
+            
+            markerView.center = CGPoint(x: highlight.xPx - 30, y: highlight.yPx - 10)
+        }
     }
     
     func setPieChartData() {
@@ -70,17 +73,20 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
         pieChartEntries.append(pieChartDeathEntry)
         pieChartEntries.append(pieChartRecoveredEntry)
         
-        let dataSet = PieChartDataSet(entries: pieChartEntries, label: "Pie chart COVID - 19")
+        let dataSet = PieChartDataSet(entries: pieChartEntries, label: "")
         
-        dataSet.colors = ChartColorTemplates.pastel()
+        dataSet.colors = [#colorLiteral(red: 0.1459183693, green: 0.1922611594, blue: 0.3337301016, alpha: 1),#colorLiteral(red: 0.8346312642, green: 0.5086384416, blue: 0.450792253, alpha: 1),#colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)]
+        
+        pieChartView.usePercentValuesEnabled = true
         
         let data = PieChartData(dataSet: dataSet)
         
         let pFormatter = NumberFormatter()
         
-        pFormatter.numberStyle = .decimal
+        pFormatter.numberStyle = .percent
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
+        pFormatter.percentSymbol = " %"
         
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         
