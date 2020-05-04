@@ -9,14 +9,6 @@
 import UIKit
 import RealmSwift
 
-protocol SortDelegate {
-    func sorting(typeOfFilter: TypeOfFilter, ascending: Bool)
-}
-
-protocol UpdateCountry {
-    func updateTable()
-    func updateStatus(status: Bool)
-}
 
 class CountryViewController: UIViewController {
     
@@ -54,7 +46,7 @@ class CountryViewController: UIViewController {
         sortRealmData(filter: typeFilter, ascending: isAscending)
         
         GetData.shared.delegateCountry = self
-        GetData.shared.getData()
+        
     }
     
     @IBAction func renewPressed() {
@@ -81,9 +73,6 @@ class CountryViewController: UIViewController {
         countryTableView.register(UINib(nibName: "FirstCountryTableViewCell", bundle: nil), forCellReuseIdentifier: FirstCountryTableViewCell.reuseID)
     }
     
-    static func renewTable(){
-        
-    }
     
     //MARK: - sortRealmData
      func sortRealmData(filter: TypeOfFilter, ascending: Bool) {

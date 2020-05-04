@@ -36,6 +36,7 @@
 		FB802A47243F9DBC001C4C57 /* BriefTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB802A45243F9DBC001C4C57 /* BriefTableViewCell.swift */; };
 		FB802A48243F9DBC001C4C57 /* BriefTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB802A46243F9DBC001C4C57 /* BriefTableViewCell.xib */; };
 		FB802A4E243FA1FF001C4C57 /* BriefTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB802A4D243FA1FF001C4C57 /* BriefTableViewController.swift */; };
+		FB825C9D245DE167003D066A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB825C9C245DE167003D066A /* Protocols.swift */; };
 		FB9B860624366A4E0076922E /* CalculateTimeSeriesBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */; };
 		FBA255BD242BE9B200317E03 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA255BC242BE9B200317E03 /* SettingsViewController.swift */; };
 		FBED93F22455E5630076EC8F /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBED93F12455E5630076EC8F /* GetData.swift */; };
@@ -76,6 +77,7 @@
 		FB802A45243F9DBC001C4C57 /* BriefTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefTableViewCell.swift; sourceTree = "<group>"; };
 		FB802A46243F9DBC001C4C57 /* BriefTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BriefTableViewCell.xib; sourceTree = "<group>"; };
 		FB802A4D243FA1FF001C4C57 /* BriefTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefTableViewController.swift; sourceTree = "<group>"; };
+		FB825C9C245DE167003D066A /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTimeSeriesBrief.swift; sourceTree = "<group>"; };
 		FBA255BC242BE9B200317E03 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FBED93F12455E5630076EC8F /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				FB74575924269AEB0098E670 /* VirusDataLink.swift */,
 				FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */,
 				FB754AF2243A6081002C7BD4 /* TypeOfFilter.swift */,
+				FB825C9C245DE167003D066A /* Protocols.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,11 +187,11 @@
 				FB74574F2426750B0098E670 /* JsonManager.swift */,
 				FB7457522426786F0098E670 /* AlertController.swift */,
 				FB7457602426B3120098E670 /* SaveToRealm.swift */,
-				FBED93F12455E5630076EC8F /* GetData.swift */,
 				FB46C287242E75F200FABEC7 /* ConverterDate.swift */,
 				FB49800224321F980080B4D5 /* Statistic.swift */,
 				FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */,
 				FBFAD18A244610A100F054E8 /* ChartUI.swift */,
+				FBED93F12455E5630076EC8F /* GetData.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				FB7457612426B3120098E670 /* SaveToRealm.swift in Sources */,
 				FBED93F22455E5630076EC8F /* GetData.swift in Sources */,
 				FB802A47243F9DBC001C4C57 /* BriefTableViewCell.swift in Sources */,
+				FB825C9D245DE167003D066A /* Protocols.swift in Sources */,
 				FB74575D2426ACDF0098E670 /* CountryViewController.swift in Sources */,
 				FB46C288242E75F200FABEC7 /* ConverterDate.swift in Sources */,
 				FB49800524323AF30080B4D5 /* DifferenceTimeSeries.swift in Sources */,

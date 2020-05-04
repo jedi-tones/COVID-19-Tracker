@@ -19,6 +19,8 @@ class BriefTableViewController: UITableViewController {
         
         registerCell()
         getBreaf()
+        
+        GetData.shared.briefDelegate = self
     }
     
     
@@ -44,19 +46,14 @@ class BriefTableViewController: UITableViewController {
     
     //MARK:  getBreaf
     private func getBreaf(){
-        
-        jsonManager.getData(link: VirusDataLink.shared.linkBrief,
-                            typeData: Brief.self,
-                            complition: { data in
-                                SaveToRealm.shared.addBrief(newData: data, complition: {
-                                    
-                                    DispatchQueue.main.async {
-                                        self.tableView.reloadData()
-                                    }
-                                })
-        })
+        GetData.shared.getBreaf()
+        GetData.shared.getData()
     }
-    
-    
-    
+     
+}
+
+extension BriefTableViewController: UpdateBreaf {
+    func updateBreafChart() {
+        tableView.reloadData()
+    }
 }

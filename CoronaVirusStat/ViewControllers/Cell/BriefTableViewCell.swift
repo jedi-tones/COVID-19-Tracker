@@ -10,6 +10,10 @@ import UIKit
 import RealmSwift
 import Charts
 
+protocol ChartBriefRenew {
+    func renewChartBrief()
+}
+
 class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
     
     @IBOutlet var confirmed: UILabel!
@@ -47,6 +51,7 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
         
         markerView.center = CGPoint(x: highlight.xPx - 30, y: highlight.yPx - 10)
     }
+    
     
     func setLineChartData(){
         
@@ -100,4 +105,10 @@ class BriefTableViewCell: UITableViewCell, ChartViewDelegate {
 }
 
 
-
+extension BriefTableViewCell: ChartBriefRenew {
+    func renewChartBrief() {
+       
+    }
+    
+    
+}

@@ -14,8 +14,25 @@ class GetData {
     static let shared = GetData()
     private let jsonManager = JsonManager()
     var delegateCountry: UpdateCountry?
+    var briefDelegate: UpdateBreaf?
     
     //MARK: - getData
+    
+    func getBreaf(){
+        
+        jsonManager.getData(link: VirusDataLink.shared.linkBrief,
+                            typeData: Brief.self,
+                            complition: { data in
+                                SaveToRealm.shared.addBrief(newData: data, complition: {
+                                    
+                                    DispatchQueue.main.async {
+                                        self.briefDelegate?.updateBreafChart()
+                                    }
+                                })
+        })
+    }
+    
+    
     func getData(){
         
         jsonManager.getData(link: VirusDataLink.shared.linkLatestOnlyCountry,
@@ -26,6 +43,7 @@ class GetData {
                                 SaveToRealm.shared.saveLatestOnlyCountry(data: data, complition: {
                                     DispatchQueue.main.async {
                                         self.delegateCountry?.updateTable()
+                                        self.briefDelegate?.updateBreafChart()
                                         self.delegateCountry?.updateStatus(status: true)
                                     }
                                     self.getCityData()
