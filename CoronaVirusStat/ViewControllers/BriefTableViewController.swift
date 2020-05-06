@@ -26,6 +26,8 @@ class BriefTableViewController: UITableViewController {
     
     private func registerCell(){
         tableView.register(UINib(nibName: "BriefTableViewCell", bundle: nil), forCellReuseIdentifier: BriefTableViewCell.reuseID)
+        tableView.register(UINib(nibName: "PieChartBriefCell", bundle: nil), forCellReuseIdentifier: PieChartBriefCell.reuseID)
+        tableView.register(UINib(nibName: "LineChartBriefCell", bundle: nil), forCellReuseIdentifier: LineChartBriefCell.reuseID)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -37,12 +39,23 @@ class BriefTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: BriefTableViewCell.reuseID, for: indexPath) as! BriefTableViewCell
-        cell.setChartUI()
-        cell.setLineChartData()
-        cell.setPieChartData()
-        cell.setCell()
-        return cell
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: BriefTableViewCell.reuseID, for: indexPath) as! BriefTableViewCell
+            cell.setCell()
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: PieChartBriefCell.reuseID, for: indexPath) as! PieChartBriefCell
+            cell.setChartUI()
+            cell.setChartData()
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: LineChartBriefCell.reuseID, for: indexPath) as! LineChartBriefCell
+            cell.setChartUI()
+            cell.setChartData()
+            return cell
+        }
+        
     }
     
     //MARK:  getBreaf
@@ -50,7 +63,7 @@ class BriefTableViewController: UITableViewController {
         GetData.shared.getBreaf()
         GetData.shared.getData()
     }
-     
+    
 }
 
 extension BriefTableViewController: UpdateBreaf {

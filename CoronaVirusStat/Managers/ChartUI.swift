@@ -15,6 +15,7 @@ class ChartUI {
     
     private var axisFormatDelegate: IAxisValueFormatter?
     
+    //MARK: - LineChartUI
     func setLineChartUI(chartView: LineChartView){
         axisFormatDelegate = self
         
@@ -22,7 +23,7 @@ class ChartUI {
         chartView.dragEnabled = false
         chartView.setScaleEnabled(false)
         chartView.pinchZoomEnabled = false
-      
+        
         let mark = MarkerView()
         mark.chartView = chartView
         
@@ -66,13 +67,15 @@ class ChartUI {
         
         //chartView.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
     }
-    
+    //MARK: - PieChartsUI
     func setPieChartUI(chartView: PieChartView) {
         
-     //   chartView.holeColor = .white
-       // chartView.transparentCircleColor = NSUIColor.white.withAlphaComponent(0.43)
-      //  chartView.holeRadiusPercent = 0.58
-       
+        // chartView.holeColor = .white
+        // chartView.transparentCircleColor = NSUIColor.white.withAlphaComponent(0.43)
+        // chartView.holeRadiusPercent = 0.58
+        
+        chartView.usePercentValuesEnabled = true
+        
         chartView.spin(duration: 2,
                        fromAngle: chartView.rotationAngle,
                        toAngle: chartView.rotationAngle + 360,
@@ -95,12 +98,14 @@ class ChartUI {
         chartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
     }
     
+    //MARK: - PieChartsDataSet
     func SetPieChartDataSet(pieChartDataSet: PieChartDataSet) {
         
-        
+        pieChartDataSet.colors = [#colorLiteral(red: 0.1459183693, green: 0.1922611594, blue: 0.3337301016, alpha: 1),#colorLiteral(red: 0.8346312642, green: 0.5086384416, blue: 0.450792253, alpha: 1),#colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)]
         
     }
     
+    //MARK: - LineChartsDataSet
     func setLineChartDataSet(lineChartDataSet: LineChartDataSet) {
         
         switch lineChartDataSet.label {
@@ -117,7 +122,7 @@ class ChartUI {
             lineChartDataSet.circleColors = [#colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)]
             lineChartDataSet.fillColor = #colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)
         }
-       
+        
         lineChartDataSet.drawCircleHoleEnabled = false
         lineChartDataSet.drawCirclesEnabled = false
         lineChartDataSet.mode = .linear
@@ -130,6 +135,7 @@ class ChartUI {
     
 }
 
+//MARK: - AxisValueFormatter
 extension ChartUI: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         
