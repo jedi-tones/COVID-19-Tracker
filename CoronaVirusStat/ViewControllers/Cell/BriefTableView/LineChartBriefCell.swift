@@ -26,7 +26,7 @@ class LineChartBriefCell: UITableViewCell, ChartViewDelegate {
     }
 
     func setChartUI() {
-        
+        lineChart.chartDescription?.text = "Time series" 
         lineChart.delegate = self
         ChartUI.shared.setLineChartUI(chartView: lineChart)
         

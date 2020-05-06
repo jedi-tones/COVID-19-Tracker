@@ -20,6 +20,7 @@ class ChartUI {
         axisFormatDelegate = self
         
         chartView.chartDescription?.enabled = false
+
         chartView.dragEnabled = false
         chartView.setScaleEnabled(false)
         chartView.pinchZoomEnabled = false
@@ -39,6 +40,15 @@ class ChartUI {
         chartView.leftAxis.axisMinimum = 0
         chartView.leftAxis.axisMaxLabels = 10
         
+        chartView.rightAxis.enabled = true
+        chartView.rightAxis.labelFont = UIFont(name: "Helvetica neue", size: 8)!
+        chartView.rightAxis.labelCount = 10
+        chartView.rightAxis.drawAxisLineEnabled = true
+        chartView.rightAxis.drawGridLinesEnabled = false
+        chartView.rightAxis.axisMinimum = 0
+        chartView.rightAxis.axisMaxLabels = 15
+        
+         
         chartView.xAxis.enabled = true
         chartView.xAxis.labelRotationAngle = -90
         chartView.xAxis.labelFont = UIFont(name: "Helvetica neue", size: 8)!
@@ -55,7 +65,7 @@ class ChartUI {
         let l = chartView.legend
         
         l.horizontalAlignment = .left
-        l.verticalAlignment = .bottom
+        l.verticalAlignment = .top
         l.orientation = .vertical
         l.xEntrySpace = 7
         l.yEntrySpace = 0
@@ -63,7 +73,7 @@ class ChartUI {
         //l.yOffset = 0
         
         chartView.highlightPerTapEnabled = true
-        chartView.rightAxis.enabled = false
+       
         
         //chartView.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
     }
@@ -75,6 +85,7 @@ class ChartUI {
         // chartView.holeRadiusPercent = 0.58
         
         chartView.usePercentValuesEnabled = true
+        chartView.maxAngle = 180
         
         chartView.spin(duration: 2,
                        fromAngle: chartView.rotationAngle,
@@ -87,7 +98,7 @@ class ChartUI {
         
         let l = chartView.legend
         l.horizontalAlignment = .left
-        l.verticalAlignment = .bottom
+        l.verticalAlignment = .top
         l.orientation = .vertical
         l.xEntrySpace = 7
         l.yEntrySpace = 0
