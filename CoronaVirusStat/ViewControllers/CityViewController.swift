@@ -13,6 +13,8 @@ class CityViewController: UIViewController {
 
     var countrySelected: VirusRealm!
     var provinceSorted: Results<ProvincestateRealm>?
+    let numberOfCharts = 2
+    
     @IBOutlet var navItem: UINavigationItem!
     @IBOutlet var cityTableView: UITableView!
     
@@ -26,27 +28,39 @@ class CityViewController: UIViewController {
     
     private func setUI(){
         
+        
         cityTableView.register(UINib(nibName: "CityTableViewCell", bundle: nil), forCellReuseIdentifier: CityTableViewCell.reuseID)
+        cityTableView.register(UINib(nibName: "PieChartBriefCell", bundle: nil), forCellReuseIdentifier: PieChartBriefCell.reuseID)
+        cityTableView.register(UINib(nibName: "LineChartBriefCell", bundle: nil), forCellReuseIdentifier: LineChartBriefCell.reuseID)
         
         navItem.title = countrySelected.countryregion
         
         provinceSorted = countrySelected.province.sorted(byKeyPath: "confirmed", ascending: false)
     }
-
+    
 }
 
 extension CityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        countrySelected.province.count
+        return countrySelected.province.count + numberOfCharts
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.reuseID, for: indexPath) as! CityTableViewCell
-        
-        cell.textLabel?.text = provinceSorted?[indexPath.row].province
-        cell.detailTextLabel?.text = "\(provinceSorted?[indexPath.row].confirmed ?? 0)"
-        return cell
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: PieChartBriefCell.reuseID, for: indexPath) as! PieChartBriefCell
+            
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: LineChartBriefCell.reuseID, for: indexPath) as! LineChartBriefCell
+            
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.reuseID, for: indexPath) as! CityTableViewCell
+            
+            cell.textLabel?.text = provinceSorted?[indexPath.row - numberOfCharts].province
+            cell.detailTextLabel?.text = "\(provinceSorted?[indexPath.row - numberOfCharts].confirmed ?? 0)"
+            return cell
+        }
     }
-    
-    
 }
