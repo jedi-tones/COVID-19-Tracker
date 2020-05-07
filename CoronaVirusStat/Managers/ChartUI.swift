@@ -64,6 +64,7 @@ class ChartUI {
         
         let l = chartView.legend
         
+        l.font = UIFont(name: "Helvetica neue", size: 8)!
         l.horizontalAlignment = .left
         l.verticalAlignment = .top
         l.orientation = .vertical
@@ -80,33 +81,36 @@ class ChartUI {
     //MARK: - PieChartsUI
     func setPieChartUI(chartView: PieChartView) {
         
-        // chartView.holeColor = .white
+        chartView.holeColor = .init(white: 1, alpha: 0)
         // chartView.transparentCircleColor = NSUIColor.white.withAlphaComponent(0.43)
         // chartView.holeRadiusPercent = 0.58
+        //chartView.backgroundColor = .blue
+       // chartView.drawHoleEnabled = false
+        chartView.extraBottomOffset = 50
+        chartView.extraTopOffset = 200
         
         chartView.usePercentValuesEnabled = true
         chartView.maxAngle = 180
+        chartView.rotationAngle = 180
+        chartView.drawEntryLabelsEnabled = false
+        //chartView.animate(xAxisDuration: 2)
         
-        chartView.spin(duration: 2,
-                       fromAngle: chartView.rotationAngle,
-                       toAngle: chartView.rotationAngle + 360,
-                       easingOption: .easeInCubic)
+        chartView.highlightPerTapEnabled = false
         
-        chartView.highlightPerTapEnabled = true
-        
-        chartView.legend.enabled = false
+        chartView.legend.enabled = true
         
         let l = chartView.legend
+        l.font = UIFont(name: "Helvetica neue", size: 8)!
         l.horizontalAlignment = .left
         l.verticalAlignment = .top
         l.orientation = .vertical
         l.xEntrySpace = 7
         l.yEntrySpace = 0
-        l.yOffset = 0
+        l.yOffset =  -200
         
         // entry label styling
-        chartView.entryLabelColor = .white
-        chartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
+        // chartView.entryLabelColor = .white
+        chartView.entryLabelFont = UIFont(name: "Helvetica neue", size: 8)!
     }
     
     //MARK: - PieChartsDataSet

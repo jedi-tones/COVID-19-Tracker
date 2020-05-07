@@ -34,9 +34,9 @@ class PieChartBriefCell: UITableViewCell {
         
         let currentSick = results.confirmed - results.death - results.recovered
         
-        let pieChartSickEntry = PieChartDataEntry(value: Double(currentSick), label: "Sick")
-        let pieChartDeathEntry = PieChartDataEntry(value: Double(results.death), label: "Death")
-        let pieChartRecoveredEntry = PieChartDataEntry(value: Double(results.recovered), label: "Recovered")
+        let pieChartSickEntry = PieChartDataEntry(value: Double(currentSick), label: "SICK")
+        let pieChartDeathEntry = PieChartDataEntry(value: Double(results.death), label: "DEATH")
+        let pieChartRecoveredEntry = PieChartDataEntry(value: Double(results.recovered), label: "RECOVERED")
         
         pieChartEntries.append(pieChartSickEntry)
         pieChartEntries.append(pieChartDeathEntry)
@@ -52,7 +52,7 @@ class PieChartBriefCell: UITableViewCell {
         pFormatter.numberStyle = .percent
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
-        pFormatter.percentSymbol = " %"
+        pFormatter.percentSymbol = "%"
         
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         

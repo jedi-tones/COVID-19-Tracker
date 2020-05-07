@@ -34,15 +34,17 @@ class LineChartBriefCell: UITableViewCell, ChartViewDelegate {
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
-            infoView.isHidden = false
-            
-            dataLabel.text = "\(Int(highlight.y))"
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yy/M/dd"
-            datelabel.text = "\(dateFormatter.string(from: Date(timeIntervalSince1970: highlight.x)))"
-            
-            infoView.center = CGPoint(x: highlight.xPx - 40, y: highlight.yPx - 20)
+        infoView.isHidden = false
+        
+        dataLabel.text = "\(Int(highlight.y))"
+        let offSetX = CGFloat(40)
+        let offSetY = CGFloat(14)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy/M/dd"
+        datelabel.text = "\(dateFormatter.string(from: Date(timeIntervalSince1970: highlight.x)))"
+        
+        infoView.center = CGPoint(x: highlight.xPx - offSetX, y: highlight.yPx - offSetY)
     }
     
     

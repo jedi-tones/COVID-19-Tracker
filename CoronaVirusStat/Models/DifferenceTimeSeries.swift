@@ -9,7 +9,7 @@
 import Foundation
 
 enum DifferenceTimeSeries: String {
-    case confirmed = "Confirmed"
-    case death = "Death"
-    case recovered = "Recovered"
+    case confirmed = "CONFIRMED"
+    case death = "DEATH"
+    case recovered = "RECOVERED"
 }
