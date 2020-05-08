@@ -14,7 +14,7 @@ class FirstCountryTableViewCell: UITableViewCell {
     @IBOutlet var reversSortSwitch: UISwitch!
     
     static let reuseID = "firstCountryCell"
-    private var typeOfFilter: TypeOfFilter = .Confirmed
+    private var typeOfFilter: TypeOfFilter = .confirmed
     private var isAscending = false
     
     var delegate:SortDelegate?
@@ -24,11 +24,11 @@ class FirstCountryTableViewCell: UITableViewCell {
         
         switch sortSegmentedControl.selectedSegmentIndex {
         case 0:
-            typeOfFilter = .Confirmed
+            typeOfFilter = .confirmed
         case 1:
-            typeOfFilter = .Death
+            typeOfFilter = .death
         default:
-            typeOfFilter = .Country
+            typeOfFilter = .сountry
         }
         
         delegate?.sorting(typeOfFilter: typeOfFilter, ascending: isAscending)

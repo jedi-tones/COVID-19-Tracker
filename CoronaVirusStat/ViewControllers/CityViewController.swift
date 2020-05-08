@@ -49,6 +49,8 @@ extension CityViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: PieChartBriefCell.reuseID, for: indexPath) as! PieChartBriefCell
+            cell.setChartData(typeOfData: .city, realmData: countrySelected)
+            cell.setChartUI()
             
             return cell
         case 1:

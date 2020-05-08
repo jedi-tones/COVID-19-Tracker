@@ -24,19 +24,35 @@ class PieChartBriefCell: UITableViewCell {
     }
     
     func setChartUI() {
-        
         ChartUI.shared.setPieChartUI(chartView: pieChart)
     }
     
-    func setChartData() {
-        guard let results  = realm.objects(BriefRealm.self).first else { return }
+    func setChartData(typeOfData: TypeOfChartData, realmData: VirusRealm?) {
+        
+        var confirmed = 0
+        var death = 0
+        var recovered = 0
+        
+        switch typeOfData {
+        case TypeOfChartData.brief:
+            guard let results  = realm.objects(BriefRealm.self).first else { return }
+            confirmed = results.confirmed
+            death = results.death
+            recovered = results.recovered
+        default:
+            guard let results = realmData else { return }
+            confirmed = results.confirmed
+            death = results.deaths
+            recovered = results.recovered
+        }
+        
         var pieChartEntries: [PieChartDataEntry] = []
         
-        let currentSick = results.confirmed - results.death - results.recovered
+        let currentSick = confirmed - death - recovered
         
         let pieChartSickEntry = PieChartDataEntry(value: Double(currentSick), label: "SICK")
-        let pieChartDeathEntry = PieChartDataEntry(value: Double(results.death), label: "DEATH")
-        let pieChartRecoveredEntry = PieChartDataEntry(value: Double(results.recovered), label: "RECOVERED")
+        let pieChartDeathEntry = PieChartDataEntry(value: Double(death), label: "DEATH")
+        let pieChartRecoveredEntry = PieChartDataEntry(value: Double(recovered), label: "RECOVERED")
         
         pieChartEntries.append(pieChartSickEntry)
         pieChartEntries.append(pieChartDeathEntry)
@@ -62,5 +78,7 @@ class PieChartBriefCell: UITableViewCell {
         pieChart.data = data
         pieChart.highlightValues(nil)
     }
+    
+    
     
 }

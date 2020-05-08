@@ -10,8 +10,8 @@ import Foundation
 
 
 enum TypeOfFilter {
-    case Confirmed
-    case Death
-    case Country
+    case confirmed
+    case death
+    case сountry
 }
 

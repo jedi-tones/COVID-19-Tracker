@@ -23,7 +23,6 @@ class BriefTableViewController: UITableViewController {
         GetData.shared.delegateBrief = self
     }
     
-    
     private func registerCell(){
         tableView.register(UINib(nibName: "BriefTableViewCell", bundle: nil), forCellReuseIdentifier: BriefTableViewCell.reuseID)
         tableView.register(UINib(nibName: "PieChartBriefCell", bundle: nil), forCellReuseIdentifier: PieChartBriefCell.reuseID)
@@ -47,7 +46,7 @@ class BriefTableViewController: UITableViewController {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: PieChartBriefCell.reuseID, for: indexPath) as! PieChartBriefCell
             cell.setChartUI()
-            cell.setChartData()
+            cell.setChartData(typeOfData: .brief, realmData: nil)
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: LineChartBriefCell.reuseID, for: indexPath) as! LineChartBriefCell
@@ -55,7 +54,6 @@ class BriefTableViewController: UITableViewController {
             cell.setChartData()
             return cell
         }
-        
     }
     
     //MARK:  getBreaf
@@ -63,7 +61,6 @@ class BriefTableViewController: UITableViewController {
         GetData.shared.getBreaf()
         GetData.shared.getData()
     }
-    
 }
 
 extension BriefTableViewController: UpdateBreaf {

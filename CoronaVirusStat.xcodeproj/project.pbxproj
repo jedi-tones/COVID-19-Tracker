@@ -41,6 +41,7 @@
 		FB825CA124631F20003D066A /* PieChartBriefCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB825C9F24631F1F003D066A /* PieChartBriefCell.xib */; };
 		FB825CA424631F45003D066A /* LineChartBriefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB825CA224631F45003D066A /* LineChartBriefCell.swift */; };
 		FB825CA524631F45003D066A /* LineChartBriefCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB825CA324631F45003D066A /* LineChartBriefCell.xib */; };
+		FB825CAA246477F6003D066A /* TypeOfChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB825CA9246477F6003D066A /* TypeOfChartData.swift */; };
 		FB9B860624366A4E0076922E /* CalculateTimeSeriesBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */; };
 		FBA255BD242BE9B200317E03 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA255BC242BE9B200317E03 /* SettingsViewController.swift */; };
 		FBED93F22455E5630076EC8F /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBED93F12455E5630076EC8F /* GetData.swift */; };
@@ -86,6 +87,7 @@
 		FB825C9F24631F1F003D066A /* PieChartBriefCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartBriefCell.xib; sourceTree = "<group>"; };
 		FB825CA224631F45003D066A /* LineChartBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartBriefCell.swift; sourceTree = "<group>"; };
 		FB825CA324631F45003D066A /* LineChartBriefCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineChartBriefCell.xib; sourceTree = "<group>"; };
+		FB825CA9246477F6003D066A /* TypeOfChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfChartData.swift; sourceTree = "<group>"; };
 		FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTimeSeriesBrief.swift; sourceTree = "<group>"; };
 		FBA255BC242BE9B200317E03 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FBED93F12455E5630076EC8F /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				FB74575924269AEB0098E670 /* VirusDataLink.swift */,
 				FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */,
 				FB754AF2243A6081002C7BD4 /* TypeOfFilter.swift */,
+				FB825CA9246477F6003D066A /* TypeOfChartData.swift */,
 				FB825C9C245DE167003D066A /* Protocols.swift */,
 			);
 			path = Models;
@@ -193,13 +196,13 @@
 			isa = PBXGroup;
 			children = (
 				FB74574F2426750B0098E670 /* JsonManager.swift */,
-				FB7457522426786F0098E670 /* AlertController.swift */,
 				FB7457602426B3120098E670 /* SaveToRealm.swift */,
+				FB7457522426786F0098E670 /* AlertController.swift */,
 				FB46C287242E75F200FABEC7 /* ConverterDate.swift */,
+				FBED93F12455E5630076EC8F /* GetData.swift */,
 				FB49800224321F980080B4D5 /* Statistic.swift */,
 				FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */,
 				FBFAD18A244610A100F054E8 /* ChartUI.swift */,
-				FBED93F12455E5630076EC8F /* GetData.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				FB49800A2433AFC90080B4D5 /* FirstCountryTableViewCell.swift in Sources */,
 				FB825CA424631F45003D066A /* LineChartBriefCell.swift in Sources */,
 				FBA255BD242BE9B200317E03 /* SettingsViewController.swift in Sources */,
+				FB825CAA246477F6003D066A /* TypeOfChartData.swift in Sources */,
 				FB74575A24269AEB0098E670 /* VirusDataLink.swift in Sources */,
 				FB74574B242673B80098E670 /* MapViewController.swift in Sources */,
 				FB46C285242C7EC700FABEC7 /* CityTableViewCell.swift in Sources */,

@@ -30,7 +30,7 @@ class CountryViewController: UIViewController {
         !isEmptySearchBar && searchController.isActive
     }
     
-    private var typeFilter: TypeOfFilter = .Confirmed
+    private var typeFilter: TypeOfFilter = .confirmed
     private var isAscending = false
     private var isUpdatingTimeSeries = false
     
@@ -46,13 +46,11 @@ class CountryViewController: UIViewController {
         sortRealmData(filter: typeFilter, ascending: isAscending)
         
         GetData.shared.delegateCountry = self
-        
     }
     
     @IBAction func renewPressed() {
         GetData.shared.getData()
     }
-    
     
     //MARK:- setUI
     private func setUI(){
@@ -73,26 +71,21 @@ class CountryViewController: UIViewController {
         countryTableView.register(UINib(nibName: "FirstCountryTableViewCell", bundle: nil), forCellReuseIdentifier: FirstCountryTableViewCell.reuseID)
     }
     
-    
     //MARK: - sortRealmData
      func sortRealmData(filter: TypeOfFilter, ascending: Bool) {
         //  let isReverse = reverseSortSegmentedControl.selectedSegmentIndex == 0 ? false : true
         
         switch filter {
-        case .Confirmed:
+        case .confirmed:
             countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "confirmed", ascending: ascending)
-        case .Death:
+        case .death:
             countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "deaths", ascending: ascending)
         default:
             countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: !ascending)
         }
-        
-        
         countryTableView.reloadData()
     }
-    
 }
-
 
 //MARK: - navigation
 extension CountryViewController {
@@ -150,9 +143,9 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: FirstCountryTableViewCell.reuseID) as! FirstCountryTableViewCell
         
         switch typeFilter {
-        case .Confirmed:
+        case .confirmed:
             headerCell.sortSegmentedControl.selectedSegmentIndex = 0
-        case .Death:
+        case .death:
             headerCell.sortSegmentedControl.selectedSegmentIndex = 1
         default:
             headerCell.sortSegmentedControl.selectedSegmentIndex = 2
@@ -185,8 +178,6 @@ extension CountryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterContentSearch(searchText: searchController.searchBar.text ?? "")
         countryTableView.reloadData()
-        print(#function)
-        
     }
     
     private func filterContentSearch(searchText: String) {
@@ -205,7 +196,6 @@ extension CountryViewController: SortDelegate {
     }
 }
 
-
 extension CountryViewController: UpdateCountry {
     func updateStatus(status: Bool) {
         isUpdatingTimeSeries = status
@@ -214,6 +204,4 @@ extension CountryViewController: UpdateCountry {
     func updateTable() {
         countryTableView.reloadData()
     }
-    
-    
 }
