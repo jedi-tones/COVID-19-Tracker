@@ -55,6 +55,8 @@ extension CityViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: LineChartBriefCell.reuseID, for: indexPath) as! LineChartBriefCell
+            cell.setChartData(typeOfData: .city, realmData: countrySelected)
+            cell.setChartUI()
             
             return cell
         default:

@@ -42,11 +42,11 @@ class ChartUI {
         
         chartView.rightAxis.enabled = true
         chartView.rightAxis.labelFont = UIFont(name: "Helvetica neue", size: 8)!
-        chartView.rightAxis.labelCount = 10
+        chartView.rightAxis.labelCount = 6
         chartView.rightAxis.drawAxisLineEnabled = true
         chartView.rightAxis.drawGridLinesEnabled = false
         chartView.rightAxis.axisMinimum = 0
-        chartView.rightAxis.axisMaxLabels = 15
+        chartView.rightAxis.axisMaxLabels = 10
         
          
         chartView.xAxis.enabled = true
@@ -155,7 +155,7 @@ extension ChartUI: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy/M/dd"
+        dateFormatter.dateFormat = "dd.MM.yy"
         return dateFormatter.string(from: Date(timeIntervalSince1970: value))
         
     }

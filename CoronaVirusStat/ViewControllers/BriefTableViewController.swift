@@ -51,7 +51,7 @@ class BriefTableViewController: UITableViewController {
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: LineChartBriefCell.reuseID, for: indexPath) as! LineChartBriefCell
             cell.setChartUI()
-            cell.setChartData()
+            cell.setChartData(typeOfData: .brief, realmData: nil)
             return cell
         }
     }

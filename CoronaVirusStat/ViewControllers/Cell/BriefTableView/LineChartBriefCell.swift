@@ -28,6 +28,8 @@ class LineChartBriefCell: UITableViewCell, ChartViewDelegate {
     func setChartUI() {
         lineChart.chartDescription?.text = "Time series" 
         lineChart.delegate = self
+        
+        infoView.backgroundColor = .init(white: 1, alpha: 0)
         ChartUI.shared.setLineChartUI(chartView: lineChart)
         
     }
@@ -48,14 +50,23 @@ class LineChartBriefCell: UITableViewCell, ChartViewDelegate {
     }
     
     
-    func setChartData(){
+    func setChartData(typeOfData: TypeOfChartData, realmData: VirusRealm?){
         
-        guard let results = realm.objects(BriefRealm.self).first?.timesSeries else { return }
+        var results: List<TimeseryRealm>?
+        switch typeOfData {
+        case TypeOfChartData.brief:
+            guard let resultsRealm = realm.objects(BriefRealm.self).first?.timesSeries else { return }
+            results = resultsRealm
+        default:
+            guard let resultsRealm = realmData?.timeSeries else { return }
+            results = resultsRealm
+        }
+        
         var dataConfirmed: [ChartDataEntry] = []
         var dataDeath: [ChartDataEntry] = []
         var dataRecovered: [ChartDataEntry] = []
         
-        for date in results {
+        for date in results!.sorted(byKeyPath: "date", ascending: true) {
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yy/M/dd"

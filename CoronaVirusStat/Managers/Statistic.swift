@@ -12,7 +12,7 @@ import RealmSwift
 class Statistic {
     
     
-    //for country
+    //country statistic for one day
     static func getAddNewStats(currentCountry: VirusRealm, forValue: DifferenceTimeSeries) -> (date:String, value:Int) {
         let timeSeriesForCountry = currentCountry.timeSeries.sorted(byKeyPath: "date", ascending: true)
         guard let lastValue = timeSeriesForCountry.last else { return ("20/03/28" , 0) }
