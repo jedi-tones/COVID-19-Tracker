@@ -41,7 +41,7 @@ class BriefTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: BriefTableViewCell.reuseID, for: indexPath) as! BriefTableViewCell
-            cell.setCell()
+            cell.setCell(typeOfData: .brief, realmData: nil)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: PieChartBriefCell.reuseID, for: indexPath) as! PieChartBriefCell

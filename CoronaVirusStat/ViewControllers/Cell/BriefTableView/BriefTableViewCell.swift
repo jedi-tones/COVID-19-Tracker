@@ -23,10 +23,26 @@ class BriefTableViewCell: UITableViewCell {
         
     }
     
-    func setCell(){
-        confirmed.text = "\(realm.objects(BriefRealm.self).first?.confirmed ?? 0)"
-        death.text = "\(realm.objects(BriefRealm.self).first?.death ?? 0)"
-        recovered.text = "\(realm.objects(BriefRealm.self).first?.recovered ?? 0)"
+    func setCell(typeOfData: TypeOfChartData, realmData: VirusRealm?){
+        
+        var confirmedData = 0
+        var deathData = 0
+        var recoveredData = 0
+        
+        switch typeOfData {
+        case TypeOfChartData.brief:
+            confirmedData = realm.objects(BriefRealm.self).first?.confirmed ?? 0
+            deathData = realm.objects(BriefRealm.self).first?.death ?? 0
+            recoveredData = realm.objects(BriefRealm.self).first?.recovered ?? 0
+        default:
+            confirmedData = realmData?.confirmed ?? 0
+            deathData = realmData?.deaths ?? 0
+            recoveredData = realmData?.recovered ?? 0
+        }
+        
+        confirmed.text = "\(confirmedData)"
+        death.text = "\(deathData)"
+        recovered.text = "\(recoveredData)"
         
     }
 }

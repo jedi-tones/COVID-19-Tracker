@@ -13,7 +13,7 @@ class CityViewController: UIViewController {
 
     var countrySelected: VirusRealm!
     var provinceSorted: Results<ProvincestateRealm>?
-    let numberOfCharts = 2
+    let numberOfConstCell = 3
     
     @IBOutlet var navItem: UINavigationItem!
     @IBOutlet var cityTableView: UITableView!
@@ -32,6 +32,7 @@ class CityViewController: UIViewController {
         cityTableView.register(UINib(nibName: "CityTableViewCell", bundle: nil), forCellReuseIdentifier: CityTableViewCell.reuseID)
         cityTableView.register(UINib(nibName: "PieChartBriefCell", bundle: nil), forCellReuseIdentifier: PieChartBriefCell.reuseID)
         cityTableView.register(UINib(nibName: "LineChartBriefCell", bundle: nil), forCellReuseIdentifier: LineChartBriefCell.reuseID)
+        cityTableView.register(UINib(nibName: "BriefTableViewCell", bundle: nil), forCellReuseIdentifier: BriefTableViewCell.reuseID)
         
         navItem.title = countrySelected.countryregion
         
@@ -42,28 +43,33 @@ class CityViewController: UIViewController {
 
 extension CityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countrySelected.province.count + numberOfCharts
+        return countrySelected.province.count + numberOfConstCell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: PieChartBriefCell.reuseID, for: indexPath) as! PieChartBriefCell
-            cell.setChartData(typeOfData: .city, realmData: countrySelected)
-            cell.setChartUI()
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: BriefTableViewCell.reuseID, for: indexPath) as! BriefTableViewCell
+            cell.setCell(typeOfData: .city, realmData: countrySelected)
             return cell
+            
         case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: PieChartBriefCell.reuseID, for: indexPath) as! PieChartBriefCell
+                       cell.setChartData(typeOfData: .city, realmData: countrySelected)
+                       cell.setChartUI()
+            return cell
+            
+        case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: LineChartBriefCell.reuseID, for: indexPath) as! LineChartBriefCell
             cell.setChartData(typeOfData: .city, realmData: countrySelected)
             cell.setChartUI()
-            
             return cell
+            
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.reuseID, for: indexPath) as! CityTableViewCell
             
-            cell.textLabel?.text = provinceSorted?[indexPath.row - numberOfCharts].province
-            cell.detailTextLabel?.text = "\(provinceSorted?[indexPath.row - numberOfCharts].confirmed ?? 0)"
+            cell.textLabel?.text = provinceSorted?[indexPath.row - numberOfConstCell].province
+            cell.detailTextLabel?.text = "\(provinceSorted?[indexPath.row - numberOfConstCell].confirmed ?? 0)"
             return cell
         }
     }
