@@ -47,6 +47,7 @@ class ChartUI {
         chartView.rightAxis.drawGridLinesEnabled = false
         chartView.rightAxis.axisMinimum = 0
         chartView.rightAxis.axisMaxLabels = 10
+        chartView.rightAxis.valueFormatter = axisFormatDelegate
         
          
         chartView.xAxis.enabled = true
@@ -87,7 +88,7 @@ class ChartUI {
         //chartView.backgroundColor = .blue
        // chartView.drawHoleEnabled = false
         chartView.extraBottomOffset = 50
-        chartView.extraTopOffset = 200
+        chartView.extraTopOffset = 170
         
         chartView.usePercentValuesEnabled = true
         chartView.maxAngle = 180
@@ -106,7 +107,7 @@ class ChartUI {
         l.orientation = .vertical
         l.xEntrySpace = 7
         l.yEntrySpace = 0
-        l.yOffset =  -200
+        l.yOffset =  -170
         
         // entry label styling
         // chartView.entryLabelColor = .white
@@ -117,6 +118,15 @@ class ChartUI {
     func SetPieChartDataSet(pieChartDataSet: PieChartDataSet) {
         
         pieChartDataSet.colors = [#colorLiteral(red: 0.1459183693, green: 0.1922611594, blue: 0.3337301016, alpha: 1),#colorLiteral(red: 0.8346312642, green: 0.5086384416, blue: 0.450792253, alpha: 1),#colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)]
+        
+        pieChartDataSet.sliceSpace = 2
+        
+        pieChartDataSet.yValuePosition = .outsideSlice
+        pieChartDataSet.xValuePosition = .outsideSlice
+        pieChartDataSet.valueLinePart1OffsetPercentage = 0.8
+        pieChartDataSet.valueLinePart1Length = 0.3
+        pieChartDataSet.valueLinePart2Length = 0.2
+       
         
     }
     
@@ -153,11 +163,14 @@ class ChartUI {
 //MARK: - AxisValueFormatter
 extension ChartUI: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yy"
-        return dateFormatter.string(from: Date(timeIntervalSince1970: value))
-        
+        if axis?.isKind(of: XAxis.self) ?? false {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yy"
+            return dateFormatter.string(from: Date(timeIntervalSince1970: value))
+        } else
+        {
+            return value.formattedWithSeparator
+        }
     }
 }
 

@@ -26,14 +26,16 @@ class CountryTableViewCell: UITableViewCell {
      func setCell(data: VirusRealm) {
         
         countryLabel.text = data.countryregion
-        confirmedLabel.text = "\(data.confirmed)"
-        deathLabel.text = "\(data.deaths)"
-        recoveredLabel.text = "\(data.recovered)"
-        lastUpdate.text = "\(data.lastupdate)"
+        confirmedLabel.text = data.confirmed.formattedWithSeparator
+        deathLabel.text = data.deaths.formattedWithSeparator
+        recoveredLabel.text = data.recovered.formattedWithSeparator
         
-        difConfirmed.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValue: .confirmed).value)"
-        difDeath.text = "+\(Statistic.getAddNewStats(currentCountry: data, forValue: .death).value)"
-        difRecovered.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValue: .recovered).value)"
+        
+        lastUpdate.text = ConvertDate.convertToMMMdHMMa(oldDate: data.lastupdate)
+        
+        difConfirmed.text = "+\(Statistic.getAddNewStats(currentCountry: data, forValue: .confirmed).value.formattedWithSeparator)"
+        difDeath.text = "+\(Statistic.getAddNewStats(currentCountry: data, forValue: .death).value.formattedWithSeparator)"
+        difRecovered.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValue: .recovered).value.formattedWithSeparator)"
         
      //    accessoryType = .disclosureIndicator
     }

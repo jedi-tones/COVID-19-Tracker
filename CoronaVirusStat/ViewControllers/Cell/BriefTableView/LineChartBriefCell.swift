@@ -38,12 +38,12 @@ class LineChartBriefCell: UITableViewCell, ChartViewDelegate {
         
         infoView.isHidden = false
         
-        dataLabel.text = "\(Int(highlight.y))"
+        dataLabel.text = highlight.y.formattedWithSeparator
         let offSetX = CGFloat(40)
         let offSetY = CGFloat(14)
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy/M/dd"
+        dateFormatter.dateFormat = "MMM d, yyyy"
         datelabel.text = "\(dateFormatter.string(from: Date(timeIntervalSince1970: highlight.x)))"
         
         infoView.center = CGPoint(x: highlight.xPx - offSetX, y: highlight.yPx - offSetY)

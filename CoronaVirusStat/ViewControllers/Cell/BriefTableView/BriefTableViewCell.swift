@@ -39,10 +39,11 @@ class BriefTableViewCell: UITableViewCell {
             deathData = realmData?.deaths ?? 0
             recoveredData = realmData?.recovered ?? 0
         }
+
         
-        confirmed.text = "\(confirmedData)"
-        death.text = "\(deathData)"
-        recovered.text = "\(recoveredData)"
+        confirmed.text = confirmedData.formattedWithSeparator
+        death.text = deathData.formattedWithSeparator
+        recovered.text = recoveredData.formattedWithSeparator
         
     }
 }

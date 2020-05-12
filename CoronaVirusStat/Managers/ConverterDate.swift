@@ -30,4 +30,15 @@ class ConvertDate {
         guard let date = oldDateDate else { return "3/29/20" }
         return setDateFormater.string(from: date)
     }
+    
+    static func convertToMMMdHMMa(oldDate: String) -> String {
+           let getDateFormatter = DateFormatter()
+           getDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+           let setDateFormater = DateFormatter()
+           setDateFormater.dateFormat = "MMM d, h:mm a"
+           let oldDateDate = getDateFormatter.date(from: oldDate)
+           guard let date = oldDateDate else { return "3/29/20" }
+           return setDateFormater.string(from: date)
+       }
+    
 }
