@@ -117,10 +117,10 @@
                     <constraint firstItem="cCy-LR-sGZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="Lot-h8-LFG"/>
                     <constraint firstItem="luu-yU-8fw" firstAttribute="bottom" secondItem="g4c-T2-PuI" secondAttribute="bottom" id="MXZ-9L-Lvp"/>
                     <constraint firstItem="cCy-LR-sGZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="NgV-6m-4JO"/>
+                    <constraint firstAttribute="trailing" secondItem="g4c-T2-PuI" secondAttribute="trailing" constant="76" id="OJV-OZ-I4Z"/>
                     <constraint firstItem="g4c-T2-PuI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="ObA-Jk-Qve"/>
                     <constraint firstItem="luu-yU-8fw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Qxp-rc-KMG"/>
                     <constraint firstItem="luu-yU-8fw" firstAttribute="top" secondItem="cCy-LR-sGZ" secondAttribute="bottom" constant="2" id="UTp-l0-Ab4"/>
-                    <constraint firstItem="m3S-Nt-Vgg" firstAttribute="leading" secondItem="g4c-T2-PuI" secondAttribute="trailing" constant="9" id="cwR-2U-yRR"/>
                     <constraint firstAttribute="bottom" secondItem="7Yw-v0-Ww7" secondAttribute="bottom" constant="5" id="dPN-Bi-TSJ"/>
                     <constraint firstItem="XYa-SN-Pqi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="eQe-oj-kBD"/>
                     <constraint firstAttribute="bottom" secondItem="XYa-SN-Pqi" secondAttribute="bottom" constant="5" id="j8H-cI-YiJ"/>

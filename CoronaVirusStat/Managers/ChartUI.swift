@@ -40,7 +40,7 @@ class ChartUI {
         chartView.leftAxis.axisMinimum = 0
         chartView.leftAxis.axisMaxLabels = 10
         
-        chartView.rightAxis.enabled = true
+        chartView.rightAxis.enabled = false
         chartView.rightAxis.labelFont = UIFont(name: "Helvetica neue", size: 8)!
         chartView.rightAxis.labelCount = 6
         chartView.rightAxis.drawAxisLineEnabled = true
@@ -51,6 +51,8 @@ class ChartUI {
         
          
         chartView.xAxis.enabled = true
+        chartView.xAxis.labelCount = 10
+        chartView.xAxis.axisMaxLabels = 10
         chartView.xAxis.labelRotationAngle = -90
         chartView.xAxis.labelFont = UIFont(name: "Helvetica neue", size: 8)!
         chartView.xAxis.drawAxisLineEnabled = true
@@ -93,6 +95,7 @@ class ChartUI {
         chartView.usePercentValuesEnabled = true
         chartView.maxAngle = 180
         chartView.rotationAngle = 180
+        chartView.rotationEnabled = false
         chartView.drawEntryLabelsEnabled = false
         //chartView.animate(xAxisDuration: 2)
         

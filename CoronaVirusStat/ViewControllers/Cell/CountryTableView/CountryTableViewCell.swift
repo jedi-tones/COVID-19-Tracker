@@ -33,9 +33,13 @@ class CountryTableViewCell: UITableViewCell {
         
         lastUpdate.text = ConvertDate.convertToMMMdHMMa(oldDate: data.lastupdate)
         
-        difConfirmed.text = "+\(Statistic.getAddNewStats(currentCountry: data, forValue: .confirmed).value.formattedWithSeparator)"
-        difDeath.text = "+\(Statistic.getAddNewStats(currentCountry: data, forValue: .death).value.formattedWithSeparator)"
-        difRecovered.text = "+\( Statistic.getAddNewStats(currentCountry: data, forValue: .recovered).value.formattedWithSeparator)"
+        let difConfirmedData = Statistic.getAddNewStats(currentCountry: data, forValue: .confirmed).value
+        let difDeathData = Statistic.getAddNewStats(currentCountry: data, forValue: .death).value
+        let difRecoveredData = Statistic.getAddNewStats(currentCountry: data, forValue: .recovered).value
+        
+        difConfirmed.text = (difConfirmedData > 0 ?  "+" : "" ) + (difConfirmedData.formattedWithSeparator)
+        difDeath.text = (difDeathData > 0 ?  "+" : "" ) + (difDeathData.formattedWithSeparator)
+        difRecovered.text = (difRecoveredData > 0 ?  "+" : "" ) + (difRecoveredData.formattedWithSeparator)
         
      //    accessoryType = .disclosureIndicator
     }
