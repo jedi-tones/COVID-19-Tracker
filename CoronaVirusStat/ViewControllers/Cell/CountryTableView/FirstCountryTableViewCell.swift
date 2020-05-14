@@ -37,6 +37,17 @@ class FirstCountryTableViewCell: UITableViewCell {
     
     @IBAction func changeAscending() {
         isAscending = reversSortSwitch.isOn
+        
+        switch sortSegmentedControl.selectedSegmentIndex {
+               case 0:
+                   typeOfFilter = .confirmed
+               case 1:
+                   typeOfFilter = .death
+               default:
+                   typeOfFilter = .сountry
+               }
+               
+        
         delegate?.sorting(typeOfFilter: typeOfFilter, ascending: isAscending)
     }
     
