@@ -59,7 +59,10 @@ class CountryViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Type country.."
         
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
+        navigationItem.title = "ALL COUNTRY"
+        
         
         definesPresentationContext = true
         
@@ -68,7 +71,7 @@ class CountryViewController: UIViewController {
     
     private func registerCell(){
         countryTableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: CountryTableViewCell.reuseID)
-        countryTableView.register(UINib(nibName: "FirstCountryTableViewCell", bundle: nil), forCellReuseIdentifier: FirstCountryTableViewCell.reuseID)
+        countryTableView.register(UINib(nibName: "FirstCountryTableViewCell", bundle: nil), forHeaderFooterViewReuseIdentifier: HeaderCountryTableView.reuseID)
     }
     
     //MARK: - sortRealmData
@@ -140,7 +143,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell = tableView.dequeueReusableCell(withIdentifier: FirstCountryTableViewCell.reuseID) as! FirstCountryTableViewCell
+        let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderCountryTableView.reuseID) as! HeaderCountryTableView
         
         switch typeFilter {
         case .confirmed:

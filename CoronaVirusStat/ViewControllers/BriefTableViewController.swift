@@ -18,6 +18,7 @@ class BriefTableViewController: UITableViewController {
         super.viewDidLoad()
         
         registerCell()
+        setUI()
         getBreaf()
         
         GetData.shared.delegateBrief = self
@@ -27,6 +28,11 @@ class BriefTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "BriefTableViewCell", bundle: nil), forCellReuseIdentifier: BriefTableViewCell.reuseID)
         tableView.register(UINib(nibName: "PieChartBriefCell", bundle: nil), forCellReuseIdentifier: PieChartBriefCell.reuseID)
         tableView.register(UINib(nibName: "LineChartBriefCell", bundle: nil), forCellReuseIdentifier: LineChartBriefCell.reuseID)
+    }
+    
+    private func setUI() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "BRIEF"
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

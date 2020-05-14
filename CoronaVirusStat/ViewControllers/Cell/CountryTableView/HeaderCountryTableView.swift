@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstCountryTableViewCell: UITableViewCell {
+class HeaderCountryTableView: UITableViewHeaderFooterView {
 
     @IBOutlet var sortSegmentedControl: UISegmentedControl!
     @IBOutlet var reversSortSwitch: UISwitch!
@@ -46,7 +46,6 @@ class FirstCountryTableViewCell: UITableViewCell {
                default:
                    typeOfFilter = .сountry
                }
-               
         
         delegate?.sorting(typeOfFilter: typeOfFilter, ascending: isAscending)
     }

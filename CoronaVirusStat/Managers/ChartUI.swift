@@ -51,13 +51,14 @@ class ChartUI {
         
          
         chartView.xAxis.enabled = true
-        chartView.xAxis.labelCount = 10
-        chartView.xAxis.axisMaxLabels = 10
+        chartView.xAxis.labelCount = 7
+        chartView.xAxis.axisMaxLabels = 7
         chartView.xAxis.labelRotationAngle = -90
         chartView.xAxis.labelFont = UIFont(name: "Helvetica neue", size: 8)!
         chartView.xAxis.drawAxisLineEnabled = true
         chartView.xAxis.drawGridLinesEnabled = false
         chartView.xAxis.labelPosition = .bottom
+        
         
         chartView.xAxis.valueFormatter = axisFormatDelegate
         
