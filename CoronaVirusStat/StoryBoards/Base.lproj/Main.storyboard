@@ -282,35 +282,41 @@
         <!--LOCATION-->
         <scene sceneID="gIh-TJ-0YJ">
             <objects>
-                <viewController title="LOCATION" id="V8k-UR-7i2" sceneMemberID="viewController">
+                <viewController title="LOCATION" id="V8k-UR-7i2" customClass="ChooseLocationViewController" customModule="CoronaVirusStat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8sv-b0-bpl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="492"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yqf-Z7-God">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="492"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yqf-Z7-God">
+                                <rect key="frame" x="0.0" y="56" width="320" height="492"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="maK-Cp-yZj">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="maK-Cp-yZj" id="jjt-Kp-wIQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="V8k-UR-7i2" id="ZUK-GD-6rQ"/>
                                     <outlet property="delegate" destination="V8k-UR-7i2" id="IBc-rd-xVN"/>
                                 </connections>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="llK-PE-YbF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                                <items>
+                                    <navigationItem title="CHOOSE YOUR COUNTRY" largeTitleDisplayMode="always" id="eBb-5B-PoT"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="llK-PE-YbF" firstAttribute="leading" secondItem="SyS-fq-X2d" secondAttribute="leading" id="6dk-as-XFp"/>
+                            <constraint firstItem="yqf-Z7-God" firstAttribute="leading" secondItem="SyS-fq-X2d" secondAttribute="leading" id="HGA-2B-xM4"/>
+                            <constraint firstItem="yqf-Z7-God" firstAttribute="bottom" secondItem="SyS-fq-X2d" secondAttribute="bottom" id="Ja5-pM-r0W"/>
+                            <constraint firstItem="yqf-Z7-God" firstAttribute="trailing" secondItem="SyS-fq-X2d" secondAttribute="trailing" id="egi-5y-Eo0"/>
+                            <constraint firstItem="SyS-fq-X2d" firstAttribute="trailing" secondItem="llK-PE-YbF" secondAttribute="trailing" id="gGr-nh-vLq"/>
+                            <constraint firstItem="llK-PE-YbF" firstAttribute="top" secondItem="SyS-fq-X2d" secondAttribute="top" id="irj-UD-zKm"/>
+                            <constraint firstItem="yqf-Z7-God" firstAttribute="top" secondItem="llK-PE-YbF" secondAttribute="bottom" id="w8o-Jt-Onw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="SyS-fq-X2d"/>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="countryTableView" destination="yqf-Z7-God" id="SXx-Mc-S2W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQt-Ln-vlQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
