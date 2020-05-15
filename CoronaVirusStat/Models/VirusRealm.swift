@@ -33,10 +33,15 @@ class ProvincestateRealm: Object {
 }
 
 class BriefRealm: Object {
+    @objc dynamic var id = 1
     @objc dynamic var confirmed = 0
     @objc dynamic var death = 0
     @objc dynamic var recovered = 0
     let timesSeries = List<TimeseryRealm>()
+    
+    override class func primaryKey() -> String? {
+        "id"
+    }
 }
 
 class VirusRealm: Object {
@@ -55,3 +60,6 @@ class VirusRealm: Object {
     }
 }
 
+//class UserSettings: Object {
+//    @objc dynamic var favoriteCountry = ""
+//}

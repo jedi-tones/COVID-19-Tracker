@@ -54,8 +54,9 @@ class SaveToRealm {
     func saveTimeSeriesOnlyCountry(data: [CoronaVirusStateTimeSeries], complition: @escaping () -> Void){
         
         let queue = DispatchQueue.global(qos: .default)
+        let taskGroup = DispatchGroup()
         
-        queue.async {
+        queue.async(group: taskGroup) {
             
             let queueRealm = try! Realm()
             for currentCountry in data {
@@ -76,7 +77,9 @@ class SaveToRealm {
                     }
                 }
             }
-            complition()
+            taskGroup.notify(queue: .main) {
+                complition()
+            }
         }
     }
     //MARK: - saveTimeSeriesCity
@@ -99,14 +102,16 @@ class SaveToRealm {
     func addBrief(newData: Brief, complition: @escaping () -> Void){
         
         DispatchQueue.main.async {
-            let brief = self.realm.objects(BriefRealm.self)
+            
+            let brief = BriefRealm()
+            brief.confirmed = newData.confirmed ?? 0
+            brief.death = newData.deaths ?? 0
+            brief.recovered = newData.recovered ?? 0
+            brief.id = 1
+            
             do {
                 try self.realm.write{
-                    if brief.isEmpty {
-                        self.realm.add(self.virusRealmBrief(newData: newData))
-                    } else {
-                        let _ = self.virusRealmBrief(newData: newData)
-                    }
+                    self.realm.add(brief, update: .modified)
                 }
             } catch let error as NSError {
                 print(error.localizedDescription)
@@ -173,25 +178,6 @@ class SaveToRealm {
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
-        }
-    }
-    
-        
-    //MARK: - virusRealmBrief
-    private func virusRealmBrief(newData: Brief) -> BriefRealm {
-        let existBrief = realm.objects(BriefRealm.self)
-        if existBrief.isEmpty{
-            let newBrief = BriefRealm()
-            newBrief.confirmed = newData.confirmed ?? 0
-            newBrief.death = newData.deaths ?? 0
-            newBrief.recovered = newData.recovered ?? 0
-            return newBrief
-        } else {
-            let brief = existBrief.first!
-            brief.confirmed = newData.confirmed ?? 0
-            brief.death = newData.deaths ?? 0
-            brief.recovered = newData.recovered ?? 0
-            return brief
         }
     }
     

@@ -44,33 +44,35 @@ class MapViewController: UIViewController {
                                                            longitude: CLLocationDegrees(lng))
                 newAnnotation.coordinate = newCoordinate
                 
-                if confirmed == 0 {
-                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( 0 ))
-                    mapView?.addOverlay(overlay)
-                } else if confirmed < 1000 {
-                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( confirmed * 150 ))
-                    mapView?.addOverlay(overlay)
-                } else if confirmed < 10000 {
-                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( confirmed * 40 ))
-                    mapView?.addOverlay(overlay)
-                } else {
-                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( confirmed * 20 ))
-                    mapView?.addOverlay(overlay)
-                }
+                //                if confirmed == 0 {
+                //                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( 0 ))
+                //                    mapView?.addOverlay(overlay)
+                //                } else if confirmed < 1000 {
+                //                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( confirmed * 150 ))
+                //                    mapView?.addOverlay(overlay)
+                //                } else if confirmed < 10000 {
+                //                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( confirmed * 40 ))
+                //                    mapView?.addOverlay(overlay)
+                //                } else {
+                //                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( confirmed * 20 ))
+                let overlay = MKCircle(center: newAnnotation.coordinate, radius: Double(confirmed))
+               
+                mapView?.addOverlay(overlay)
+                
                 annotaions.append(newAnnotation)
             }
         }
-       // mapView.addAnnotations(annotaions)
+        // mapView.addAnnotations(annotaions)
         mapView.showAnnotations(annotaions, animated: true)
     }
 }
 
 extension MapViewController: MKMapViewDelegate {
-
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-
+        
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotaionIdentifier) as? MKPinAnnotationView
-
+        
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotaionIdentifier)
             annotationView?.canShowCallout = true
@@ -80,11 +82,11 @@ extension MapViewController: MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-          let renderer = MKCircleRenderer(overlay: overlay)
-          renderer.fillColor = UIColor.red.withAlphaComponent(0.3)
-          renderer.strokeColor = UIColor.red
-          renderer.lineWidth = 1
-          
-          return renderer
-      }
+        let renderer = MKCircleRenderer(overlay: overlay)
+        renderer.fillColor = UIColor.red.withAlphaComponent(0.3)
+        renderer.strokeColor = UIColor.red
+        renderer.lineWidth = 1
+        
+        return renderer
+    }
 }
