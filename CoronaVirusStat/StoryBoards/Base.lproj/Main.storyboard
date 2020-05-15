@@ -98,7 +98,7 @@
             </objects>
             <point key="canvasLocation" x="5700" y="6.3380281690140849"/>
         </scene>
-        <!--Map-->
+        <!--MAP-->
         <scene sceneID="Enl-rN-fN5">
             <objects>
                 <viewController id="hi8-fx-3Ge" customClass="MapViewController" customModule="CoronaVirusStat" customModuleProvider="target" sceneMemberID="viewController">
@@ -122,7 +122,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bq2-Ag-k0J"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" selectedImage="map" id="tKT-s5-D9y"/>
+                    <tabBarItem key="tabBarItem" title="MAP" image="map" catalog="system" selectedImage="map" id="tKT-s5-D9y"/>
                     <connections>
                         <outlet property="mapView" destination="fWs-CZ-bLO" id="iM2-AK-cKl"/>
                     </connections>
@@ -154,11 +154,11 @@
             </objects>
             <point key="canvasLocation" x="3099" y="8"/>
         </scene>
-        <!--DETAILED-->
+        <!--ALL COUNTRY-->
         <scene sceneID="Vd7-Fz-phW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SBZ-NF-zyL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="DETAILED" image="text.justify" catalog="system" selectedImage="text.justify" id="r8c-xI-QV8"/>
+                    <tabBarItem key="tabBarItem" title="ALL COUNTRY" image="text.justify" catalog="system" selectedImage="text.justify" id="r8c-xI-QV8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Nh1-Hn-hHh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>

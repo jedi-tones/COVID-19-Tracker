@@ -33,7 +33,7 @@ class ChartUI {
         chartView.rightAxis.enabled = false
         
         chartView.leftAxis.enabled = false
-        chartView.leftAxis.labelFont = UIFont(name: "Helvetica neue", size: 8)!
+        chartView.leftAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 8)!
         chartView.leftAxis.labelCount = 10
         chartView.leftAxis.drawAxisLineEnabled = true
         chartView.leftAxis.drawGridLinesEnabled = false
@@ -41,7 +41,7 @@ class ChartUI {
         chartView.leftAxis.axisMaxLabels = 10
         
         chartView.rightAxis.enabled = false
-        chartView.rightAxis.labelFont = UIFont(name: "Helvetica neue", size: 8)!
+        chartView.rightAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 8)!
         chartView.rightAxis.labelCount = 6
         chartView.rightAxis.drawAxisLineEnabled = true
         chartView.rightAxis.drawGridLinesEnabled = false
@@ -53,8 +53,8 @@ class ChartUI {
         chartView.xAxis.enabled = true
         chartView.xAxis.labelCount = 7
         chartView.xAxis.axisMaxLabels = 7
-        chartView.xAxis.labelRotationAngle = -90
-        chartView.xAxis.labelFont = UIFont(name: "Helvetica neue", size: 8)!
+        //chartView.xAxis.labelRotationAngle = -90
+        chartView.xAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 8)!
         chartView.xAxis.drawAxisLineEnabled = true
         chartView.xAxis.drawGridLinesEnabled = false
         chartView.xAxis.labelPosition = .bottom
@@ -68,7 +68,7 @@ class ChartUI {
         
         let l = chartView.legend
         
-        l.font = UIFont(name: "Helvetica neue", size: 8)!
+        l.font = UIFont(name: "HelveticaNeue-Light", size: 8)!
         l.horizontalAlignment = .left
         l.verticalAlignment = .top
         l.orientation = .vertical
@@ -105,7 +105,7 @@ class ChartUI {
         chartView.legend.enabled = true
         
         let l = chartView.legend
-        l.font = UIFont(name: "Helvetica neue", size: 8)!
+        l.font = UIFont(name: "HelveticaNeue-Light", size: 8)!
         l.horizontalAlignment = .left
         l.verticalAlignment = .top
         l.orientation = .vertical
@@ -114,8 +114,9 @@ class ChartUI {
         l.yOffset =  -170
         
         // entry label styling
-        // chartView.entryLabelColor = .white
-        chartView.entryLabelFont = UIFont(name: "Helvetica neue", size: 8)!
+         chartView.entryLabelColor = .white
+  
+        
     }
     
     //MARK: - PieChartsDataSet
@@ -130,6 +131,8 @@ class ChartUI {
         pieChartDataSet.valueLinePart1OffsetPercentage = 0.8
         pieChartDataSet.valueLinePart1Length = 0.3
         pieChartDataSet.valueLinePart2Length = 0.2
+        
+        
        
         
     }
@@ -169,7 +172,7 @@ extension ChartUI: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         if axis?.isKind(of: XAxis.self) ?? false {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yy"
+            dateFormatter.dateFormat = "MMM d"
             return dateFormatter.string(from: Date(timeIntervalSince1970: value))
         } else
         {
