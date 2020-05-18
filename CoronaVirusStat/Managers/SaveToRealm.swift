@@ -103,15 +103,25 @@ class SaveToRealm {
         
         DispatchQueue.main.async {
             
-            let brief = BriefRealm()
-            brief.confirmed = newData.confirmed ?? 0
-            brief.death = newData.deaths ?? 0
-            brief.recovered = newData.recovered ?? 0
-            brief.id = 1
+//            let brief = BriefRealm()
+//            brief.id = 1
+//            brief.confirmed = newData.confirmed ?? 0
+//            brief.death = newData.deaths ?? 0
+//            brief.recovered = newData.recovered ?? 0
+//            if let oldBriefTimeSeries = self.realm.objects(BriefRealm.self).first?.timesSeries {
+//                for element in oldBriefTimeSeries {
+//                    brief.timesSeries.append(element)
+//                }
+//            }
             
             do {
                 try self.realm.write{
-                    self.realm.add(brief, update: .modified)
+                    //self.realm.add(brief, update: .modified)
+                    self.realm.create(BriefRealm.self, value: ["id": 1,
+                                                               "confirmed": newData.confirmed ?? 0,
+                                                               "death": newData.deaths ?? 0,
+                                                               "recovered": newData.recovered ?? 0],
+                                      update: .modified  )
                 }
             } catch let error as NSError {
                 print(error.localizedDescription)
@@ -120,7 +130,7 @@ class SaveToRealm {
         complition()
     }
     
-
+    
     //MARK: - private func
     
     
@@ -138,7 +148,7 @@ class SaveToRealm {
             }
         }
     }
-
+    
     //MARK: - changeLatestValueOnlyCountry
     private func changeLatestValueOnlyCountry(newData: CoronaVirusStateOnlyCountry, element: VirusRealm){
         
@@ -166,7 +176,7 @@ class SaveToRealm {
             }
         }
     }
-
+    
     //MARK: - addTimeSeriesCity
     private func addTimeSeriesCity(element: ProvincestateRealm, newData: CoronaVirusCityTimesSeries) {
         
@@ -315,7 +325,7 @@ class SaveToRealm {
     }
     
     
- 
+    
 }
 
 

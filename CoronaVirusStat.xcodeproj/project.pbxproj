@@ -50,6 +50,8 @@
 		FBEE8360246DEEE5001CA080 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE835F246DEEE5001CA080 /* ChooseLocationViewController.swift */; };
 		FBEE8364246DF73F001CA080 /* ChooseCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE8362246DF73F001CA080 /* ChooseCountryTableViewCell.swift */; };
 		FBEE8365246DF73F001CA080 /* ChooseCountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBEE8363246DF73F001CA080 /* ChooseCountryTableViewCell.xib */; };
+		FBEE8367246EEBAE001CA080 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE8366246EEBAE001CA080 /* UserSettings.swift */; };
+		FBEE836924732471001CA080 /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE836824732470001CA080 /* RealmConfig.swift */; };
 		FBFAD18B244610A100F054E8 /* ChartUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFAD18A244610A100F054E8 /* ChartUI.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +103,8 @@
 		FBEE835F246DEEE5001CA080 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
 		FBEE8362246DF73F001CA080 /* ChooseCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCountryTableViewCell.swift; sourceTree = "<group>"; };
 		FBEE8363246DF73F001CA080 /* ChooseCountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseCountryTableViewCell.xib; sourceTree = "<group>"; };
+		FBEE8366246EEBAE001CA080 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		FBEE836824732470001CA080 /* RealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfig.swift; sourceTree = "<group>"; };
 		FBFAD18A244610A100F054E8 /* ChartUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +200,7 @@
 				FB74574C242673D40098E670 /* Virus.swift */,
 				FB74575624268E030098E670 /* VirusRealm.swift */,
 				FB74575924269AEB0098E670 /* VirusDataLink.swift */,
+				FBEE8366246EEBAE001CA080 /* UserSettings.swift */,
 				FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */,
 				FB754AF2243A6081002C7BD4 /* TypeOfFilter.swift */,
 				FB825CA9246477F6003D066A /* TypeOfChartData.swift */,
@@ -209,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				FB74574F2426750B0098E670 /* JsonManager.swift */,
+				FBEE836824732470001CA080 /* RealmConfig.swift */,
 				FB7457602426B3120098E670 /* SaveToRealm.swift */,
 				FB7457522426786F0098E670 /* AlertController.swift */,
 				FB46C287242E75F200FABEC7 /* ConverterDate.swift */,
@@ -411,6 +417,7 @@
 				FB825CA024631F20003D066A /* PieChartBriefCell.swift in Sources */,
 				FB74572A24266CA60098E670 /* AppDelegate.swift in Sources */,
 				FB74572C24266CA60098E670 /* SceneDelegate.swift in Sources */,
+				FBEE836924732471001CA080 /* RealmConfig.swift in Sources */,
 				FB7457612426B3120098E670 /* SaveToRealm.swift in Sources */,
 				FBEE8364246DF73F001CA080 /* ChooseCountryTableViewCell.swift in Sources */,
 				FBB5E64A246ADE790056BF05 /* FormatterExt.swift in Sources */,
@@ -437,6 +444,7 @@
 				FBEE835E246DD9C1001CA080 /* FavoriteTableViewController.swift in Sources */,
 				FB74574D242673D40098E670 /* Virus.swift in Sources */,
 				FB74575F2426ACE80098E670 /* CityViewController.swift in Sources */,
+				FBEE8367246EEBAE001CA080 /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

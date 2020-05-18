@@ -33,6 +33,7 @@ class BriefTableViewController: UITableViewController {
     private func setUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "BRIEF"
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

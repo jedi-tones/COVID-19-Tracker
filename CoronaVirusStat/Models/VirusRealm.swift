@@ -60,6 +60,6 @@ class VirusRealm: Object {
     }
 }
 
-//class UserSettings: Object {
-//    @objc dynamic var favoriteCountry = ""
-//}
+class UserSettingsRealm: Object {
+    @objc dynamic var favoriteCountry = ""
+}
