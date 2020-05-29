@@ -32,7 +32,7 @@ class BriefTableViewController: UITableViewController {
     
     private func setUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "BRIEF"
+        navigationItem.title = "COVID-19"
         
     }
     

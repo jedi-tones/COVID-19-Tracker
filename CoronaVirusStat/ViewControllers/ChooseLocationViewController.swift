@@ -41,6 +41,10 @@ extension ChooseLocationViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(#function)
+        let newCountry = realm.objects(VirusRealm.self)[indexPath.row].countryregion
+        UserSettings.shared.changeFavoriteCountry(newCountry: newCountry)
+    }
     
 }

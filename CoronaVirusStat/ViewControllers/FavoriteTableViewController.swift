@@ -7,27 +7,39 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FavoriteTableViewController: UITableViewController {
 
+    let realm = try! Realm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUI()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        chooseFavCountry()
+    }
     
     private func setUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "MY LOCATION"
     }
     
+    private func chooseFavCountry(){
+        
+        guard let config = realm.objects(UserSettingsRealm.self).filter("id == 1").first  else { return }
+        if config.firstLaunchApp  {
+            performSegue(withIdentifier: "ChooseLocation", sender: nil)
+        }
+    }
+    
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows

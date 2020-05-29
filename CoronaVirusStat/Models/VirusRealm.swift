@@ -61,5 +61,11 @@ class VirusRealm: Object {
 }
 
 class UserSettingsRealm: Object {
+    @objc dynamic var id = 1
+    @objc dynamic var firstLaunchApp = true
     @objc dynamic var favoriteCountry = ""
+    
+    override class func primaryKey() -> String? {
+        "id"
+    }
 }

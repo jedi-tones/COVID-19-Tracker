@@ -103,17 +103,6 @@ class SaveToRealm {
         
         DispatchQueue.main.async {
             
-//            let brief = BriefRealm()
-//            brief.id = 1
-//            brief.confirmed = newData.confirmed ?? 0
-//            brief.death = newData.deaths ?? 0
-//            brief.recovered = newData.recovered ?? 0
-//            if let oldBriefTimeSeries = self.realm.objects(BriefRealm.self).first?.timesSeries {
-//                for element in oldBriefTimeSeries {
-//                    brief.timesSeries.append(element)
-//                }
-//            }
-            
             do {
                 try self.realm.write{
                     //self.realm.add(brief, update: .modified)
@@ -291,11 +280,12 @@ class SaveToRealm {
                 element.timeSeries.append(timeSeries)
             } else {
                 if let currentDate = existDate.first {
+                    
                     currentDate.date = convertedDate
                     currentDate.confirmed = newData.timeseries[date]?.confirmed ?? 0
                     currentDate.deaths = newData.timeseries[date]?.deaths ?? 0
                     currentDate.recovered = newData.timeseries[date]?.recovered ?? 0
-                }
+               }
             }
         }
     }
