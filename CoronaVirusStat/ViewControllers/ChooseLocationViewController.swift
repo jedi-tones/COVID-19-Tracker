@@ -45,6 +45,9 @@ extension ChooseLocationViewController: UITableViewDelegate, UITableViewDataSour
         print(#function)
         let newCountry = realm.objects(VirusRealm.self)[indexPath.row].countryregion
         UserSettings.shared.changeFavoriteCountry(newCountry: newCountry)
+        
+        
+        performSegue(withIdentifier: "closeChooseSegue", sender: nil)
     }
     
 }

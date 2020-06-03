@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ntd-dY-KY7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ntd-dY-KY7">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -288,7 +288,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yqf-Z7-God">
-                                <rect key="frame" x="0.0" y="56" width="320" height="492"/>
+                                <rect key="frame" x="0.0" y="56" width="320" height="443"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="V8k-UR-7i2" id="ZUK-GD-6rQ"/>
@@ -298,7 +298,13 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="llK-PE-YbF">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                 <items>
-                                    <navigationItem title="CHOOSE YOUR COUNTRY" largeTitleDisplayMode="always" id="eBb-5B-PoT"/>
+                                    <navigationItem title="CHOOSE YOUR COUNTRY" largeTitleDisplayMode="always" id="eBb-5B-PoT">
+                                        <barButtonItem key="rightBarButtonItem" image="clear" catalog="system" id="i1z-Jx-W9L">
+                                            <connections>
+                                                <segue destination="oZk-Uz-4HT" kind="unwind" identifier="closeChooseSegue" unwindAction="unwindSegueWithSegue:" id="J1Y-Z1-kwM"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -314,11 +320,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SyS-fq-X2d"/>
                     </view>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="countryTableView" destination="yqf-Z7-God" id="SXx-Mc-S2W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQt-Ln-vlQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="oZk-Uz-4HT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6063.75" y="969.71830985915494"/>
         </scene>
@@ -344,6 +352,7 @@
     </scenes>
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="clear" catalog="system" width="128" height="114"/>
         <image name="location" catalog="system" width="128" height="115"/>
         <image name="map" catalog="system" width="128" height="113"/>
         <image name="shield" catalog="system" width="128" height="121"/>
