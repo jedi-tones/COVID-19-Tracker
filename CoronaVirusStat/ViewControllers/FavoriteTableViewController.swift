@@ -30,6 +30,7 @@ class FavoriteTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print(LocationManager.shared.getLocation())
         chooseFavCountry()
     }
     

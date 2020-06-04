@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E210F7CD957E664F36024E8 /* Pods_CoronaVirusStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD946EE6538BA84F7B5ACB11 /* Pods_CoronaVirusStat.framework */; };
+		FB465A4B2489367D0071D8CF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB465A4A2489367D0071D8CF /* LocationManager.swift */; };
 		FB46C285242C7EC700FABEC7 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */; };
 		FB46C286242C7EC700FABEC7 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */; };
 		FB46C288242E75F200FABEC7 /* ConverterDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46C287242E75F200FABEC7 /* ConverterDate.swift */; };
@@ -61,6 +62,7 @@
 		982F9CA987DABCD63CC354BC /* Pods-CoronaVirusStat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoronaVirusStat.release.xcconfig"; path = "Target Support Files/Pods-CoronaVirusStat/Pods-CoronaVirusStat.release.xcconfig"; sourceTree = "<group>"; };
 		AD946EE6538BA84F7B5ACB11 /* Pods_CoronaVirusStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoronaVirusStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF700D892C2BEDAA01ABE916 /* Pods-CoronaVirusStat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoronaVirusStat.debug.xcconfig"; path = "Target Support Files/Pods-CoronaVirusStat/Pods-CoronaVirusStat.debug.xcconfig"; sourceTree = "<group>"; };
+		FB465A4A2489367D0071D8CF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
 		FB46C287242E75F200FABEC7 /* ConverterDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterDate.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			children = (
 				FB74574F2426750B0098E670 /* JsonManager.swift */,
 				FBEE836824732470001CA080 /* RealmConfig.swift */,
+				FB465A4A2489367D0071D8CF /* LocationManager.swift */,
 				FBEE8366246EEBAE001CA080 /* UserSettings.swift */,
 				FB7457602426B3120098E670 /* SaveToRealm.swift */,
 				FB7457522426786F0098E670 /* AlertController.swift */,
@@ -461,6 +464,7 @@
 				FB74574D242673D40098E670 /* Virus.swift in Sources */,
 				FB74575F2426ACE80098E670 /* CityViewController.swift in Sources */,
 				FBEE8367246EEBAE001CA080 /* UserSettings.swift in Sources */,
+				FB465A4B2489367D0071D8CF /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
