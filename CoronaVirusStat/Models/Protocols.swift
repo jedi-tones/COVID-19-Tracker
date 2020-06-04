@@ -22,3 +22,9 @@ protocol UpdateCountry {
     func updateTable()
     func updateStatus(status: Bool)
 }
+
+//favCountry
+
+protocol UpdateFavCountry: class {
+    func update()
+}

@@ -12,7 +12,7 @@ import RealmSwift
 class ChooseLocationViewController: UIViewController {
 
     let realm = try! Realm()
-    
+    weak var delegate: UpdateFavCountry?
     
     @IBOutlet var countryTableView: UITableView!
     
@@ -46,8 +46,8 @@ extension ChooseLocationViewController: UITableViewDelegate, UITableViewDataSour
         let newCountry = realm.objects(VirusRealm.self)[indexPath.row].countryregion
         UserSettings.shared.changeFavoriteCountry(newCountry: newCountry)
         
-        
-        performSegue(withIdentifier: "closeChooseSegue", sender: nil)
+        delegate?.update()
+        dismiss(animated: true, completion: nil)
     }
     
 }

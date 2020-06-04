@@ -30,12 +30,8 @@ class FavoriteTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         chooseFavCountry()
-        tableView.reloadData()
     }
-    
-    
     
     private func getSettings() {
         userSettings = realm.objects(UserSettingsRealm.self).filter("id == 1").first
@@ -57,6 +53,15 @@ class FavoriteTableViewController: UITableViewController {
         guard let config = realm.objects(UserSettingsRealm.self).filter("id == 1").first  else { return }
         if config.firstLaunchApp  {
             performSegue(withIdentifier: "ChooseLocation", sender: nil)
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ChooseLocation" {
+            guard let dst = segue.destination as? ChooseLocationViewController else { return }
+            dst.delegate = self
         }
     }
     
@@ -99,5 +104,13 @@ class FavoriteTableViewController: UITableViewController {
             return cell
         }
     }
+    
+}
+
+extension FavoriteTableViewController: UpdateFavCountry {
+    func update() {
+        tableView.reloadData()
+    }
+    
     
 }
