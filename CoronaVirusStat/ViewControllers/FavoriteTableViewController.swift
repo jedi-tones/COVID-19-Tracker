@@ -37,6 +37,7 @@ class FavoriteTableViewController: UITableViewController {
     private func getSettings() {
         userSettings = realm.objects(UserSettingsRealm.self).filter("id == 1").first
     }
+    
     private func setUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "MY LOCATION"
@@ -50,16 +51,19 @@ class FavoriteTableViewController: UITableViewController {
     }
     
     private func chooseFavCountry(){
-        
-        guard let config = realm.objects(UserSettingsRealm.self).filter("id == 1").first  else { return }
-        guard let country = realm.objects(VirusRealm.self).filter("countrycode == '\(config.currentCountryCode)'").first else {
-            if config.firstLaunchApp  {
-                performSegue(withIdentifier: "ChooseLocation", sender: nil)
+        guard let isFirstLaunchApp = userSettings?.firstLaunchApp else { return }
+        if isFirstLaunchApp {
+            
+            guard let config = realm.objects(UserSettingsRealm.self).filter("id == 1").first  else { return }
+            guard let country = realm.objects(VirusRealm.self).filter("countrycode == '\(config.currentCountryCode)'").first else {
+                if config.firstLaunchApp  {
+                    performSegue(withIdentifier: "ChooseLocation", sender: nil)
+                }
+                return
             }
-            return
+            
+            AlertController.shared.showChooseCountryAlert(country: country.countryregion, segueIndetifier: "ChooseLocation", currentTableView: self )
         }
-        
-        AlertController.shared.showChooseCountryAlert(country: country.countryregion, segueIndetifier: "ChooseLocation", currentView: self )
     }
     
     // MARK: - Navigation

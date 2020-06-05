@@ -23,7 +23,8 @@ class AlertController: UIViewController {
         present(alert, animated: true)
     }
     
-    func showChooseCountryAlert(country: String, segueIndetifier: String, currentView: UIViewController) {
+    func showChooseCountryAlert(country: String, segueIndetifier: String, currentTableView: UITableViewController) {
+        
         
         let realm = try! Realm()
         let titleAlert = "Confirm country"
@@ -36,21 +37,24 @@ class AlertController: UIViewController {
             do {
                 try realm.write {
                     realm.create(UserSettingsRealm.self, value: ["id": 1,
+                                                                 "firstLaunchApp" : false,
                                                                  "favoriteCountry": country], update: .modified)
                 }
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
+            currentTableView.tableView.reloadData()
         }
+        
         //present Choose country VC
         let chooseCountryAction = UIAlertAction(title: "Choose country", style: .default) { _ in
             
-            currentView.performSegue(withIdentifier: segueIndetifier, sender: nil)
+            currentTableView.performSegue(withIdentifier: segueIndetifier, sender: nil)
         }
         
         alert.addAction(okAction)
         alert.addAction(chooseCountryAction)
-        currentView.present(alert, animated: true, completion: nil)
+        currentTableView.present(alert, animated: true, completion: nil)
     }
     
 }
