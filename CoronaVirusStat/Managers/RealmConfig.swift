@@ -13,9 +13,9 @@ class RealmConfig {
     static let shared = RealmConfig()
     
     func setDefaultRealm() {
-        var config = Realm.Configuration(schemaVersion: 4,
+        var config = Realm.Configuration(schemaVersion: 5,
                                          migrationBlock: { migration, oldSchemaVersion in
-                                            if oldSchemaVersion < 4 {
+                                            if oldSchemaVersion < 5 {
                                                 
                                             }
         })

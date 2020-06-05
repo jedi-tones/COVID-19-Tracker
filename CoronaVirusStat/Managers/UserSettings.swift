@@ -17,9 +17,9 @@ class UserSettings {
     func startConfig(){
         
         do {
-            try self.realm.write{
+            try realm.write{
                 //self.realm.add(brief, update: .modified)
-                self.realm.create(UserSettingsRealm.self,
+                realm.create(UserSettingsRealm.self,
                                   value: ["id": 1],
                                   update: .modified  )
             }
@@ -30,9 +30,9 @@ class UserSettings {
     
     func changeFavoriteCountry(newCountry: String) {
         do {
-            try self.realm.write{
+            try realm.write{
                 //self.realm.add(brief, update: .modified)
-                self.realm.create(UserSettingsRealm.self,
+                realm.create(UserSettingsRealm.self,
                                   value: ["id": 1,
                                           "firstLaunchApp": false,
                                           "favoriteCountry": newCountry],
@@ -41,6 +41,19 @@ class UserSettings {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+    }
+    
+    func changeCurrentCountryCode(newCode: String) {
+        do {
+            try realm.write {
+                realm.create(UserSettingsRealm.self, value: [ "id": 1,
+                                                              "currentCountryCode": newCode],
+                             update: .modified)
+            }
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
     }
     
 }

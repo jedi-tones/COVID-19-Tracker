@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class AlertController: UIViewController {
     
@@ -16,12 +17,40 @@ class AlertController: UIViewController {
     func showErrorAlert(titleAlert: String, messageAlert: String) {
         let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
 
-        let closeAction = UIAlertAction(title: "OK", style: .default) { _ in
-            
-        }
+        let closeAction = UIAlertAction(title: "OK", style: .default) { _ in }
         
         alert.addAction(closeAction)
         present(alert, animated: true)
+    }
+    
+    func showChooseCountryAlert(country: String, segueIndetifier: String, currentView: UIViewController) {
+        
+        let realm = try! Realm()
+        let titleAlert = "Confirm country"
+        let messageAlert = "Your country is \(country)?"
+        
+        let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .actionSheet)
+        //save CLLocation country
+        let okAction = UIAlertAction(title: "Yes", style: .default) { _ in
+            
+            do {
+                try realm.write {
+                    realm.create(UserSettingsRealm.self, value: ["id": 1,
+                                                                 "favoriteCountry": country], update: .modified)
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+        //present Choose country VC
+        let chooseCountryAction = UIAlertAction(title: "Choose country", style: .default) { _ in
+            
+            currentView.performSegue(withIdentifier: segueIndetifier, sender: nil)
+        }
+        
+        alert.addAction(okAction)
+        alert.addAction(chooseCountryAction)
+        currentView.present(alert, animated: true, completion: nil)
     }
     
 }

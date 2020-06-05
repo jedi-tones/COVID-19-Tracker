@@ -52,9 +52,14 @@ class FavoriteTableViewController: UITableViewController {
     private func chooseFavCountry(){
         
         guard let config = realm.objects(UserSettingsRealm.self).filter("id == 1").first  else { return }
-        if config.firstLaunchApp  {
-            performSegue(withIdentifier: "ChooseLocation", sender: nil)
+        guard let country = realm.objects(VirusRealm.self).filter("countrycode == '\(config.currentCountryCode)'").first else {
+            if config.firstLaunchApp  {
+                performSegue(withIdentifier: "ChooseLocation", sender: nil)
+            }
+            return
         }
+        
+        AlertController.shared.showChooseCountryAlert(country: country.countryregion, segueIndetifier: "ChooseLocation", currentView: self )
     }
     
     // MARK: - Navigation

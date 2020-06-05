@@ -9,20 +9,21 @@
 import Foundation
 import CoreLocation
 import MapKit
+import RealmSwift
 
 class LocationManager: UIResponder {
     
     static let shared = LocationManager()
     
+    private let realm = try! Realm()
     private let locationManager = CLLocationManager()
     private var mapItem: MKMapItem? = nil
-    private var nameOfCountry = ""
     
     private func setDelegate(){
         locationManager.delegate = self
     }
     
-    func getLocation() -> String {
+    func getLocation() {
         
         setDelegate()
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
@@ -32,7 +33,6 @@ class LocationManager: UIResponder {
             locationManager.requestLocation()
         }
         
-        return nameOfCountry
     }
 }
 
@@ -45,7 +45,9 @@ extension LocationManager: CLLocationManagerDelegate {
                 let placemark = placemarks[0]
                 guard  let coordinate = placemark.location?.coordinate else { return }
                 self.mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
-                self.nameOfCountry = placemark.country ?? ""
+                
+                UserSettings.shared.changeCurrentCountryCode(newCode: placemark.isoCountryCode ?? "")
+                
             }
         }
     }
