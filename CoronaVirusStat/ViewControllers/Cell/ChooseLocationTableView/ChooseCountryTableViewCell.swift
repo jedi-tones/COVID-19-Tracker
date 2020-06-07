@@ -14,12 +14,8 @@ class ChooseCountryTableViewCell: UITableViewCell {
     
     @IBOutlet var countryLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    
-    
 }
