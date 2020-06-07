@@ -34,6 +34,7 @@ class ChartUI {
         
         chartView.leftAxis.enabled = false
         chartView.leftAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 8)!
+        chartView.leftAxis.labelTextColor = .label
         chartView.leftAxis.labelCount = 10
         chartView.leftAxis.drawAxisLineEnabled = true
         chartView.leftAxis.drawGridLinesEnabled = false
@@ -55,6 +56,7 @@ class ChartUI {
         chartView.xAxis.axisMaxLabels = 7
         //chartView.xAxis.labelRotationAngle = -90
         chartView.xAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 8)!
+        chartView.xAxis.labelTextColor = .label
         chartView.xAxis.drawAxisLineEnabled = true
         chartView.xAxis.drawGridLinesEnabled = false
         chartView.xAxis.labelPosition = .bottom
@@ -69,6 +71,7 @@ class ChartUI {
         let l = chartView.legend
         
         l.font = UIFont(name: "HelveticaNeue-Light", size: 8)!
+        l.textColor = .label
         l.horizontalAlignment = .left
         l.verticalAlignment = .top
         l.orientation = .vertical
@@ -106,6 +109,7 @@ class ChartUI {
         
         let l = chartView.legend
         l.font = UIFont(name: "HelveticaNeue-Light", size: 8)!
+        l.textColor = .label
         l.horizontalAlignment = .left
         l.verticalAlignment = .top
         l.orientation = .vertical
@@ -114,7 +118,7 @@ class ChartUI {
         l.yOffset =  -170
         
         // entry label styling
-         chartView.entryLabelColor = .white
+         chartView.entryLabelColor = .label
   
         
     }
@@ -131,6 +135,8 @@ class ChartUI {
         pieChartDataSet.valueLinePart1OffsetPercentage = 0.8
         pieChartDataSet.valueLinePart1Length = 0.3
         pieChartDataSet.valueLinePart2Length = 0.2
+        pieChartDataSet.valueLineColor = .label
+        pieChartDataSet.entryLabelColor = .label
         
         
        

@@ -73,7 +73,7 @@ class PieChartBriefCell: UITableViewCell {
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         
         data.setValueFont(.systemFont(ofSize: 11, weight: .medium))
-        data.setValueTextColor(.black)
+        data.setValueTextColor(.label)
         
         pieChart.data = data
         pieChart.highlightValues(nil)
