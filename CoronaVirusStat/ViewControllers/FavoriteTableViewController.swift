@@ -30,7 +30,7 @@ class FavoriteTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(LocationManager.shared.getLocation())
+        
         chooseFavCountry()
     }
     
@@ -51,19 +51,7 @@ class FavoriteTableViewController: UITableViewController {
     }
     
     private func chooseFavCountry(){
-        guard let isFirstLaunchApp = userSettings?.firstLaunchApp else { return }
-        if isFirstLaunchApp {
-            
-            guard let config = realm.objects(UserSettingsRealm.self).filter("id == 1").first  else { return }
-            guard let country = realm.objects(VirusRealm.self).filter("countrycode == '\(config.currentCountryCode)'").first else {
-                if config.firstLaunchApp  {
-                    performSegue(withIdentifier: "ChooseLocation", sender: nil)
-                }
-                return
-            }
-            
-            AlertController.shared.showChooseCountryAlert(country: country.countryregion, segueIndetifier: "ChooseLocation", currentTableView: self )
-        }
+        LocationManager.shared.getLocation(currentVC: self, segueIndetificatorToManualChoose: "ChooseLocation" )
     }
     
     // MARK: - Navigation
@@ -81,9 +69,9 @@ class FavoriteTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch userSettings?.firstLaunchApp {
         case true:
-           return 1
+            return 1
         default:
-           return 3
+            return 3
         }
     }
     
@@ -94,7 +82,7 @@ class FavoriteTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             if userSettings?.firstLaunchApp ?? true {
-               let cell = tableView.dequeueReusableCell(withIdentifier: NeedChooseTableViewCell.reuseID, for: indexPath) as! NeedChooseTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: NeedChooseTableViewCell.reuseID, for: indexPath) as! NeedChooseTableViewCell
                 
                 return cell
             } else {

@@ -18,12 +18,18 @@ class LocationManager: UIResponder {
     private let realm = try! Realm()
     private let locationManager = CLLocationManager()
     private var mapItem: MKMapItem? = nil
+    private var currenetTableVC: UITableViewController? = nil
+    private var segueToChoose: String? = nil
+    
     
     private func setDelegate(){
         locationManager.delegate = self
     }
     
-    func getLocation() {
+    func getLocation(currentVC: UITableViewController, segueIndetificatorToManualChoose: String) {
+        
+        currenetTableVC = currentVC
+        segueToChoose = segueIndetificatorToManualChoose
         
         setDelegate()
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
@@ -33,6 +39,25 @@ class LocationManager: UIResponder {
             locationManager.requestLocation()
         }
         
+    }
+    
+    private func showConfirmAlertAndSegue() {
+        
+        guard let currentVC = currenetTableVC else { return }
+        guard let segueIndetificator = segueToChoose else { return }
+        guard let userSettings = realm.objects(UserSettingsRealm.self).filter("id == 1").first else { return }
+        
+            if userSettings.firstLaunchApp {
+                
+                guard let country = realm.objects(VirusRealm.self).filter("countrycode == '\(userSettings.currentCountryCode)'").first else {
+                    if userSettings.firstLaunchApp  {
+                        currentVC.performSegue(withIdentifier: segueIndetificator, sender: nil)
+                    }
+                    return
+                }
+                
+                AlertController.shared.showChooseCountryAlert(country: country.countryregion, segueIndetifier: segueIndetificator, currentTableView: currentVC )
+        }
     }
 }
 
@@ -46,8 +71,11 @@ extension LocationManager: CLLocationManagerDelegate {
                 guard  let coordinate = placemark.location?.coordinate else { return }
                 self.mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
                 
+                // write current country code from CLLocation to realm
                 UserSettings.shared.changeCurrentCountryCode(newCode: placemark.isoCountryCode ?? "")
                 
+                //show Alert to confirm country or show manual choose VC
+                self.showConfirmAlertAndSegue()
             }
         }
     }
