@@ -23,8 +23,18 @@ class AlertController: UIViewController {
         present(alert, animated: true)
     }
     
-    func showChooseCountryAlert(country: String, segueIndetifier: String, currentTableView: UITableViewController) {
+    func showErrorLocationAlert(titleAlert: String, messageAlert: String, buttonMessage: String, viewController: UITableViewController, segueIndetificatorForChooseVC: String ) {
+        let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
+
+        let closeAction = UIAlertAction(title: buttonMessage, style: .default) { _ in
+             viewController.performSegue(withIdentifier: segueIndetificatorForChooseVC, sender: nil)
+        }
         
+        alert.addAction(closeAction)
+        viewController.present(alert, animated: true)
+    }
+    
+    func showChooseCountryAlert(country: String, segueIndetifier: String, currentTableView: UITableViewController) {
         
         let realm = try! Realm()
         let titleAlert = "Confirm country"

@@ -63,6 +63,8 @@ class LocationManager: UIResponder {
 
 extension LocationManager: CLLocationManagerDelegate {
     
+    
+    //MARK: - Update Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         CLGeocoder().reverseGeocodeLocation(location) { (placemarks: [CLPlacemark]?, error: Error?) in
@@ -80,7 +82,19 @@ extension LocationManager: CLLocationManagerDelegate {
         }
     }
     
+    //MARK: - Fail CLLocation
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
+        
+        guard let settings = realm.objects(UserSettingsRealm.self).filter("id == 1").first else { return }
+        
+        if settings.firstLaunchApp {
+            guard let currentVC = currenetTableVC else { return }
+            guard let segueIndetificator = segueToChoose else { return }
+            
+            let title = "Auto-positioning error"
+            let message = error.localizedDescription
+            let buttonMessage = "Choose location manual"
+            AlertController.shared.showErrorLocationAlert(titleAlert: title, messageAlert: message, buttonMessage: buttonMessage, viewController: currentVC, segueIndetificatorForChooseVC: segueIndetificator)
+        }
     }
 }
