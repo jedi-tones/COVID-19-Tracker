@@ -149,9 +149,6 @@ class ChartUI {
         pieChartDataSet.valueLineColor = .label
         pieChartDataSet.entryLabelColor = .label
         
-        
-       
-        
     }
     
     //MARK: - LineChartsDataSet
@@ -162,15 +159,15 @@ class ChartUI {
         case DifferenceTimeSeries.confirmed.rawValue:
             lineChartDataSet.colors = [confirmedColor]
             lineChartDataSet.circleColors = [confirmedColor]
-            lineChartDataSet.fillColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+            lineChartDataSet.fillColor = confirmedColor
         case DifferenceTimeSeries.death.rawValue:
             lineChartDataSet.colors = [deathColor]
             lineChartDataSet.circleColors = [deathColor]
-            lineChartDataSet.fillColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            lineChartDataSet.fillColor = deathColor
         default:
             lineChartDataSet.colors = [recoveredColor]
             lineChartDataSet.circleColors = [recoveredColor]
-            lineChartDataSet.fillColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+            lineChartDataSet.fillColor = recoveredColor
         }
         
         lineChartDataSet.drawCircleHoleEnabled = false

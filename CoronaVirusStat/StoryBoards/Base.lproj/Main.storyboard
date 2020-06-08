@@ -3,6 +3,7 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -143,7 +144,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="selectedImageTintColor" name="confirmStroke"/>
                     </tabBar>
                     <connections>
                         <segue destination="qEl-i9-yZ6" kind="relationship" relationship="viewControllers" id="Y78-bD-2gq"/>
@@ -352,5 +353,8 @@
         <image name="map" catalog="system" width="128" height="113"/>
         <image name="shield" catalog="system" width="128" height="121"/>
         <image name="text.justify" catalog="system" width="128" height="100"/>
+        <namedColor name="confirmStroke">
+            <color red="0.99607843137254903" green="0.74117647058823533" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>
