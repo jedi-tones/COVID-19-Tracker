@@ -12,6 +12,20 @@ import Charts
 class ChartUI {
     
     static let shared = ChartUI()
+    private var confirmedColor: NSUIColor {
+        guard let color = NSUIColor(named: "confirmStroke") else { return #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)}
+        return color
+    }
+    private var deathColor: NSUIColor {
+        guard let color = NSUIColor(named: "deathStroke") else { return #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)}
+        return color
+    }
+    private var recoveredColor: NSUIColor {
+        guard let color = NSUIColor(named: "recoveredStroke") else { return #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)}
+        return color
+    }
+   
+    
     
     private var axisFormatDelegate: IAxisValueFormatter?
     
@@ -124,8 +138,7 @@ class ChartUI {
     //MARK: - PieChartsDataSet
     func SetPieChartDataSet(pieChartDataSet: PieChartDataSet) {
         
-        pieChartDataSet.colors = [#colorLiteral(red: 0.1459183693, green: 0.1922611594, blue: 0.3337301016, alpha: 1),#colorLiteral(red: 0.8346312642, green: 0.5086384416, blue: 0.450792253, alpha: 1),#colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)]
-        
+        pieChartDataSet.colors = [confirmedColor, deathColor, recoveredColor ]
         pieChartDataSet.sliceSpace = 2
         
         pieChartDataSet.yValuePosition = .outsideSlice
@@ -144,19 +157,20 @@ class ChartUI {
     //MARK: - LineChartsDataSet
     func setLineChartDataSet(lineChartDataSet: LineChartDataSet) {
         
+        
         switch lineChartDataSet.label {
         case DifferenceTimeSeries.confirmed.rawValue:
-            lineChartDataSet.colors = [#colorLiteral(red: 0.1459183693, green: 0.1922611594, blue: 0.3337301016, alpha: 1)]
-            lineChartDataSet.circleColors = [#colorLiteral(red: 0.1459183693, green: 0.1922611594, blue: 0.3337301016, alpha: 1)]
-            lineChartDataSet.fillColor = #colorLiteral(red: 0.1459183693, green: 0.1922611594, blue: 0.3337301016, alpha: 1)
+            lineChartDataSet.colors = [confirmedColor]
+            lineChartDataSet.circleColors = [confirmedColor]
+            lineChartDataSet.fillColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         case DifferenceTimeSeries.death.rawValue:
-            lineChartDataSet.colors = [#colorLiteral(red: 0.8346312642, green: 0.5086384416, blue: 0.450792253, alpha: 1)]
-            lineChartDataSet.circleColors = [#colorLiteral(red: 0.8346312642, green: 0.5086384416, blue: 0.450792253, alpha: 1)]
-            lineChartDataSet.fillColor = #colorLiteral(red: 0.8346312642, green: 0.5086384416, blue: 0.450792253, alpha: 1)
+            lineChartDataSet.colors = [deathColor]
+            lineChartDataSet.circleColors = [deathColor]
+            lineChartDataSet.fillColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         default:
-            lineChartDataSet.colors = [#colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)]
-            lineChartDataSet.circleColors = [#colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)]
-            lineChartDataSet.fillColor = #colorLiteral(red: 0.5001311302, green: 0.8252137303, blue: 0.5933588147, alpha: 1)
+            lineChartDataSet.colors = [recoveredColor]
+            lineChartDataSet.circleColors = [recoveredColor]
+            lineChartDataSet.fillColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
         }
         
         lineChartDataSet.drawCircleHoleEnabled = false
