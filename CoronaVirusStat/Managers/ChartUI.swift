@@ -89,7 +89,7 @@ class ChartUI {
     func setPieChartUI(chartView: PieChartView) {
         
         chartView.holeColor = .init(white: 1, alpha: 0)
-        // chartView.transparentCircleColor = NSUIColor.white.withAlphaComponent(0.43)
+        chartView.transparentCircleColor = NSUIColor.white.withAlphaComponent(0.0)
         // chartView.holeRadiusPercent = 0.58
         //chartView.backgroundColor = .blue
        // chartView.drawHoleEnabled = false
@@ -119,8 +119,6 @@ class ChartUI {
         
         // entry label styling
          chartView.entryLabelColor = .label
-  
-        
     }
     
     //MARK: - PieChartsDataSet
