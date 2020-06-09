@@ -37,6 +37,10 @@ class BriefRealm: Object {
     @objc dynamic var confirmed = 0
     @objc dynamic var death = 0
     @objc dynamic var recovered = 0
+    @objc dynamic var differenceConfirmed = 0
+    @objc dynamic var differenceDeath = 0
+    @objc dynamic var differenceRecovered = 0
+    @objc dynamic var lastDifferenceDate = 0
     let timesSeries = List<TimeseryRealm>()
     
     override class func primaryKey() -> String? {

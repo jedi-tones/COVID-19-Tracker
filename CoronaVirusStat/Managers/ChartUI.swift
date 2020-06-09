@@ -13,15 +13,15 @@ class ChartUI {
     
     static let shared = ChartUI()
     private var confirmedColor: NSUIColor {
-        guard let color = NSUIColor(named: "confirmStroke") else { return #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)}
+        guard let color = NSUIColor(named: "confirmStroke2") else { return #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)}
         return color
     }
     private var deathColor: NSUIColor {
-        guard let color = NSUIColor(named: "deathStroke") else { return #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)}
+        guard let color = NSUIColor(named: "deathStroke2") else { return #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)}
         return color
     }
     private var recoveredColor: NSUIColor {
-        guard let color = NSUIColor(named: "recoveredStroke") else { return #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)}
+        guard let color = NSUIColor(named: "recoveredStroke2") else { return #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)}
         return color
     }
    
@@ -144,7 +144,7 @@ class ChartUI {
         pieChartDataSet.yValuePosition = .outsideSlice
         pieChartDataSet.xValuePosition = .outsideSlice
         pieChartDataSet.valueLinePart1OffsetPercentage = 0.8
-        pieChartDataSet.valueLinePart1Length = 0.3
+        pieChartDataSet.valueLinePart1Length = 0.4
         pieChartDataSet.valueLinePart2Length = 0.2
         pieChartDataSet.valueLineColor = .label
         pieChartDataSet.entryLabelColor = .label
