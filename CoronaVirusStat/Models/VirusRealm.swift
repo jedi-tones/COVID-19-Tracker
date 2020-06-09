@@ -37,10 +37,6 @@ class BriefRealm: Object {
     @objc dynamic var confirmed = 0
     @objc dynamic var death = 0
     @objc dynamic var recovered = 0
-    @objc dynamic var differenceConfirmed = 0
-    @objc dynamic var differenceDeath = 0
-    @objc dynamic var differenceRecovered = 0
-    @objc dynamic var lastDifferenceDate = 0
     let timesSeries = List<TimeseryRealm>()
     
     override class func primaryKey() -> String? {
@@ -55,6 +51,10 @@ class VirusRealm: Object {
     @objc dynamic var recovered = 0
     @objc dynamic var lastupdate = "2020-03-21T18:42:00.009Z"
     @objc dynamic var countrycode = ""
+    @objc dynamic var differenceConfirmed = 0
+    @objc dynamic var differenceDeath = 0
+    @objc dynamic var differenceRecovered = 0
+    @objc dynamic var lastDifferenceDate = ""
     let location = List<LocationRealm>()
     let timeSeries = List<TimeseryRealm>()
     let province = List<ProvincestateRealm>()

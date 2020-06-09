@@ -78,20 +78,24 @@ class GetData {
                                 
                                 SaveToRealm.shared.saveTimeSeriesOnlyCountry(data: data, complition: {
                                     
-                                    DispatchQueue.main.async {
-                                        self.delegateCountry?.updateStatus(status: false)
-                                        self.delegateCountry?.updateTable()
-                                        print("SaveTimeseries")
-                                    }
-                                    
-                                    //after download timeSeries, calculate timesSeries for Breaf
-                                    CalculateTimeSeriesBrief.getTimeSeriesBrief(complition: {
+                                    //calculate new stats for 1 day
+                                    Statistic.getAddNewStats {
                                         
                                         DispatchQueue.main.async {
-                                            self.delegateBrief?.updateBreafChart()
-                                         
+                                            self.delegateCountry?.updateStatus(status: false)
+                                            self.delegateCountry?.updateTable()
+                                            print("SaveTimeseries")
                                         }
-                                    })
+                                        
+                                        //after download timeSeries, calculate timesSeries for Breaf
+                                        CalculateTimeSeriesBrief.getTimeSeriesBrief(complition: {
+                                            
+                                            DispatchQueue.main.async {
+                                                self.delegateBrief?.updateBreafChart()
+                                                
+                                            }
+                                        })
+                                    }
                                     
                                 })
                                 

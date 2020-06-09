@@ -11,29 +11,40 @@ import RealmSwift
 
 class Statistic {
     
-    
     //country statistic for one day
-    static func getAddNewStats(currentCountry: VirusRealm, forValue: DifferenceTimeSeries) -> (date:String, value:Int) {
-        let timeSeriesForCountry = currentCountry.timeSeries.sorted(byKeyPath: "date", ascending: true)
-        guard let lastValue = timeSeriesForCountry.last else { return ("20/03/28" , 0) }
-        if timeSeriesForCountry.count > 1 {
-            let differenceConfirmed = currentCountry.confirmed - timeSeriesForCountry[timeSeriesForCountry.count - 2].confirmed
-            let differenceDeath = currentCountry.deaths - timeSeriesForCountry[timeSeriesForCountry.count - 2].deaths
-            let differenceRecovered = currentCountry.recovered - timeSeriesForCountry[timeSeriesForCountry.count - 2].recovered
-            let previosDate = lastValue.date
-            
-            switch forValue {
-            case .confirmed:
-                return (previosDate, differenceConfirmed)
-            case .death:
-                return (previosDate, differenceDeath)
-            default:
-                return (previosDate, differenceRecovered)
-            }
-        } else { return ("20/03/28", 0) }
+    static func getAddNewStats(complition: @escaping ()-> Void) {
         
+        let realm = try! Realm()
+        let countries = realm.objects(VirusRealm.self)
+        
+        for country in countries {
+            
+            let timeSeriesForCountry = country.timeSeries.sorted(byKeyPath: "date", ascending: true)
+            guard let lastValue = timeSeriesForCountry.last else { return }
+            
+            if timeSeriesForCountry.count > 1 {
+                let differenceConfirmed = country.confirmed - timeSeriesForCountry[timeSeriesForCountry.count - 2].confirmed
+                let differenceDeath = country.deaths - timeSeriesForCountry[timeSeriesForCountry.count - 2].deaths
+                let differenceRecovered = country.recovered - timeSeriesForCountry[timeSeriesForCountry.count - 2].recovered
+                let previosDate = lastValue.date
+                
+                do {
+                    try realm.write {
+                        realm.create(VirusRealm.self,
+                                     value: ["countryregion": country.countryregion,
+                                             "differenceConfirmed": differenceConfirmed,
+                                             "differenceDeath": differenceDeath,
+                                             "differenceRecovered": differenceRecovered,
+                                             "lastDifferenceDate": previosDate],
+                                     update: .modified)
+                    }
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+            } else { complition(); return }
+            
+        }
+        complition()
     }
-    
-    
 }
 

@@ -12,6 +12,7 @@ import RealmSwift
 class CountryTableViewCell: UITableViewCell {
     
     static let reuseID = "CountryCell"
+    private let realm = try! Realm()
     
     @IBOutlet var countryLabel: UILabel!
     @IBOutlet var confirmedLabel: UILabel!
@@ -23,25 +24,24 @@ class CountryTableViewCell: UITableViewCell {
     @IBOutlet var difRecovered: UILabel!
     
     
-     func setCell(data: VirusRealm) {
+    func setCell(data: VirusRealm) {
         
         countryLabel.text = data.countryregion
         confirmedLabel.text = data.confirmed.formattedWithSeparator
         deathLabel.text = data.deaths.formattedWithSeparator
         recoveredLabel.text = data.recovered.formattedWithSeparator
         
-        
         lastUpdate.text = ConvertDate.convertToMMMdHMMa(oldDate: data.lastupdate)
         
-        let difConfirmedData = Statistic.getAddNewStats(currentCountry: data, forValue: .confirmed).value
-        let difDeathData = Statistic.getAddNewStats(currentCountry: data, forValue: .death).value
-        let difRecoveredData = Statistic.getAddNewStats(currentCountry: data, forValue: .recovered).value
+            let difConfirmedData = data.differenceConfirmed
+            let difDeathData = data.differenceDeath
+            let difRecoveredData = data.differenceRecovered
+            
+            self.difConfirmed.text = (difConfirmedData > 0 ?  "+" : "" ) + (difConfirmedData.formattedWithSeparator)
+            self.difDeath.text = (difDeathData > 0 ?  "+" : "" ) + (difDeathData.formattedWithSeparator)
+            self.difRecovered.text = (difRecoveredData > 0 ?  "+" : "" ) + (difRecoveredData.formattedWithSeparator)
         
-        difConfirmed.text = (difConfirmedData > 0 ?  "+" : "" ) + (difConfirmedData.formattedWithSeparator)
-        difDeath.text = (difDeathData > 0 ?  "+" : "" ) + (difDeathData.formattedWithSeparator)
-        difRecovered.text = (difRecoveredData > 0 ?  "+" : "" ) + (difRecoveredData.formattedWithSeparator)
-        
-     //    accessoryType = .disclosureIndicator
+        //    accessoryType = .disclosureIndicator
     }
     
     func setLoadTimeSeries(){
@@ -49,5 +49,4 @@ class CountryTableViewCell: UITableViewCell {
         difDeath.text = "calculation"
         difRecovered.text = "calculation"
     }
-    
 }
