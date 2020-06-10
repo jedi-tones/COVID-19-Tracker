@@ -69,6 +69,9 @@ class GetData {
     func getTimeSeriesData() {
         
         DispatchQueue.main.async {
+            self.delegateBrief?.updateStatus(status: true)
+            self.delegateBrief?.updateTable()
+            
             self.delegateCountry?.updateStatus(status: true)
             self.delegateCountry?.updateTable()
             
@@ -97,7 +100,7 @@ class GetData {
                                         }
                                         
                                         //after download timeSeries, calculate timesSeries for Breaf
-                                        self.delegateBrief?.updateStatus(status: true)
+                                        
                                         CalculateTimeSeriesBrief.getTimeSeriesBrief(complition: {
                                             DispatchQueue.main.async {
                                                 self.delegateBrief?.updateStatus(status: false)
