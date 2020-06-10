@@ -47,7 +47,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="ALL COUNTRY" id="V4q-vL-Tc9">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="E5z-TE-cS7">
-                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="tintColor" name="confirmStroke2"/>
                             <connections>
                                 <action selector="renewPressed" destination="yK6-Ns-m0C" id="BRu-Kq-Dxt"/>
                             </connections>
@@ -241,7 +241,14 @@
                             <outlet property="delegate" destination="d3A-3r-3AG" id="Ml2-nv-13Q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="COVID-19" id="ONg-M1-oIh"/>
+                    <navigationItem key="navigationItem" title="COVID-19" id="ONg-M1-oIh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="MkY-Tv-r1m">
+                            <color key="tintColor" name="confirmStroke2"/>
+                            <connections>
+                                <action selector="updateButton:" destination="d3A-3r-3AG" id="s2b-9h-sdM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXD-40-rYZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -261,13 +268,24 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="MY LOCATION" id="AZ0-wR-uTn">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="location" catalog="system" id="0hz-1m-U6P">
-                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <connections>
-                                <segue destination="V8k-UR-7i2" kind="presentation" identifier="ChooseLocation" id="r6c-hb-V1c"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="location" catalog="system" id="0hz-1m-U6P">
+                                <color key="tintColor" name="confirmStroke2"/>
+                                <connections>
+                                    <action selector="chooseLocationButton:" destination="Rdy-sR-kog" id="Vtb-aV-QW3"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="WVy-0d-Sva">
+                                <color key="tintColor" name="confirmStroke2"/>
+                                <connections>
+                                    <action selector="refreshButton:" destination="Rdy-sR-kog" id="JkL-Mt-bUe"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <segue destination="V8k-UR-7i2" kind="presentation" identifier="ChooseLocation" id="JdG-aX-nKd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJ1-Sc-b8J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

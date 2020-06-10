@@ -13,8 +13,9 @@ class GetData {
     
     static let shared = GetData()
     private let jsonManager = JsonManager()
-    var delegateCountry: UpdateCountry?
-    var delegateBrief: UpdateBreaf?
+    weak var delegateCountry: UpdateCountry?
+    weak var delegateBrief: UpdateCountry?
+    weak var delegateFavCountry: UpdateCountry?
     
     //MARK: - getData
     
@@ -26,7 +27,7 @@ class GetData {
                                 SaveToRealm.shared.addBrief(newData: data, complition: {
                                     
                                     DispatchQueue.main.async {
-                                        self.delegateBrief?.updateBreafChart()
+                                        self.delegateBrief?.updateTable()
                                     }
                                 })
         })
@@ -43,6 +44,7 @@ class GetData {
                                 SaveToRealm.shared.saveLatestOnlyCountry(data: data, complition: {
                                     DispatchQueue.main.async {
                                         self.delegateCountry?.updateTable()
+                                        self.delegateFavCountry?.updateTable()
                                     }
                                     self.getCityData()
                                     self.getTimeSeriesData()
@@ -69,6 +71,9 @@ class GetData {
         DispatchQueue.main.async {
             self.delegateCountry?.updateStatus(status: true)
             self.delegateCountry?.updateTable()
+            
+            self.delegateFavCountry?.updateStatus(status: true)
+            self.delegateFavCountry?.updateTable()
             print("StartUpdateTimeSeries")
         }
         
@@ -81,18 +86,22 @@ class GetData {
                                     //calculate new stats for 1 day
                                     Statistic.getAddNewStats {
                                         
+                                        //update country VC
                                         DispatchQueue.main.async {
                                             self.delegateCountry?.updateStatus(status: false)
                                             self.delegateCountry?.updateTable()
+                                            
+                                            self.delegateFavCountry?.updateStatus(status: false)
+                                            self.delegateFavCountry?.updateTable()
                                             print("SaveTimeseries")
                                         }
                                         
                                         //after download timeSeries, calculate timesSeries for Breaf
+                                        self.delegateBrief?.updateStatus(status: true)
                                         CalculateTimeSeriesBrief.getTimeSeriesBrief(complition: {
-                                            
                                             DispatchQueue.main.async {
-                                                self.delegateBrief?.updateBreafChart()
-                                                
+                                                self.delegateBrief?.updateStatus(status: false)
+                                                self.delegateBrief?.updateTable()
                                             }
                                         })
                                     }

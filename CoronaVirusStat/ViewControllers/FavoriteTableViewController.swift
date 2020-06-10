@@ -14,6 +14,15 @@ class FavoriteTableViewController: UITableViewController {
     let realm = try! Realm()
     
     var userSettings: UserSettingsRealm?
+    var isUpdating = false
+    
+    @IBAction func chooseLocationButton(_ sender: Any) {
+        navigation()
+    }
+    
+    @IBAction func refreshButton(_ sender: Any) {
+        getData()
+    }
     
     @IBAction func unwindSegue(segue: UIStoryboardSegue) {
         guard segue.identifier == "closeChooseSegue" else { return }
@@ -23,6 +32,7 @@ class FavoriteTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        GetData.shared.delegateFavCountry = self
         getSettings()
         registerCell()
         setUI()
@@ -41,6 +51,10 @@ class FavoriteTableViewController: UITableViewController {
     private func setUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "MY LOCATION"
+    }
+    
+    private func getData(){
+        GetData.shared.getData()
     }
     
     private func registerCell(){
@@ -63,6 +77,11 @@ class FavoriteTableViewController: UITableViewController {
         }
     }
     
+    private func navigation(){
+        
+        performSegue(withIdentifier: "ChooseLocation", sender: nil)
+    }
+    
     // MARK: - Table view data source
     
     
@@ -75,6 +94,7 @@ class FavoriteTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let newCountry = realm.objects(VirusRealm.self).filter("countryregion = '\(userSettings?.favoriteCountry ?? "")'").first
@@ -88,6 +108,9 @@ class FavoriteTableViewController: UITableViewController {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: BriefTableViewCell.reuseID, for: indexPath) as! BriefTableViewCell
                 cell.setCell(typeOfData: .country, realmData: newCountry)
+                
+                if isUpdating { cell.setLoadTimeSeries() }
+                
                 return cell
             }
         case 1:
@@ -105,10 +128,16 @@ class FavoriteTableViewController: UITableViewController {
     
 }
 
-extension FavoriteTableViewController: UpdateFavCountry {
-    func update() {
+extension FavoriteTableViewController: UpdateCountry {
+    func updateTable() {
         tableView.reloadData()
     }
+    
+    func updateStatus(status: Bool) {
+        isUpdating = status
+    }
+    
+  
     
     
 }

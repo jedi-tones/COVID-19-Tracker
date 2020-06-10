@@ -56,6 +56,30 @@ class CalculateTimeSeriesBrief {
                     print(error.localizedDescription)
                 }
             }
+            
+            //calculate difference for 1 day for brief
+            guard let countTimeSeriesBrief = realm.objects(BriefRealm.self).first?.timesSeries.count else { return }
+            guard let death = realm.objects(BriefRealm.self).first?.death else { return }
+            guard let confirmed = realm.objects(BriefRealm.self).first?.confirmed else { return }
+            guard let recovered = realm.objects(BriefRealm.self).first?.recovered else { return }
+            guard let lastTimeSeries = realm.objects(BriefRealm.self).first?.timesSeries[countTimeSeriesBrief - 2] else { return }
+            
+            let difConfirmed = confirmed - lastTimeSeries.confirmed
+            let difDeath = death - lastTimeSeries.deaths
+            let difRecovered = recovered - lastTimeSeries.recovered
+            
+            do {
+                try realm.write {
+                    realm.create(BriefRealm.self,
+                                 value: ["id": 1,
+                                         "differenceConfirmed": difConfirmed,
+                                         "differenceDeath": difDeath,
+                                         "differenceRecovered": difRecovered],
+                                 update: .modified)
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
         }
         
         //when taskgroup complite do escaping complition

@@ -3,6 +3,7 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,7 +25,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONFIRMED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wk7-bM-Nkw">
                         <rect key="frame" x="16" y="84" width="62.5" height="13"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
-                        <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="textColor" name="grayText"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRz-Hr-cSb">
@@ -48,13 +49,13 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEATH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08e-S0-txp">
                         <rect key="frame" x="16" y="137" width="34.5" height="13"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
-                        <color key="textColor" red="0.26965268780000001" green="0.26965268780000001" blue="0.26965268780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="textColor" name="grayText"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECOVERED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RdS-22-qAQ">
                         <rect key="frame" x="16" y="190" width="64.5" height="13"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
-                        <color key="textColor" red="0.26965268780000001" green="0.26965268780000001" blue="0.26965268780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="textColor" name="grayText"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chw-MG-FyT">
@@ -111,9 +112,17 @@
                 <outlet property="about" destination="TaG-0E-MbR" id="yGr-sN-5hd"/>
                 <outlet property="confirmed" destination="lRz-Hr-cSb" id="kkM-PH-BE5"/>
                 <outlet property="death" destination="LmS-5I-6YT" id="Kkf-Mn-K8f"/>
+                <outlet property="difConfirmedLabel" destination="chw-MG-FyT" id="mmB-96-NHs"/>
+                <outlet property="difDeathLabel" destination="HOh-rz-UAp" id="IfZ-ME-xNA"/>
+                <outlet property="difRecoveredLabel" destination="spb-0M-i3O" id="oS2-oc-ZPF"/>
                 <outlet property="recovered" destination="nDP-nf-cuf" id="71q-G0-iTs"/>
             </connections>
             <point key="canvasLocation" x="91.875" y="-123.06338028169014"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="grayText">
+            <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

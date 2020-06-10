@@ -13,6 +13,12 @@ class BriefTableViewController: UITableViewController {
     
     let jsonManager = JsonManager()
     let realm = try! Realm()
+    var isUpdating = false
+    
+    @IBAction func updateButton(_ sender: Any) {
+        getBreaf()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +26,9 @@ class BriefTableViewController: UITableViewController {
         registerCell()
         setUI()
         getBreaf()
-        
         GetData.shared.delegateBrief = self
     }
+    
     
     private func registerCell(){
         tableView.register(UINib(nibName: "BriefTableViewCell", bundle: nil), forCellReuseIdentifier: BriefTableViewCell.reuseID)
@@ -49,6 +55,9 @@ class BriefTableViewController: UITableViewController {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: BriefTableViewCell.reuseID, for: indexPath) as! BriefTableViewCell
             cell.setCell(typeOfData: .brief, realmData: nil)
+            if isUpdating {
+                cell.setLoadTimeSeries()
+            }
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: PieChartBriefCell.reuseID, for: indexPath) as! PieChartBriefCell
@@ -70,9 +79,14 @@ class BriefTableViewController: UITableViewController {
     }
 }
 
-extension BriefTableViewController: UpdateBreaf {
-    func updateBreafChart() {
+extension BriefTableViewController: UpdateCountry {
+    func updateTable() {
         tableView.reloadData()
-        print(#function)
     }
+    
+    func updateStatus(status: Bool) {
+        isUpdating = status
+    }
+    
+   
 }

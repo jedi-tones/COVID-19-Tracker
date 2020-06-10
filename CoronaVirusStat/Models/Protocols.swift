@@ -8,23 +8,15 @@
 
 import Foundation
 
-//briefVC
-protocol UpdateBreaf {
-    func updateBreafChart()
-}
 
 //countryVC
-protocol SortDelegate {
+protocol SortDelegate: class {
     func sorting(typeOfFilter: TypeOfFilter, ascending: Bool)
 }
 
-protocol UpdateCountry {
+protocol UpdateCountry: class {
     func updateTable()
     func updateStatus(status: Bool)
 }
 
-//favCountry
 
-protocol UpdateFavCountry: class {
-    func update()
-}

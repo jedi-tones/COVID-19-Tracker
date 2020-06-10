@@ -107,9 +107,14 @@ class ChartUI {
         // chartView.holeRadiusPercent = 0.58
         //chartView.backgroundColor = .blue
        // chartView.drawHoleEnabled = false
-        chartView.extraBottomOffset = 50
-        chartView.extraTopOffset = 170
-        
+        if UIDevice.current.userInterfaceIdiom == .phone && max(UIScreen.main.bounds.width,
+                                                                UIScreen.main.bounds.height) == 568.0 {
+            chartView.extraBottomOffset = 20
+            chartView.extraTopOffset = 180
+        } else {
+            chartView.extraBottomOffset = 40
+            chartView.extraTopOffset = 180
+        }
         chartView.usePercentValuesEnabled = true
         chartView.maxAngle = 180
         chartView.rotationAngle = 180
@@ -129,7 +134,7 @@ class ChartUI {
         l.orientation = .vertical
         l.xEntrySpace = 7
         l.yEntrySpace = 0
-        l.yOffset =  -170
+        l.yOffset =  -180
         
         // entry label styling
          chartView.entryLabelColor = .label
