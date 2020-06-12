@@ -44,6 +44,7 @@ class MapViewController: UIViewController {
                     newAnnotation.title = " \(country.countryregion.uppercased()) \(city.province.uppercased())"
                 }
                 
+                
                 newAnnotation.subtitle = """
                                             \(city.confirmed)
                                             \(city.deaths)
