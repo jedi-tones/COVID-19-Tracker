@@ -46,9 +46,9 @@ class MapViewController: UIViewController {
                 
                 
                 newAnnotation.subtitle = """
-                                            \(city.confirmed)
-                                            \(city.deaths)
-                                            \(city.recovered)
+                                        \(city.confirmed.formattedWithSeparator)
+                                        \(city.deaths.formattedWithSeparator)
+                                        \(city.recovered.formattedWithSeparator)
                                         """
                 
                 
@@ -81,14 +81,15 @@ extension MapViewController: MKMapViewDelegate {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotaionIdentifier)
             annotationView?.canShowCallout = true
             
-            let detailAnnotationView = DetailAnnotaion()
-            detailAnnotationView.textAnnotation.text = annotation.subtitle!
             
-            annotationView?.detailCalloutAccessoryView = detailAnnotationView
             annotationView?.pinTintColor = UIColor(named: "deathStroke2") ?? .red
             
         }
         
+        let detailAnnotationView = DetailAnnotaion()
+        detailAnnotationView.textAnnotation.text = annotation.subtitle!
+        
+        annotationView?.detailCalloutAccessoryView = detailAnnotationView
         //annotationView?.image = UIImage(named: "pinVirus")
         return annotationView
     }
