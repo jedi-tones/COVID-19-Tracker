@@ -71,7 +71,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="201-WB-deo">
-                                <rect key="frame" x="0.0" y="59" width="320" height="509"/>
+                                <rect key="frame" x="0.0" y="58.5" width="320" height="510"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
@@ -126,10 +126,20 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="MAP" image="map" catalog="system" selectedImage="map" id="tKT-s5-D9y"/>
                     <connections>
+                        <outlet property="detailView" destination="tWP-hK-LYd" id="S0p-gh-tOW"/>
                         <outlet property="mapView" destination="fWs-CZ-bLO" id="iM2-AK-cKl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1E-cV-TBW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWP-hK-LYd" customClass="DetailAnnotaion" customModule="CoronaVirusStat" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="230" height="70"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="230" id="2Rl-U1-c5I"/>
+                        <constraint firstAttribute="height" constant="70" id="JI9-jW-EQ3"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="pOh-nl-tvV"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="7048.125" y="969.71830985915494"/>
         </scene>
@@ -362,7 +372,7 @@
         <image name="shield" catalog="system" width="128" height="121"/>
         <image name="text.justify" catalog="system" width="128" height="100"/>
         <namedColor name="confirmStroke2">
-            <color red="0.48627450980392156" green="0.33333333333333331" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.48600000143051147" green="0.33300000429153442" blue="0.83899998664855957" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

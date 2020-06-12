@@ -10,6 +10,8 @@
 		0E210F7CD957E664F36024E8 /* Pods_CoronaVirusStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD946EE6538BA84F7B5ACB11 /* Pods_CoronaVirusStat.framework */; };
 		FB1A43BC248D2DFB0078F144 /* NeedChooseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1A43BA248D2DFB0078F144 /* NeedChooseTableViewCell.xib */; };
 		FB1A43C2248D2E700078F144 /* ChooseCountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1A43C0248D2E700078F144 /* ChooseCountryTableViewCell.xib */; };
+		FB1A43CB24924A680078F144 /* DetailAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1A43CA24924A680078F144 /* DetailAnnotation.xib */; };
+		FB1A43CD2492573E0078F144 /* DetailAnnotaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A43CC2492573E0078F144 /* DetailAnnotaion.swift */; };
 		FB465A4B2489367D0071D8CF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB465A4A2489367D0071D8CF /* LocationManager.swift */; };
 		FB46C285242C7EC700FABEC7 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */; };
 		FB46C286242C7EC700FABEC7 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */; };
@@ -64,6 +66,8 @@
 		BF700D892C2BEDAA01ABE916 /* Pods-CoronaVirusStat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoronaVirusStat.debug.xcconfig"; path = "Target Support Files/Pods-CoronaVirusStat/Pods-CoronaVirusStat.debug.xcconfig"; sourceTree = "<group>"; };
 		FB1A43BA248D2DFB0078F144 /* NeedChooseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NeedChooseTableViewCell.xib; sourceTree = "<group>"; };
 		FB1A43C0248D2E700078F144 /* ChooseCountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseCountryTableViewCell.xib; sourceTree = "<group>"; };
+		FB1A43CA24924A680078F144 /* DetailAnnotation.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailAnnotation.xib; sourceTree = "<group>"; };
+		FB1A43CC2492573E0078F144 /* DetailAnnotaion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAnnotaion.swift; sourceTree = "<group>"; };
 		FB465A4A2489367D0071D8CF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 				FB74575C2426ACDF0098E670 /* CountryViewController.swift */,
 				FB74575E2426ACE80098E670 /* CityViewController.swift */,
 				FB74574A242673B80098E670 /* MapViewController.swift */,
+				FB1A43CA24924A680078F144 /* DetailAnnotation.xib */,
+				FB1A43CC2492573E0078F144 /* DetailAnnotaion.swift */,
 				FBA255BC242BE9B200317E03 /* SettingsViewController.swift */,
 				FBA255BE242BEC4400317E03 /* Cell */,
 			);
@@ -372,6 +378,7 @@
 				FB825CA524631F45003D066A /* LineChartBriefCell.xib in Resources */,
 				FB74573924266CA70098E670 /* LaunchScreen.storyboard in Resources */,
 				FB74573624266CA70098E670 /* Assets.xcassets in Resources */,
+				FB1A43CB24924A680078F144 /* DetailAnnotation.xib in Resources */,
 				FB74573124266CA60098E670 /* Main.storyboard in Resources */,
 				FB49800B2433AFC90080B4D5 /* FirstCountryTableViewCell.xib in Resources */,
 				FB825CA124631F20003D066A /* PieChartBriefCell.xib in Resources */,
@@ -450,6 +457,7 @@
 				FB74575724268E030098E670 /* VirusRealm.swift in Sources */,
 				FB74573424266CA60098E670 /* CoronaVirusStat.xcdatamodeld in Sources */,
 				FB802A4E243FA1FF001C4C57 /* BriefTableViewController.swift in Sources */,
+				FB1A43CD2492573E0078F144 /* DetailAnnotaion.swift in Sources */,
 				FB745744242673630098E670 /* CountryTableViewCell.swift in Sources */,
 				FB7457532426786F0098E670 /* AlertController.swift in Sources */,
 				FB7457502426750B0098E670 /* JsonManager.swift in Sources */,

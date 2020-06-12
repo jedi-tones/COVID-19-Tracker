@@ -14,9 +14,13 @@ class MapViewController: UIViewController {
     
     @IBOutlet var mapView: MKMapView!
     
+    @IBOutlet var detailView: DetailAnnotaion!
+    
     let realm = try! Realm()
     let annotaionIdentifier = "annotaionIdentifier"
     var annotaions:[MKPointAnnotation] = []
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +38,18 @@ class MapViewController: UIViewController {
                 let newAnnotation = MKPointAnnotation()
                 let confirmed = city.confirmed
                 
-                newAnnotation.title = " \(country.countryregion) \(city.province )"
-                newAnnotation.subtitle = "Confirmed: \(city.confirmed), death: \(city.deaths), recovered: \(city.recovered)"
+                if city.province == "No details information"  {
+                    newAnnotation.title = " \(country.countryregion.uppercased())"
+                } else {
+                    newAnnotation.title = " \(country.countryregion.uppercased()) \(city.province.uppercased())"
+                }
+                
+                newAnnotation.subtitle = """
+                                            \(city.confirmed)
+                                            \(city.deaths)
+                                            \(city.recovered)
+                                        """
+                
                 
                 guard let lat = city.location.first?.lat else { return }
                 guard let lng = city.location.first?.lng else { return }
@@ -44,17 +58,6 @@ class MapViewController: UIViewController {
                                                            longitude: CLLocationDegrees(lng))
                 newAnnotation.coordinate = newCoordinate
                 
-                //                if confirmed == 0 {
-                //                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( 0 ))
-                //                    mapView?.addOverlay(overlay)
-                //                } else if confirmed < 1000 {
-                //                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( confirmed * 150 ))
-                //                    mapView?.addOverlay(overlay)
-                //                } else if confirmed < 10000 {
-                //                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( confirmed * 40 ))
-                //                    mapView?.addOverlay(overlay)
-                //                } else {
-                //                    let overlay =  MKCircle(center: newAnnotation.coordinate, radius: Double( confirmed * 20 ))
                 let overlay = MKCircle(center: newAnnotation.coordinate, radius: Double(confirmed))
                
                 mapView?.addOverlay(overlay)
@@ -76,7 +79,16 @@ extension MapViewController: MKMapViewDelegate {
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotaionIdentifier)
             annotationView?.canShowCallout = true
+            
+            let detailAnnotationView = DetailAnnotaion()
+            detailAnnotationView.textAnnotation.text = annotation.subtitle!
+            
+            annotationView?.detailCalloutAccessoryView = detailAnnotationView
+            annotationView?.pinTintColor = UIColor(named: "deathStroke2") ?? .red
+            
         }
+        
+        //annotationView?.image = UIImage(named: "pinVirus")
         return annotationView
     }
     
@@ -86,6 +98,7 @@ extension MapViewController: MKMapViewDelegate {
         renderer.fillColor = UIColor.red.withAlphaComponent(0.3)
         renderer.strokeColor = UIColor.red
         renderer.lineWidth = 1
+        
         
         return renderer
     }
