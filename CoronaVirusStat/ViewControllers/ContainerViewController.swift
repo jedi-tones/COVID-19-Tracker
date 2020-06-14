@@ -22,10 +22,37 @@ class ContainerViewController: UIViewController {
         
         configiureTabBarController()
         configureMenuController()
-        
+        gesturesRecognizer()
     }
     
     
+    private func gesturesRecognizer(){
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeLeft.direction = .left
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeRight.direction = .right
+        
+        view.addGestureRecognizer(swipeLeft)
+        view.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
+        switch gesture.direction {
+        case UISwipeGestureRecognizer.Direction.right:
+            print("right")
+            if !isShow {
+                toggleMenu()
+            }
+            
+        case UISwipeGestureRecognizer.Direction.left:
+            print("left")
+            if isShow {
+                toggleMenu()
+            }
+        default:
+            return
+        }
+    }
     // MARK: - configiureTabBarController
     func configiureTabBarController(){
         let firstController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainTabBarController") as! UITabBarController
