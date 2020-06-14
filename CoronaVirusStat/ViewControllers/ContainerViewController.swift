@@ -24,6 +24,8 @@ class ContainerViewController: UIViewController {
         configureMenuController()
         
     }
+    
+    
     // MARK: - configiureTabBarController
     func configiureTabBarController(){
         let firstController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainTabBarController") as! UITabBarController
@@ -126,7 +128,7 @@ extension ContainerViewController: MenuDelegate {
     }
     
     func toggleMenu() {
-        print("pressed")
+       
         if isShow {
             UIView.animate(withDuration: 0.3,
                            delay: 0,
