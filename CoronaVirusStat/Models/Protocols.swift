@@ -19,4 +19,6 @@ protocol UpdateCountry: class {
     func updateStatus(status: Bool)
 }
 
-
+protocol MenuDelegate: class {
+    func toggleMenu()
+}

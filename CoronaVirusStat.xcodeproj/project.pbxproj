@@ -13,6 +13,10 @@
 		FB1A43CB24924A680078F144 /* DetailAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1A43CA24924A680078F144 /* DetailAnnotation.xib */; };
 		FB1A43CD2492573E0078F144 /* DetailAnnotaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A43CC2492573E0078F144 /* DetailAnnotaion.swift */; };
 		FB1A43D024950AE40078F144 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A43CF24950AE40078F144 /* MenuViewController.swift */; };
+		FB1A43D3249631350078F144 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A43D1249631350078F144 /* MenuTableViewCell.swift */; };
+		FB1A43D4249631350078F144 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1A43D2249631350078F144 /* MenuTableViewCell.xib */; };
+		FB1A43D72496338D0078F144 /* MenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A43D62496338D0078F144 /* MenuList.swift */; };
+		FB1A43D9249650280078F144 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A43D8249650280078F144 /* ContainerViewController.swift */; };
 		FB465A4B2489367D0071D8CF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB465A4A2489367D0071D8CF /* LocationManager.swift */; };
 		FB46C285242C7EC700FABEC7 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */; };
 		FB46C286242C7EC700FABEC7 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */; };
@@ -70,6 +74,10 @@
 		FB1A43CA24924A680078F144 /* DetailAnnotation.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailAnnotation.xib; sourceTree = "<group>"; };
 		FB1A43CC2492573E0078F144 /* DetailAnnotaion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAnnotaion.swift; sourceTree = "<group>"; };
 		FB1A43CF24950AE40078F144 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		FB1A43D1249631350078F144 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		FB1A43D2249631350078F144 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		FB1A43D62496338D0078F144 /* MenuList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuList.swift; sourceTree = "<group>"; };
+		FB1A43D8249650280078F144 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		FB465A4A2489367D0071D8CF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FB46C283242C7EC700FABEC7 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		FB46C284242C7EC700FABEC7 /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
@@ -159,6 +167,15 @@
 			path = MapViewController;
 			sourceTree = "<group>";
 		};
+		FB1A43D52496313E0078F144 /* MenuTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FB1A43D1249631350078F144 /* MenuTableViewCell.swift */,
+				FB1A43D2249631350078F144 /* MenuTableViewCell.xib */,
+			);
+			path = MenuTableViewCell;
+			sourceTree = "<group>";
+		};
 		FB74571D24266CA60098E670 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +212,7 @@
 		FB745740242670910098E670 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FB1A43D8249650280078F144 /* ContainerViewController.swift */,
 				FB1A43CF24950AE40078F144 /* MenuViewController.swift */,
 				FB802A4D243FA1FF001C4C57 /* BriefTableViewController.swift */,
 				FBEE835D246DD9C1001CA080 /* FavoriteTableViewController.swift */,
@@ -221,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				FB74574C242673D40098E670 /* Virus.swift */,
+				FB1A43D62496338D0078F144 /* MenuList.swift */,
 				FB74575624268E030098E670 /* VirusRealm.swift */,
 				FB74575924269AEB0098E670 /* VirusDataLink.swift */,
 				FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */,
@@ -286,6 +305,7 @@
 		FBA255BE242BEC4400317E03 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				FB1A43D52496313E0078F144 /* MenuTableViewCell */,
 				FB825CA7246329FE003D066A /* BriefTableView */,
 				FBF428DE2481056200603029 /* FavoriteTableView */,
 				FBEE8361246DF701001CA080 /* ChooseLocationTableView */,
@@ -390,6 +410,7 @@
 				FB74573924266CA70098E670 /* LaunchScreen.storyboard in Resources */,
 				FB74573624266CA70098E670 /* Assets.xcassets in Resources */,
 				FB1A43CB24924A680078F144 /* DetailAnnotation.xib in Resources */,
+				FB1A43D4249631350078F144 /* MenuTableViewCell.xib in Resources */,
 				FB74573124266CA60098E670 /* Main.storyboard in Resources */,
 				FB49800B2433AFC90080B4D5 /* FirstCountryTableViewCell.xib in Resources */,
 				FB825CA124631F20003D066A /* PieChartBriefCell.xib in Resources */,
@@ -448,6 +469,7 @@
 			files = (
 				FBFAD18B244610A100F054E8 /* ChartUI.swift in Sources */,
 				FB49800324321F980080B4D5 /* Statistic.swift in Sources */,
+				FB1A43D72496338D0078F144 /* MenuList.swift in Sources */,
 				FB754AF3243A6081002C7BD4 /* TypeOfFilter.swift in Sources */,
 				FB9B860624366A4E0076922E /* CalculateTimeSeriesBrief.swift in Sources */,
 				FBF428DC2481055700603029 /* NeedChooseTableViewCell.swift in Sources */,
@@ -461,6 +483,7 @@
 				FBB5E64A246ADE790056BF05 /* FormatterExt.swift in Sources */,
 				FBED93F22455E5630076EC8F /* GetData.swift in Sources */,
 				FB802A47243F9DBC001C4C57 /* BriefTableViewCell.swift in Sources */,
+				FB1A43D9249650280078F144 /* ContainerViewController.swift in Sources */,
 				FB825C9D245DE167003D066A /* Protocols.swift in Sources */,
 				FB74575D2426ACDF0098E670 /* CountryViewController.swift in Sources */,
 				FB46C288242E75F200FABEC7 /* ConverterDate.swift in Sources */,
@@ -480,6 +503,7 @@
 				FB74575A24269AEB0098E670 /* VirusDataLink.swift in Sources */,
 				FB74574B242673B80098E670 /* MapViewController.swift in Sources */,
 				FB46C285242C7EC700FABEC7 /* CityTableViewCell.swift in Sources */,
+				FB1A43D3249631350078F144 /* MenuTableViewCell.swift in Sources */,
 				FBEE835E246DD9C1001CA080 /* FavoriteTableViewController.swift in Sources */,
 				FB74574D242673D40098E670 /* Virus.swift in Sources */,
 				FB74575F2426ACE80098E670 /* CityViewController.swift in Sources */,
