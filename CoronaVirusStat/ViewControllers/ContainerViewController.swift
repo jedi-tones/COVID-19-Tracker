@@ -11,7 +11,10 @@ import UIKit
 class ContainerViewController: UIViewController {
     
     var controller: UITabBarController!
-    var menuVC: UIViewController!
+    var menuVC: MenuViewController!
+    var informationVC: InfoViewController?
+    var contavtUsVc: ContactsViewController?
+    
     var isShow = false
     
     override func viewDidLoad() {
@@ -21,7 +24,7 @@ class ContainerViewController: UIViewController {
         configureMenuController()
         
     }
-    
+    // MARK: - configiureTabBarController
     func configiureTabBarController(){
         let firstController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainTabBarController") as! UITabBarController
         
@@ -36,17 +39,92 @@ class ContainerViewController: UIViewController {
         controller.didMove(toParent: self)
     }
     
+    // MARK: - configureMenuController
     func configureMenuController(){
         if menuVC == nil {
-            menuVC = storyboard?.instantiateViewController(identifier: "MenuViewController") as! MenuViewController
+            menuVC = storyboard?.instantiateViewController(identifier: "MenuViewController") as? MenuViewController
+            
             addChild(menuVC)
             view.insertSubview(menuVC.view, at: 0)
             menuVC.didMove(toParent: self)
+            menuVC.delegate = self
         }
+    }
+    
+    // MARK: - configureInformationViewController
+    func configureInformationViewController() {
+        
+        if informationVC == nil {
+            informationVC = storyboard?.instantiateViewController(identifier: "InformationVC") as? InfoViewController
+            
+            informationVC?.delegate = self
+            
+            guard let informationViewController = informationVC else { return }
+            guard let informationView = informationVC?.view else { return }
+            
+            controller.addChild(informationViewController)
+            controller.view.addSubview(informationView)
+            informationViewController.didMove(toParent: controller)
+            
+        }
+    }
+    
+    // MARK: - configureContactUsViewController
+    func configureContactUsViewController() {
+        
+        if contavtUsVc == nil {
+            contavtUsVc = storyboard?.instantiateViewController(identifier: "ContactUsVC") as? ContactsViewController
+            
+            contavtUsVc?.delegate = self
+            
+            guard let contactViewController = contavtUsVc else { return }
+            guard let contactView = contavtUsVc?.view else { return }
+            
+            controller.addChild(contactViewController)
+            controller.view.addSubview(contactView)
+            contactViewController.didMove(toParent: controller)
+            
+        }
+    }
+    
+    // MARK: - removeChild
+    func removeChild(){
+        if informationVC != nil {
+            informationVC?.willMove(toParent: nil)
+            informationVC?.view.removeFromSuperview()
+            informationVC?.removeFromParent()
+            informationVC = nil
+        }
+        if contavtUsVc != nil {
+            contavtUsVc?.willMove(toParent: nil)
+            contavtUsVc?.view.removeFromSuperview()
+            contavtUsVc?.removeFromParent()
+            contavtUsVc = nil
+        }
+        
     }
 }
 
+// MARK: - MenuDelegate
 extension ContainerViewController: MenuDelegate {
+    func menuPressed(menu: MenuList) {
+        switch menu {
+        case MenuList.brief:
+            removeChild()
+            toggleMenu()
+            
+        case MenuList.information:
+            removeChild()
+            configureInformationViewController()
+            toggleMenu()
+            
+        default:
+            removeChild()
+            configureContactUsViewController()
+            toggleMenu()
+        }
+    }
+    
     func toggleMenu() {
         print("pressed")
         if isShow {

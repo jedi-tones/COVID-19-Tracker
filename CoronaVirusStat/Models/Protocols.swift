@@ -21,4 +21,5 @@ protocol UpdateCountry: class {
 
 protocol MenuDelegate: class {
     func toggleMenu()
+    func menuPressed(menu: MenuList)
 }

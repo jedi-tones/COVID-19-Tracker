@@ -9,15 +9,21 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setUI()
+    
+    var delegate: MenuDelegate!
+    
+    @IBAction func pressMenuButton(_ sender: Any) {
+        delegate.toggleMenu()
+       
     }
     
-    private func setUI() {
-           
-           
-       }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    private func showMenu() {
+        
+    
+    }
 }

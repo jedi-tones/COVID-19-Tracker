@@ -90,6 +90,4 @@ extension BriefTableViewController: UpdateCountry {
     func updateStatus(status: Bool) {
         isUpdating = status
     }
-    
-    
 }
