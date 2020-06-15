@@ -14,16 +14,16 @@ class InfoViewController: UIViewController {
     
     @IBAction func pressMenuButton(_ sender: Any) {
         delegate.toggleMenu()
-       
     }
     
+    @IBAction func jhuCSSEPressed(_ sender: Any) {
+        
+        let settingsUrl = NSURL(string:"https://github.com/CSSEGISandData/COVID-19/blob/master/README.md")! as URL
+        UIApplication.shared.open(settingsUrl, options: [ : ], completionHandler: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
-    
-    private func showMenu() {
-        
-    
-    }
+
 }

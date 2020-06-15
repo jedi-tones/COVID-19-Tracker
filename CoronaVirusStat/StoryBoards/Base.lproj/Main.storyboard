@@ -67,11 +67,11 @@
             <objects>
                 <viewController id="I0h-fb-aZv" customClass="CityViewController" customModule="CoronaVirusStat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t3s-jw-3Kv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="201-WB-deo">
-                                <rect key="frame" x="0.0" y="58" width="320" height="511"/>
+                                <rect key="frame" x="0.0" y="56" width="320" height="493"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
@@ -329,11 +329,11 @@
             </objects>
             <point key="canvasLocation" x="2625" y="1667.9577464788733"/>
         </scene>
-        <!--паппп-->
+        <!--information-->
         <scene sceneID="RaZ-Be-H3C">
             <objects>
-                <viewController storyboardIdentifier="InformationVC" modalPresentationStyle="fullScreen" id="7r3-hP-ZFo" customClass="InfoViewController" customModule="CoronaVirusStat" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fxW-3W-Lo7">
+                <viewController storyboardIdentifier="InformationVC" title="information" modalPresentationStyle="fullScreen" id="7r3-hP-ZFo" customClass="InfoViewController" customModule="CoronaVirusStat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" tag="-2" contentMode="scaleToFill" id="fxW-3W-Lo7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -350,12 +350,69 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data source: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtj-KQ-wqv">
+                                <rect key="frame" x="16" y="156.5" width="108" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="lhe-cS-iq6">
+                                <rect key="frame" x="16" y="181" width="288" height="47.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saX-03-Tut">
+                                        <rect key="frame" x="0.0" y="0.0" width="198" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <state key="normal" title="COVID-19 Data Repository">
+                                            <color key="titleColor" name="confirmStroke2"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="jhuCSSEPressed:" destination="7r3-hP-ZFo" eventType="touchUpInside" id="Ecy-xp-DGm"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by CSSE at Johns Hopkins University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgp-Gd-Ocm">
+                                        <rect key="frame" x="0.0" y="27" width="276.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Licenses: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRE-Gt-Sdb">
+                                <rect key="frame" x="16" y="240.5" width="82" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="pdP-mC-gXm">
+                                <rect key="frame" x="16" y="265" width="292.5" height="81.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgA-QI-s6z">
+                                        <rect key="frame" x="0.0" y="0.0" width="292.5" height="81.5"/>
+                                        <string key="text">Software distributed under the License
+is distributed on an "AS IS"
+BASIS, WITHOUT WARRANTIES OR 
+CONDITIONS OF ANY KIND</string>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="D7b-rK-TmY" firstAttribute="top" secondItem="nnI-qw-JbE" secondAttribute="top" constant="42" id="27h-ya-YfX"/>
                             <constraint firstItem="nnI-qw-JbE" firstAttribute="trailing" secondItem="D7b-rK-TmY" secondAttribute="trailing" id="3jr-XJ-WRP"/>
+                            <constraint firstItem="iRE-Gt-Sdb" firstAttribute="top" secondItem="lhe-cS-iq6" secondAttribute="bottom" constant="12" id="5wU-W8-gaa"/>
+                            <constraint firstItem="nnI-qw-JbE" firstAttribute="trailing" secondItem="lhe-cS-iq6" secondAttribute="trailing" constant="16" id="Fcd-id-byv"/>
+                            <constraint firstItem="wtj-KQ-wqv" firstAttribute="top" secondItem="D7b-rK-TmY" secondAttribute="bottom" constant="23.5" id="X24-l2-doq"/>
                             <constraint firstItem="D7b-rK-TmY" firstAttribute="leading" secondItem="nnI-qw-JbE" secondAttribute="leading" constant="12" id="fSg-mM-Wlg"/>
+                            <constraint firstItem="pdP-mC-gXm" firstAttribute="top" secondItem="iRE-Gt-Sdb" secondAttribute="bottom" constant="4" id="jKF-19-JfS"/>
+                            <constraint firstItem="iRE-Gt-Sdb" firstAttribute="leading" secondItem="nnI-qw-JbE" secondAttribute="leading" constant="16" id="oo1-qV-6Ij"/>
+                            <constraint firstItem="pdP-mC-gXm" firstAttribute="leading" secondItem="nnI-qw-JbE" secondAttribute="leading" constant="16" id="qi7-tW-rXM"/>
+                            <constraint firstItem="wtj-KQ-wqv" firstAttribute="leading" secondItem="nnI-qw-JbE" secondAttribute="leading" constant="16" id="sQP-b2-f1k"/>
+                            <constraint firstItem="lhe-cS-iq6" firstAttribute="leading" secondItem="nnI-qw-JbE" secondAttribute="leading" constant="16" id="u9a-wy-Cnl"/>
+                            <constraint firstItem="lhe-cS-iq6" firstAttribute="top" secondItem="wtj-KQ-wqv" secondAttribute="bottom" constant="4" id="vse-sw-lrH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nnI-qw-JbE"/>
                     </view>
@@ -363,7 +420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Sx-2m-ac0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3399" y="1668"/>
+            <point key="canvasLocation" x="3397.5" y="1667.9577464788733"/>
         </scene>
         <!--Contacts View Controller-->
         <scene sceneID="0td-tY-ch0">
@@ -509,7 +566,7 @@
         <image name="shield" catalog="system" width="128" height="121"/>
         <image name="text.justify" catalog="system" width="128" height="100"/>
         <namedColor name="MenuColor">
-            <color red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.97299998998641968" green="0.97299998998641968" blue="0.97299998998641968" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="confirmStroke2">
             <color red="0.48600000143051147" green="0.33300000429153442" blue="0.83899998664855957" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

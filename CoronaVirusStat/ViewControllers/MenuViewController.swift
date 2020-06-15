@@ -61,7 +61,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            delegate.menuPressed(menu: MenuList.brief)
+            delegate.menuPressed(menu: MenuList.statistics)
         case 1:
             delegate.menuPressed(menu: MenuList.information)
         default:

@@ -138,7 +138,7 @@ class ContainerViewController: UIViewController {
 extension ContainerViewController: MenuDelegate {
     func menuPressed(menu: MenuList) {
         switch menu {
-        case MenuList.brief:
+        case MenuList.statistics:
             removeChild()
             toggleMenu()
             

@@ -10,7 +10,7 @@ import Foundation
 
 enum MenuList: String, CaseIterable {
     
-    case brief = "BRIEF"
+    case statistics = "STATISTICS"
     case information = "INFORMATION"
     case contactUs = "CONTACT US"
 }
