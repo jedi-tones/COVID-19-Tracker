@@ -16,6 +16,15 @@ class ContactsViewController: UIViewController {
         delegate.menuPressed(menu: MenuList.contactUs)
     }
     
+    @IBAction func telegramPressed(_ sender: Any) {
+        
+        OpenLinks.shared.open(service: .telegram)
+    }
+    
+    @IBAction func mailPressed(_ sender: Any) {
+        
+        OpenLinks.shared.open(service: .mail)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

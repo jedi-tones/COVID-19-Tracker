@@ -15,6 +15,7 @@ class BriefTableViewController: UITableViewController {
     let realm = try! Realm()
     var isUpdating = false
     var delegate: MenuDelegate!
+    let myRefreshControl = UIRefreshControl()
     
     @IBAction func updateButton(_ sender: Any) {
         getBreaf()
@@ -31,6 +32,12 @@ class BriefTableViewController: UITableViewController {
         getBreaf()
     }
     
+    
+    @objc func refresh(sender: UIRefreshControl) {
+        getBreaf()
+        
+    }
+    
     //MARK:  registerCell
     private func registerCell(){
         tableView.register(UINib(nibName: "BriefTableViewCell", bundle: nil), forCellReuseIdentifier: BriefTableViewCell.reuseID)
@@ -41,6 +48,10 @@ class BriefTableViewController: UITableViewController {
     private func setUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "COVID-19"
+        
+        myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        tableView.refreshControl = myRefreshControl
+        
     }
     
     //MARK:  getBreaf
@@ -85,9 +96,13 @@ class BriefTableViewController: UITableViewController {
 extension BriefTableViewController: UpdateCountry {
     func updateTable() {
         tableView.reloadData()
+        
     }
     
     func updateStatus(status: Bool) {
         isUpdating = status
+        if !isUpdating {
+        myRefreshControl.endRefreshing()
+        }
     }
 }

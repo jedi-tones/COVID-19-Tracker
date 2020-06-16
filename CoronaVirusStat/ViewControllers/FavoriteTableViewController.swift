@@ -15,6 +15,7 @@ class FavoriteTableViewController: UITableViewController {
     
     var userSettings: UserSettingsRealm?
     var isUpdating = false
+    let myRefreshControl = UIRefreshControl()
     
     @IBAction func chooseLocationButton(_ sender: Any) {
         navigation()
@@ -51,6 +52,13 @@ class FavoriteTableViewController: UITableViewController {
     private func setUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "MY LOCATION"
+        
+        myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        tableView.refreshControl = myRefreshControl
+    }
+    
+    @objc private func refresh(sender: UIRefreshControl){
+        getData()
     }
     
     private func getData(){
@@ -135,6 +143,9 @@ extension FavoriteTableViewController: UpdateCountry {
     
     func updateStatus(status: Bool) {
         isUpdating = status
+        if !isUpdating {
+            myRefreshControl.endRefreshing()
+        }
     }
     
   

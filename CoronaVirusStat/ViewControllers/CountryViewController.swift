@@ -34,6 +34,8 @@ class CountryViewController: UIViewController {
     private var isAscending = false
     private var isUpdatingTimeSeries = false
     
+    private var myRefreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,10 +65,18 @@ class CountryViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.title = "ALL COUNTRY"
         
-        
         definesPresentationContext = true
         
+        
+        myRefreshControl.addTarget(self, action: #selector(refresh(selector:)), for: .valueChanged)
+        countryTableView.refreshControl = myRefreshControl
+        
         //   countryTableView.tableHeaderView = searchController.searchBar
+    }
+    
+    @objc private func refresh(selector: UIRefreshControl){
+        GetData.shared.getData()
+        selector.endRefreshing()
     }
     
     private func registerCell(){
@@ -202,6 +212,7 @@ extension CountryViewController: SortDelegate {
 extension CountryViewController: UpdateCountry {
     func updateStatus(status: Bool) {
         isUpdatingTimeSeries = status
+        
     }
     
     func updateTable() {

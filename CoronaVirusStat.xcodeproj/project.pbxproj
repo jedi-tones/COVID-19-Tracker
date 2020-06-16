@@ -26,6 +26,8 @@
 		FB49800524323AF30080B4D5 /* DifferenceTimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */; };
 		FB49800A2433AFC90080B4D5 /* HeaderCountryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4980082433AFC90080B4D5 /* HeaderCountryTableView.swift */; };
 		FB49800B2433AFC90080B4D5 /* FirstCountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB4980092433AFC90080B4D5 /* FirstCountryTableViewCell.xib */; };
+		FB62E9652498E24A00BFE6BE /* OpenLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB62E9642498E24A00BFE6BE /* OpenLinks.swift */; };
+		FB62E9672498E31E00BFE6BE /* ContactServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB62E9662498E31E00BFE6BE /* ContactServices.swift */; };
 		FB74572A24266CA60098E670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74572924266CA60098E670 /* AppDelegate.swift */; };
 		FB74572C24266CA60098E670 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74572B24266CA60098E670 /* SceneDelegate.swift */; };
 		FB74573124266CA60098E670 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB74572F24266CA60098E670 /* Main.storyboard */; };
@@ -88,6 +90,8 @@
 		FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceTimeSeries.swift; sourceTree = "<group>"; };
 		FB4980082433AFC90080B4D5 /* HeaderCountryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCountryTableView.swift; sourceTree = "<group>"; };
 		FB4980092433AFC90080B4D5 /* FirstCountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstCountryTableViewCell.xib; sourceTree = "<group>"; };
+		FB62E9642498E24A00BFE6BE /* OpenLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLinks.swift; sourceTree = "<group>"; };
+		FB62E9662498E31E00BFE6BE /* ContactServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactServices.swift; sourceTree = "<group>"; };
 		FB74572624266CA60098E670 /* CoronaVirusStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoronaVirusStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB74572924266CA60098E670 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB74572B24266CA60098E670 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -242,14 +246,14 @@
 			isa = PBXGroup;
 			children = (
 				FB74574C242673D40098E670 /* Virus.swift */,
-				FB1A43D62496338D0078F144 /* MenuList.swift */,
 				FB74575624268E030098E670 /* VirusRealm.swift */,
 				FB74575924269AEB0098E670 /* VirusDataLink.swift */,
 				FB49800424323AF30080B4D5 /* DifferenceTimeSeries.swift */,
+				FB62E9662498E31E00BFE6BE /* ContactServices.swift */,
+				FB1A43D62496338D0078F144 /* MenuList.swift */,
 				FB754AF2243A6081002C7BD4 /* TypeOfFilter.swift */,
 				FB825CA9246477F6003D066A /* TypeOfChartData.swift */,
 				FB825C9C245DE167003D066A /* Protocols.swift */,
-				FBB5E649246ADE790056BF05 /* FormatterExt.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -268,6 +272,8 @@
 				FB49800224321F980080B4D5 /* Statistic.swift */,
 				FB9B860524366A4E0076922E /* CalculateTimeSeriesBrief.swift */,
 				FBFAD18A244610A100F054E8 /* ChartUI.swift */,
+				FBB5E649246ADE790056BF05 /* FormatterExt.swift */,
+				FB62E9642498E24A00BFE6BE /* OpenLinks.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -475,6 +481,7 @@
 				FB1A43D72496338D0078F144 /* MenuList.swift in Sources */,
 				FB754AF3243A6081002C7BD4 /* TypeOfFilter.swift in Sources */,
 				FB9B860624366A4E0076922E /* CalculateTimeSeriesBrief.swift in Sources */,
+				FB62E9652498E24A00BFE6BE /* OpenLinks.swift in Sources */,
 				FBF428DC2481055700603029 /* NeedChooseTableViewCell.swift in Sources */,
 				FB825CA024631F20003D066A /* PieChartBriefCell.swift in Sources */,
 				FB74572A24266CA60098E670 /* AppDelegate.swift in Sources */,
@@ -501,6 +508,7 @@
 				FB7457502426750B0098E670 /* JsonManager.swift in Sources */,
 				FB49800A2433AFC90080B4D5 /* HeaderCountryTableView.swift in Sources */,
 				FB825CA424631F45003D066A /* LineChartBriefCell.swift in Sources */,
+				FB62E9672498E31E00BFE6BE /* ContactServices.swift in Sources */,
 				FBA255BD242BE9B200317E03 /* InfoViewController.swift in Sources */,
 				FB825CAA246477F6003D066A /* TypeOfChartData.swift in Sources */,
 				FB74575A24269AEB0098E670 /* VirusDataLink.swift in Sources */,
