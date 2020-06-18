@@ -207,6 +207,8 @@ class SaveToRealm {
             editElement.confirmed = newData.confirmed ?? 0
             editElement.deaths = newData.deaths ?? 0
             editElement.recovered = newData.recovered ?? 0
+            editElement.percentDeath = Statistic.getPercent(for: .death, country: editElement)
+            editElement.percentRecovered = Statistic.getPercent(for: .recovered, country: editElement)
             return editElement
             
         } else {
@@ -224,6 +226,9 @@ class SaveToRealm {
             newCountry.confirmed = newData.confirmed ?? 0
             newCountry.deaths = newData.deaths ?? 0
             newCountry.recovered = newData.recovered ?? 0
+            newCountry.percentDeath = Statistic.getPercent(for: .death, country: newCountry)
+            newCountry.percentRecovered = Statistic.getPercent(for: .recovered, country: newCountry)
+            
             return newCountry
         }
         

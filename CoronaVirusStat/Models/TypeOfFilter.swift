@@ -13,5 +13,7 @@ enum TypeOfFilter {
     case confirmed
     case death
     case сountry
+    case deathPercent
+    case recoveredPercent
 }
 

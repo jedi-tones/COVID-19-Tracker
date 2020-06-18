@@ -64,6 +64,7 @@
 		FBEE8364246DF73F001CA080 /* ChooseCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE8362246DF73F001CA080 /* ChooseCountryTableViewCell.swift */; };
 		FBEE8367246EEBAE001CA080 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE8366246EEBAE001CA080 /* UserSettings.swift */; };
 		FBEE836924732471001CA080 /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE836824732470001CA080 /* RealmConfig.swift */; };
+		FBEF602A249B9D250005F947 /* TypeOfStatistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF6029249B9D240005F947 /* TypeOfStatistic.swift */; };
 		FBF428DC2481055700603029 /* NeedChooseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF428DA2481055700603029 /* NeedChooseTableViewCell.swift */; };
 		FBFAD18B244610A100F054E8 /* ChartUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFAD18A244610A100F054E8 /* ChartUI.swift */; };
 /* End PBXBuildFile section */
@@ -130,6 +131,7 @@
 		FBEE8362246DF73F001CA080 /* ChooseCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCountryTableViewCell.swift; sourceTree = "<group>"; };
 		FBEE8366246EEBAE001CA080 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		FBEE836824732470001CA080 /* RealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfig.swift; sourceTree = "<group>"; };
+		FBEF6029249B9D240005F947 /* TypeOfStatistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfStatistic.swift; sourceTree = "<group>"; };
 		FBF428DA2481055700603029 /* NeedChooseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedChooseTableViewCell.swift; sourceTree = "<group>"; };
 		FBFAD18A244610A100F054E8 /* ChartUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,6 +255,7 @@
 				FB1A43D62496338D0078F144 /* MenuList.swift */,
 				FB754AF2243A6081002C7BD4 /* TypeOfFilter.swift */,
 				FB825CA9246477F6003D066A /* TypeOfChartData.swift */,
+				FBEF6029249B9D240005F947 /* TypeOfStatistic.swift */,
 				FB825C9C245DE167003D066A /* Protocols.swift */,
 			);
 			path = Models;
@@ -477,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBFAD18B244610A100F054E8 /* ChartUI.swift in Sources */,
+				FBEF602A249B9D250005F947 /* TypeOfStatistic.swift in Sources */,
 				FB49800324321F980080B4D5 /* Statistic.swift in Sources */,
 				FB1A43D72496338D0078F144 /* MenuList.swift in Sources */,
 				FB754AF3243A6081002C7BD4 /* TypeOfFilter.swift in Sources */,

@@ -22,6 +22,8 @@ class CountryTableViewCell: UITableViewCell {
     @IBOutlet var difConfirmed: UILabel!
     @IBOutlet var difDeath: UILabel!
     @IBOutlet var difRecovered: UILabel!
+    @IBOutlet var deathPercent: UILabel!
+    @IBOutlet var recoveredPercent: UILabel!
     
     
     func setCell(data: VirusRealm) {
@@ -30,6 +32,8 @@ class CountryTableViewCell: UITableViewCell {
         confirmedLabel.text = data.confirmed.formattedWithSeparator
         deathLabel.text = data.deaths.formattedWithSeparator
         recoveredLabel.text = data.recovered.formattedWithSeparator
+        deathPercent.text = "\(data.percentDeath) %"
+        recoveredPercent.text = "\(data.percentRecovered) %"
         
         lastUpdate.text = ConvertDate.convertToMMMdHMMa(oldDate: data.lastupdate)
         

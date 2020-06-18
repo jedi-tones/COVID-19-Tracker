@@ -46,5 +46,24 @@ class Statistic {
         }
         complition()
     }
+    
+    static func getPercent(for statistic: TypeOfStatistic, country: VirusRealm) -> Double {
+        
+        
+        switch statistic {
+        case .recovered:
+            let recovered = Double (country.recovered)
+            let confirmed = Double (country.confirmed)
+            let percent = ((recovered * 100 / confirmed) * 10).rounded() / 10
+            return percent
+        case .death:
+            let death = Double (country.deaths)
+            let confirmed = Double (country.confirmed)
+            let percent = ((death * 100 / confirmed) * 10).rounded() / 10
+            return percent
+        default:
+            return 0.0
+        }
+    }
 }
 

@@ -59,6 +59,8 @@ class VirusRealm: Object {
     @objc dynamic var differenceDeath = 0
     @objc dynamic var differenceRecovered = 0
     @objc dynamic var lastDifferenceDate = ""
+    @objc dynamic var percentDeath = 0.0
+    @objc dynamic var percentRecovered = 0.0
     let location = List<LocationRealm>()
     let timeSeries = List<TimeseryRealm>()
     let province = List<ProvincestateRealm>()
