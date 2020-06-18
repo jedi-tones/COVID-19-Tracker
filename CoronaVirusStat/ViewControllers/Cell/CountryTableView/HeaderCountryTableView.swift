@@ -9,7 +9,7 @@
 import UIKit
 
 class HeaderCountryTableView: UITableViewHeaderFooterView {
-
+    
     @IBOutlet var sortSegmentedControl: UISegmentedControl!
     @IBOutlet var reversSortSwitch: UISwitch!
     
@@ -27,6 +27,10 @@ class HeaderCountryTableView: UITableViewHeaderFooterView {
             typeOfFilter = .confirmed
         case 1:
             typeOfFilter = .death
+        case 3:
+            typeOfFilter = .deathPercent
+        case 4:
+            typeOfFilter = .recoveredPercent
         default:
             typeOfFilter = .сountry
         }
@@ -39,13 +43,17 @@ class HeaderCountryTableView: UITableViewHeaderFooterView {
         isAscending = reversSortSwitch.isOn
         
         switch sortSegmentedControl.selectedSegmentIndex {
-               case 0:
-                   typeOfFilter = .confirmed
-               case 1:
-                   typeOfFilter = .death
-               default:
-                   typeOfFilter = .сountry
-               }
+        case 0:
+            typeOfFilter = .confirmed
+        case 1:
+            typeOfFilter = .death
+        case 3:
+            typeOfFilter = .deathPercent
+        case 4:
+            typeOfFilter = .recoveredPercent
+        default:
+            typeOfFilter = .сountry
+        }
         
         delegate?.sorting(typeOfFilter: typeOfFilter, ascending: isAscending)
     }
@@ -54,5 +62,5 @@ class HeaderCountryTableView: UITableViewHeaderFooterView {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
 }

@@ -85,7 +85,7 @@ class CountryViewController: UIViewController {
     }
     
     //MARK: - sortRealmData
-     func sortRealmData(filter: TypeOfFilter, ascending: Bool) {
+    func sortRealmData(filter: TypeOfFilter, ascending: Bool) {
         //  let isReverse = reverseSortSegmentedControl.selectedSegmentIndex == 0 ? false : true
         
         switch filter {
@@ -93,6 +93,10 @@ class CountryViewController: UIViewController {
             countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "confirmed", ascending: ascending)
         case .death:
             countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "deaths", ascending: ascending)
+        case .deathPercent:
+            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "percentDeath", ascending: ascending)
+        case .recoveredPercent:
+            countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "percentRecovered", ascending: ascending)
         default:
             countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: !ascending)
         }
@@ -160,6 +164,10 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
             headerCell.sortSegmentedControl.selectedSegmentIndex = 0
         case .death:
             headerCell.sortSegmentedControl.selectedSegmentIndex = 1
+        case .deathPercent:
+            headerCell.sortSegmentedControl.selectedSegmentIndex = 3
+        case .recoveredPercent:
+            headerCell.sortSegmentedControl.selectedSegmentIndex = 4
         default:
             headerCell.sortSegmentedControl.selectedSegmentIndex = 2
         }
@@ -212,7 +220,6 @@ extension CountryViewController: SortDelegate {
 extension CountryViewController: UpdateCountry {
     func updateStatus(status: Bool) {
         isUpdatingTimeSeries = status
-        
     }
     
     func updateTable() {
