@@ -15,35 +15,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="358" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="38w-1b-Vg9">
-                        <rect key="frame" x="295" y="20" width="49" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <connections>
-                            <action selector="changeAscending" destination="KGk-i7-Jjw" eventType="valueChanged" id="F2I-95-Osq"/>
-                        </connections>
-                    </switch>
-                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3qU-Yi-icO">
-                        <rect key="frame" x="16" y="20" width="271" height="32"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <segments>
-                            <segment title="CONFIRMED"/>
-                            <segment title="DEATH"/>
-                            <segment title="COUNTRY"/>
-                            <segment title="d" width="30"/>
-                            <segment title="c" width="30"/>
-                        </segments>
-                        <connections>
-                            <action selector="changeSortAction" destination="KGk-i7-Jjw" eventType="valueChanged" id="mNK-aM-7TI"/>
-                        </connections>
-                    </segmentedControl>
+                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpV-YY-IYO">
+                        <rect key="frame" x="16" y="0.0" width="326" height="70"/>
+                    </pickerView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="EpV-YY-IYO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OBZ-Lr-atj"/>
+                    <constraint firstItem="EpV-YY-IYO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Q2r-C4-eo4"/>
+                    <constraint firstAttribute="bottom" secondItem="EpV-YY-IYO" secondAttribute="bottom" id="UqA-eo-NvU"/>
+                    <constraint firstAttribute="trailing" secondItem="EpV-YY-IYO" secondAttribute="trailing" constant="16" id="fey-uj-t9c"/>
+                    <constraint firstItem="EpV-YY-IYO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="uvA-0J-7Ms"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="reversSortSwitch" destination="38w-1b-Vg9" id="Wq8-Yk-APE"/>
-                <outlet property="sortSegmentedControl" destination="3qU-Yi-icO" id="Abq-xw-ELk"/>
+                <outlet property="filterPicker" destination="EpV-YY-IYO" id="Ln5-cS-kgS"/>
             </connections>
-            <point key="canvasLocation" x="146.25" y="-31.690140845070424"/>
+            <point key="canvasLocation" x="98.550724637681171" y="-32.8125"/>
         </tableViewCell>
     </objects>
 </document>

@@ -26,7 +26,8 @@ class LocationManager: UIResponder {
         locationManager.delegate = self
     }
     
-    func getLocation(currentVC: UITableViewController, segueIndetificatorToManualChoose: String) {
+    func getLocation(currentVC: UITableViewController,
+                     segueIndetificatorToManualChoose: String) {
         
         currenetTableVC = currentVC
         segueToChoose = segueIndetificatorToManualChoose

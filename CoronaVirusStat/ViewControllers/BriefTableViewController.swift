@@ -35,7 +35,6 @@ class BriefTableViewController: UITableViewController {
     
     @objc func refresh(sender: UIRefreshControl) {
         getBreaf()
-        
     }
     
     //MARK:  registerCell

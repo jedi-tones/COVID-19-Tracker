@@ -49,7 +49,6 @@ class Statistic {
     
     static func getPercent(for statistic: TypeOfStatistic, country: VirusRealm) -> Double {
         
-        
         switch statistic {
         case .recovered:
             let recovered = Double (country.recovered)

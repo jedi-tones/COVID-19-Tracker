@@ -9,11 +9,11 @@
 import Foundation
 
 
-enum TypeOfFilter {
-    case confirmed
-    case death
-    case сountry
-    case deathPercent
-    case recoveredPercent
+enum TypeOfFilter: String, CaseIterable  {
+    case confirmed = "CONFIRMED"
+    case death = "DEATH"
+    case сountry = "COUNTRY"
+    case deathPercent = "DEATH %"
+    case recoveredPercent = "RECOVERED %"
 }
 

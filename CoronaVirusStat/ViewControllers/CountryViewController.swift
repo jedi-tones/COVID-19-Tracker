@@ -100,7 +100,8 @@ class CountryViewController: UIViewController {
         default:
             countryRealmData = realm.objects(VirusRealm.self).sorted(byKeyPath: "countryregion", ascending: !ascending)
         }
-        countryTableView.reloadData()
+        guard let indexPath = countryTableView.indexPathsForVisibleRows else { return }
+        countryTableView.reloadRows(at: indexPath, with: .fade)
     }
 }
 
@@ -159,20 +160,6 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderCountryTableView.reuseID) as! HeaderCountryTableView
         
-        switch typeFilter {
-        case .confirmed:
-            headerCell.sortSegmentedControl.selectedSegmentIndex = 0
-        case .death:
-            headerCell.sortSegmentedControl.selectedSegmentIndex = 1
-        case .deathPercent:
-            headerCell.sortSegmentedControl.selectedSegmentIndex = 3
-        case .recoveredPercent:
-            headerCell.sortSegmentedControl.selectedSegmentIndex = 4
-        default:
-            headerCell.sortSegmentedControl.selectedSegmentIndex = 2
-        }
-        
-        headerCell.reversSortSwitch.isOn = isAscending
         headerCell.delegate = self
         
         return headerCell

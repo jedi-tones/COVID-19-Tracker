@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "virus.png",
+      "filename" : "logoNewLight.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +12,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "virus-1.png",
+      "filename" : "logoNewDark.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "virus@2x.png",
+      "filename" : "logoNewLight@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,12 +28,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "virus@2x-1.png",
+      "filename" : "logoNewDark@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "virus@3x.png",
+      "filename" : "logoNewLight@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -44,7 +44,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "virus@3x-1.png",
+      "filename" : "logoNewDark@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
